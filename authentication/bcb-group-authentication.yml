@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bcb.group/docs/api-authentication.md
+docs: https://docs.bcb.group/docs/api-authentication
+summary:
+  types: [oauth2, http]
+  oauth2_flows: [clientCredentials]
+  bearer: true
+model: >-
+  All BCB Group Payments API calls require OAuth 2.0 Client Credentials Grant.
+  The application exchanges a Client ID and Client Secret at the token endpoint
+  for a short-lived Access Token, then presents it as a Bearer token in the
+  Authorization header of every request. Credentials are environment-specific
+  (separate Sandbox and Production Client ID/Secret).
+schemes:
+  - name: OAuth2ClientCredentials
+    type: oauth2
+    flow: clientCredentials
+    token_url: https://api.bcb.group/v1/auth/oauth/token
+    token_url_sandbox: https://api.uat.bcb.group/v1/auth/oauth/token
+    request: 'POST application/json {"client_id": "...", "client_secret": "..."}'
+    source: https://docs.bcb.group/reference/get-token
+  - name: BearerAuth
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    in: header
+    header: Authorization
+    note: >-
+      Access token returned by the token endpoint (access_token, expires_in unix
+      timestamp). The `scope` and `token_type` fields are documented as deprecated.
+credentials_source: Provided by BCB Group on successful registration/onboarding; distinct per environment.
