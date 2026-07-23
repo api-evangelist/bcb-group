@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: BCB Group Payments Accounts Authentication API
+  description: This is the api documentation for the BCB Group Payments API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.bcb.group
+  description: Production
+- url: https://api.uat.bcb.group
+  description: Sandbox
+tags:
+- name: Authentication
+paths:
+  /v1/auth/oauth/token:
+    post:
+      summary: Get Token
+      description: The api uses Bearer Tokens to authenticate requests
+      operationId: Auth_GetTokenV1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthErrorResponse'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      tags:
+      - Authentication
+components:
+  schemas:
+    TokenRequest:
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: YOUR_CLIENT_ID
+          default: ''
+        client_secret:
+          type: string
+          description: YOUR_CLIENT_SECRET
+      required:
+      - client_id
+      - client_secret
+    AuthErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          default: access_denied
+          description: The error key, currently this will always be access_denied but may change in future releases.
+        error_description:
+          type: string
+          description: The description of the error.
+      required:
+      - error
+      - error_description
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik5vdGhpbmcgdG8gc2VlIGhlcmUsIE1vdmUgQWxvbmchIiwiaWF0IjoxMzA0NTE2MjIwfQ.GmMW5PSzLT3h3pglooMhnApasCQIxGjUZu4BUPDYmOE
+          description: Bearer token required for authenticated requests
+        expires_in:
+          type: number
+          default: '1304516220'
+          description: unix timestamp of token expiry date
+        scope:
+          type: string
+          description: 'Please note this is deprecated. '
+        token_type:
+          type: string
+          default: Bearer
+          description: 'Please note this is deprecated. '
+      required:
+      - access_token
+      - expires_in
+      - token_type
+      - scope

@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  title: BCB Group Payments Accounts Notifications API
+  description: This is the api documentation for the BCB Group Payments API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.bcb.group
+  description: Production
+- url: https://api.uat.bcb.group
+  description: Sandbox
+tags:
+- name: Notifications
+paths:
+  /v3/payments/register-webhook:
+    post:
+      summary: Payment Status Webhooks
+      description: Webhook to track the status of your payment.
+      operationId: Notifications_PaymentsStatusWebhook
+      responses:
+        '200':
+          description: Succes
+          content:
+            application/json:
+              examples:
+                Payment Status Accepted:
+                  summary: Payment Status Accepted
+                  value:
+                    event: TransactionStatus
+                    status: OK
+              schema:
+                $ref: '#/components/schemas/WebhookRegistrationResponse'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters: []
+      tags:
+      - Notifications
+      security:
+      - bearer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRegistrationRequest'
+            examples:
+              New Example:
+                summary: New Example
+                value: "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}"
+components:
+  schemas:
+    WebhookRegistrationRequest:
+      type: object
+      properties:
+        counterparty_id:
+          type: integer
+        event:
+          type: string
+        url:
+          type: string
+      required:
+      - counterparty_id
+      - event
+      - url
+    WebhookRegistrationResponse:
+      type: object
+      properties:
+        event:
+          type: string
+          example: TransactionStatus
+        status:
+          type: string
+          example: OK

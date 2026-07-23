@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: BCB Group Payments Accounts BLINC API
+  description: This is the api documentation for the BCB Group Payments API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.bcb.group
+  description: Production
+- url: https://api.uat.bcb.group
+  description: Sandbox
+tags:
+- name: BLINC
+paths:
+  /v3/accounts/{accountId}/blinc-beneficiaries:
+    get:
+      summary: BLINC Beneficiaries
+      description: Returns an array of BLINC accounts of all BLINC members to which you are currently connected to
+      operationId: Accounts_BlincBeneficiariesV3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                  - id: 9996
+                    blinc_id: '800999999999'
+                    ccy: GBP
+                    name: BLINC Member
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlincBeneficiary'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account id
+        schema:
+          example: 123
+          type: integer
+          default: ''
+      - name: ccy
+        in: query
+        required: false
+        description: 'List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).'
+        schema:
+          type: string
+          default: ISO 4217 format
+      tags:
+      - BLINC
+      security:
+      - bearer: []
+  /v3/accounts/blinc-accounts/{blincId}:
+    get:
+      summary: BLINC Detail
+      description: Returns a single BLINC account based on the BLINC member BLINC id
+      operationId: Accounts_BlincAccountV3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                  - id: 9996
+                    blinc_id: '800999999999'
+                    ccy: GBP
+                    name: BLINC Member
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlincBeneficiary'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters:
+      - in: path
+        name: blincId
+        schema:
+          type: string
+          default: '800999999999'
+        required: true
+        description: '
+
+          BLINC ID of another BLINC member'
+      tags:
+      - BLINC
+      security:
+      - bearer: []
+components:
+  schemas:
+    BlincBeneficiary:
+      type: object
+      properties:
+        id:
+          type: number
+          default: '9996'
+        blinc_id:
+          type: string
+          default: '800999999999'
+        ccy:
+          type: string
+          default: GBP
+        name:
+          type: string
+          default: BLINC Memeber
+      required:
+      - id
+      - name
+      - ccy
+      - blinc_id

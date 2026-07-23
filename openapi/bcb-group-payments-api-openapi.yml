@@ -1,0 +1,619 @@
+openapi: 3.0.0
+info:
+  title: BCB Group Accounts Payments API
+  description: This is the api documentation for the BCB Group Payments API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.bcb.group
+  description: Production
+- url: https://api.uat.bcb.group
+  description: Sandbox
+tags:
+- name: Payments
+paths:
+  /v1/payments/{accountId}/verification-of-payee/{end2endId}/approve:
+    post:
+      summary: VOP Approve
+      description: Approve a payment where the beneficiary name does not match the name on the account
+      operationId: Payments_VerificationOfPayeeApproveV1
+      responses:
+        '200':
+          description: The unverified payment was approved successfully.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationOfPayeeErrorResponse'
+        '404':
+          description: No unverified payment was found for this account with the given end-to-end id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationOfPayeeErrorResponse'
+        '409':
+          description: The payment is not unverified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationOfPayeeErrorResponse'
+      parameters:
+      - in: path
+        name: accountId
+        schema:
+          type: integer
+        required: true
+        description: The account id
+      - in: path
+        name: end2endId
+        schema:
+          type: string
+        required: true
+        description: The end-to-end id of the payment
+      tags:
+      - Payments
+      security:
+      - bearer: []
+  /v1/payments/{accountId}/verification-of-payee/{end2endId}/cancel:
+    post:
+      summary: VOP Cancel
+      description: Cancel a payment where the beneficiary name does not match the name on the account
+      operationId: Payments_VerificationOfPayeeCancelV1
+      responses:
+        '200':
+          description: The unverified payment was cancelled successfully.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationOfPayeeErrorResponse'
+        '404':
+          description: No unverified payment was found for this account with the given end-to-end id.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationOfPayeeErrorResponse'
+        '409':
+          description: The payment is not unverified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationOfPayeeErrorResponse'
+      parameters:
+      - in: path
+        name: accountId
+        schema:
+          type: integer
+        required: true
+        description: The account id
+      - in: path
+        name: end2endId
+        schema:
+          type: string
+        required: true
+        description: The end-to-end id of the payment
+      tags:
+      - Payments
+      security:
+      - bearer: []
+  /v5/payments/authorise:
+    post:
+      summary: Authorise Payment
+      description: Make a Payment
+      operationId: Payments_AuthorisePaymentV5
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                  - endToEndIdentification: PaymentEndToEndIdentification
+                    transactionId: PaymentTransactionId
+                    nonce: PaymentNonce
+                    response: Accepted
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthorisePaymentResponse'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters: []
+      tags:
+      - Payments
+      security:
+      - bearer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorisePaymentRequest'
+            examples:
+              Beneficiary Payment:
+                summary: Beneficiary Payment
+                value: "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BENEFICIARY_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"URGENT\",\n    \"preferred_scheme\": \"AUTO\",\n    \"nonce\": \"933829795\"\n}"
+              BLINC Payment:
+                summary: BLINC Payment
+                value: "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BLINC_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"BLINC Payment\",\n    \"preferred_scheme\": \"BLINC\",\n    \"nonce\": \"933829795\"\n}"
+              Internal Transfer:
+                summary: Internal Transfer
+                value: "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": OTHER_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Inter account transfer\",\n    \"reason\": \"Account Transfer\",\n    \"notes\": \"BLINC account topup\",\n    \"preferred_scheme\": \"INTERNAL\",\n    \"nonce\": \"933829795\"\n}"
+              USD - SWIFT:
+                summary: USD - SWIFT
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_routing_number\": \"BENEFICIARY_ROUTING_NUMBER\",\n  \"beneficiary_wire_routing\": \"BENEFICIARY_WIRE_ROUTING\" (OPTIONAL),\n  \"beneficiary_bank_name\": \"BANK NAME\",\n  \"beneficiary_bank_address\": \"BANK ADDRESS\",\n  \"beneficiary_bank_country\": \"BANK COUNTRY\",\n  \"ccy\": \"USD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\",\n\t\"intermediary_bank\": {\n    \"bic\": \"CORRESPONDING BANK BIC\",\t\n\t\t\"routing_number\": \"CORRESPONDING BANK ABA ROUTING NUMBER\"\n\t}\n}\n"
+              USD:
+                summary: USD
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_routing_number\": \"BENEFICIARY_ROUTING_NUMBER\",\n  \"beneficiary_wire_routing\": \"BENEFICIARY_WIRE_ROUTING\" (OPTIONAL),\n  \"beneficiary_bank_name\": \"BANK NAME\",\n  \"beneficiary_bank_address\": \"BANK ADDRESS\",\n  \"beneficiary_bank_country\": \"BANK COUNTRY\",\n  \"ccy\": \"USD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+              GBP - SWIFT:
+                summary: GBP - SWIFT
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\",\n  \"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"beneficiary_swift_code\": \"BENEFICIARY_BIC\",\n  \"ccy\": \"GBP\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+              GBP - CHAPS:
+                summary: GBP - CHAPS
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"ccy\": \"GBP\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+              GBP - FPS:
+                summary: GBP - FPS
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"ccy\": \"GBP\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+              CAD:
+                summary: CAD
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_institution\": \"BENEFICIARY_INSTITUTION\" (OPTIONAL),\n  \"beneficiary_branch\": \"BENEFICIARY_BRANCH\" (OPTIONAL),\n  \"beneficiary_bic\": \"BENEFICIARY_BIC\",\n  \"ccy\": \"CAD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+              AUD - BECS / NP:
+                summary: AUD - BECS / NP
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"ACCOUNT NUMBER\",\n  \"beneficiary_national_clearing_code\": \"BENEFICIARY_NATIONAL_CLEARING_CODE\",\n  \"beneficiary_bank_country\": \"BANK COUNTRY\",\n  \"ccy\": \"AUD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+              Generic Payments (Most CCY's) - IBAN + BIC:
+                summary: Generic Payments (Most CCY's) - IBAN + BIC
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_bic\": \"BENEFICIARY_BIC\",\n  \"beneficiary_iban\": \"BENEFICIARY_IBAN\" (OPTIONAL) (IBAN Countries),\n  \"ccy\": \"EUR\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+              Generic Payments (Most CCY's) - Account Number + Sort Code:
+                summary: Generic Payments (Most CCY's) - Account Number + Sort Code
+                value: "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" ,\n\t\"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"beneficiary_bic\": \"BENEFICIARY_BIC\",\n  \"ccy\": \"EUR\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+  /v1/payments/{accountId}/transaction/{transactionId}:
+    get:
+      summary: Get Payment By ID
+      description: Get the details of a single payment for a given account and transaction id
+      operationId: Payments_PaymentByIdV1
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account id
+        schema:
+          example: 123
+          type: integer
+          default: ''
+      - name: transactionId
+        required: true
+        in: path
+        description: The transaction id of the payment
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The payment was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPaymentResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No payment was found for the account with the given transaction id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Payments
+      security:
+      - bearer: []
+  /v1/payments/{accountId}/nonce/{nonce}:
+    get:
+      summary: Get Payment By Nonce
+      description: Get the details of a single payment for a given account and nonce
+      operationId: Payments_getPaymentByNonceV1
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account id
+        schema:
+          example: 123
+          type: integer
+          default: ''
+      - name: nonce
+        required: true
+        in: path
+        description: The unique nonce of the payment
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The payment was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPaymentResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No payment was found for the account with the given nonce
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Payments
+      security:
+      - bearer: []
+  /v1/payments/{accountId}:
+    get:
+      operationId: Payments_ListPaymentsForAccountV1
+      summary: List Payments
+      description: List the payments for an account
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account id
+        schema:
+          example: 123
+          type: integer
+          default: ''
+      - name: dateFrom
+        required: false
+        in: query
+        description: The date to get results from
+        schema:
+          format: date-time
+          type: string
+      - name: dateTo
+        required: false
+        in: query
+        description: The date to get results to
+        schema:
+          format: date-time
+          type: string
+      - name: pageIndex
+        required: false
+        in: query
+        description: The page offset of results to return
+        schema:
+          minimum: 0
+          default: 0
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        description: The limit of number of results to return
+        schema:
+          minimum: 1
+          maximum: 1000
+          default: 1000
+          type: number
+      responses:
+        '200':
+          description: The payments were retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedGetPaymentResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No payment was found for the account with the given transaction id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Payments
+      security:
+      - bearer: []
+  /v3/payments/reverse-deposit:
+    post:
+      summary: Reverse a Deposit
+      description: Reverse a Deposit
+      operationId: Payments_ReverseDepositV1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value: {}
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters: []
+      tags:
+      - Payments
+      security:
+      - bearer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/End2EndIdRequest'
+components:
+  schemas:
+    PagedGetPaymentResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: The total number of results in the filtered, un-paged dataset
+        results:
+          description: The paged result set
+          type: array
+          items:
+            type: string
+      required:
+      - count
+      - results
+    IntermediaryBank:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: Corresponding Bank BIC
+        routing_number:
+          type: string
+          description: Corresponding Bank Routing Number
+      description: Only valid for USD SWIFT
+    VerificationOfPayeeErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        error:
+          type: string
+          description: The title of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode
+    GetPaymentResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: The transaction id of the payment
+        endToEndId:
+          type: string
+          description: The end to end id of the payment
+        nonce:
+          type: string
+          description: The nonce provided when initiating the payment as a technical dupe check and external reference id
+        status:
+          type: string
+          description: The current status of the payment
+          enum:
+          - Received
+          - Initiated
+          - Cancelled
+          - Pending
+          - Processing
+          - Rejected
+          - Settled
+          - VopHeld
+        currency:
+          type: string
+          description: The instructed currency of the payment
+        amount:
+          type: string
+          description: The instructed amount of the payment
+        rejectReason:
+          type: string
+          description: The reject reason for the payment. Only populated if the payment has been rejected, otherwise undefined
+      required:
+      - transactionId
+      - endToEndId
+      - nonce
+      - status
+      - currency
+      - amount
+    End2EndIdRequest:
+      type: object
+      properties:
+        endToEndId:
+          type: string
+          description: DEPOSIT_END_TO_END_ID
+          default: ''
+      required:
+      - endToEndId
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode
+    AuthorisePaymentResponse:
+      type: object
+      properties:
+        endToEndIdentification:
+          type: string
+          example: PaymentEndToEndIdentification
+        transactionId:
+          type: string
+          example: PaymentTransactionId
+        nonce:
+          type: string
+          example: PaymentNonce
+        response:
+          type: string
+          example: Accepted
+      required:
+      - endToEndIdentification
+      - transactionId
+      - nonce
+      - response
+    AuthorisePaymentRequest:
+      type: object
+      properties:
+        counterparty_id:
+          type: integer
+          description: YOUR_COUNTERPARTY_ID
+        sender_account_id:
+          type: string
+          description: YOUR_ACCOUNT_ID
+        ccy:
+          type: string
+          description: 'ISO4217 currency code EG: GBP'
+        amount:
+          type: string
+        reference:
+          type: string
+        reason:
+          type: string
+        notes:
+          type: string
+          description: This information is not relayed on the payment
+        preferred_scheme:
+          type: string
+          default: AUTO
+          enum:
+          - AUTO
+          - BLINC
+          - INTERNAL
+          description: 'AUTO > for external payments
+
+            BLINC > for payments inside BLINC network, must use BLINC accounts
+
+            INTERNAL > for payments between BCB accounts of the same counterparty'
+        nonce:
+          type: string
+          description: Nonce field ensures that payment requests can only be processed once, If the nonce for a payment request is not unique for the account then it will be rejected.
+        beneficiary_account_id:
+          type: integer
+        beneficiary_name:
+          type: string
+        beneficiary_address_line_1:
+          type: string
+        beneficiary_address_line_2:
+          type: string
+        beneficiary_address_line_3:
+          type: string
+        beneficiary_city:
+          type: string
+        beneficiary_region:
+          type: string
+        beneficiary_postcode:
+          type: string
+        beneficiary_country:
+          type: string
+        beneficiary_account_number:
+          type: string
+        beneficiary_sort_code:
+          type: string
+        beneficiary_bic:
+          type: string
+        beneficiary_iban:
+          type: string
+        beneficiary_routing_number:
+          type: string
+        beneficiary_wire_routing:
+          type: string
+        beneficiary_swift_code:
+          type: string
+        beneficiary_national_clearing_code:
+          type: string
+        beneficiary_institution:
+          type: string
+        beneficiary_branch:
+          type: string
+        beneficiary_lei_code:
+          type: string
+          description: Mandatory for CHAPS
+        beneficiary_bank_name:
+          type: string
+        beneficiary_bank_address:
+          type: string
+        beneficiary_bank_country:
+          type: string
+        intermediary_bank:
+          $ref: '#/components/schemas/IntermediaryBank'
+      required:
+      - counterparty_id
+      - nonce
+      - preferred_scheme
+      - reason
+      - reference
+      - amount
+      - ccy
+      - sender_account_id

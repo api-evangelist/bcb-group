@@ -1,0 +1,598 @@
+openapi: 3.0.0
+info:
+  title: BCB Group Payments Accounts API
+  description: This is the api documentation for the BCB Group Payments API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.bcb.group
+  description: Production
+- url: https://api.uat.bcb.group
+  description: Sandbox
+tags:
+- name: Accounts
+paths:
+  /v4/accounts/balance/{accountId}:
+    get:
+      summary: Balance
+      description: Get the balance for an account
+      operationId: Accounts_BalanceV4
+      responses:
+        '200':
+          description: The balance was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: The balance for the account was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account id
+        schema:
+          example: 123
+          type: integer
+          default: ''
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /v3/accounts:
+    get:
+      summary: Accounts
+      description: List Accounts
+      operationId: Accounts_ListAccountsV3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                  - id: 378
+                    counterparty_id: 483
+                    aid: A01-CX00000101
+                    cid: CX00000101
+                    account_type: Wallet
+                    ccy: BTC
+                    host_name: BCB Group
+                    host_hub: ''
+                    host_location: ''
+                    node_name: BCB Payments Ltd
+                    node_address: 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo
+                    node_location: ''
+                    node_country: ''
+                    node_subaddress: ''
+                    iban: ''
+                    account_label: LNS 5 BTC hszo
+                    description: BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC
+                    bcb_controlled: 1
+                    settlement_reference: ''
+                    created_at: '2018-12-28T14:42:44.000Z'
+                    updated_at: '2019-01-24T21:26:27.000Z'
+                    partner_id: 4
+                    email: otc@bcbgroup.io
+                    reporting_ccy: GBP
+                    pid: P01061701
+                    partner_name: BCB Direct
+                  - id: 383
+                    counterparty_id: 483
+                    aid: A02-CX00000101
+                    cid: CX00000101
+                    account_type: Bank
+                    ccy: CHF
+                    host_name: Credit Suisse
+                    host_hub: Zurich
+                    host_location: Lake View, Zurich, CH 2001, Switzerland
+                    node_name: Best Swiss OTC LLC
+                    node_address: '6013354000'
+                    node_location: ''
+                    node_country: CH
+                    node_subaddress: ''
+                    iban: CH04NWBK53616776013354
+                    account_label: Best Swiss CHF Main Account
+                    description: Best Swiss, Credit Suisse CH04NWBK53616776013354, CHF
+                    bcb_controlled: 0
+                    settlement_reference: ''
+                    created_at: '2018-12-28T14:42:44.000Z'
+                    updated_at: '2018-12-28T14:42:44.000Z'
+                    partner_id: 4
+                    email: otc@bestswiss.io
+                    reporting_ccy: CHF
+                    pid: P01061701
+                    partner_name: Best Swiss OTC
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters:
+      - name: counterparty_id
+        in: query
+        required: false
+        description: Limit accounts by Counterparty ID
+        schema:
+          type: integer
+          default: ''
+      - name: id
+        in: query
+        required: false
+        description: Limit result set to a specific Account ID
+        schema:
+          type: integer
+          default: ''
+      - name: limit
+        in: query
+        required: false
+        description: Limit result set for server-side paging
+        schema:
+          type: integer
+          default: ''
+      - name: pageToken
+        in: query
+        required: false
+        description: Offset result set when paging
+        schema:
+          type: integer
+          default: '0'
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /v3/accounts/{accountId}/transactions/{transactionId}:
+    get:
+      summary: Transaction Detail
+      description: List details of a transaction within user permissions
+      operationId: Accounts_TransactionDetailV3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    tx_id: 7b73263d-65dc-11e9-b39c-42010a8400a9
+                    account_id: 539
+                    blinc_id: null
+                    network: FPS
+                    value_date: '2019-04-23T14:28:26.000Z'
+                    credit: 0
+                    details:
+                      bic: null
+                      iban: GB41CLRB04054100000033
+                      blinc_id: null
+                      reference: BCB Pay 53135 GBP
+                      sort_code: '040541'
+                      account_name: BCB Payments Ltd
+                      account_number: '00000033'
+                      counterparty_reference: BCB Pay 53135 GBP
+                      endToEndIdentifier: fcb60b45a4b94371b7cf2321ec318117
+                      nonce: 1598455372829
+                    ticker: GBP
+                    amount: 5858.94
+                    approved: 1
+                    notes: null
+                    source_name: clearbank
+              schema:
+                $ref: '#/components/schemas/TransactionDetailResponse'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account id
+        schema:
+          example: 123
+          type: integer
+          default: ''
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+  /v3/accounts/{accountId}/transactions:
+    get:
+      summary: Transactions
+      description: List Account Transactions
+      operationId: Accounts_TransactionsV3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                  - tx_id: 7b73263d-65dc-11e9-b39c-42010a8400a9
+                    account_id: 539
+                    blinc_id: null
+                    network: FPS
+                    value_date: '2019-04-23T14:28:26.000Z'
+                    credit: 0
+                    details:
+                      bic: null
+                      iban: GB41CLRB04054100000033
+                      blinc_id: null
+                      reference: BCB Pay 53135 GBP
+                      sort_code: '040541'
+                      account_name: BCB Payments Ltd
+                      account_number: '00000033'
+                      counterparty_reference: BCB Pay 53135 GBP
+                      endToEndIdentifier: fcb60b45a4b94371b7cf2321ec318117
+                      nonce: 1598455372829
+                    ticker: GBP
+                    amount: 5858.94
+                    approved: 1
+                    notes: null
+                    source_name: clearbank
+                  - tx_id: 38aa62fa-653e-11e9-b39c-42010a8400a9
+                    account_id: 539
+                    blinc_id: null
+                    network: FPS
+                    value_date: '2019-04-22T19:35:37.000Z'
+                    credit: 1
+                    details:
+                      bic: null
+                      iban: GB41CLRB04054100000033
+                      blinc_id: null
+                      reference: BCB Pay 53135 GBP
+                      sort_code: '040541'
+                      account_name: BCB Payments Ltd
+                      account_number: '00000033'
+                      counterparty_reference: BCB Pay 53135 GBP
+                      endToEndIdentifier: fcb60b45a4b94371b7cf2321ec318117
+                      nonce: 1623419032251
+                    ticker: GBP
+                    amount: 8280
+                    approved: 1
+                    notes: null
+                    source_name: clearbank
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Not Found
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: The account id
+        schema:
+          example: 123
+          type: integer
+          default: ''
+      - name: dateFrom
+        in: query
+        required: false
+        description: The date to get results from
+        schema:
+          type: string
+          format: date
+          default: ''
+      - name: dateTo
+        in: query
+        required: false
+        description: The date to get results to
+        schema:
+          type: string
+          format: date
+          default: ''
+      - name: limit
+        in: query
+        required: false
+        description: Limit result set for server-side paging
+        schema:
+          type: integer
+          default: ''
+      - name: pageToken
+        in: query
+        required: false
+        description: Offset result set when paging
+        schema:
+          type: integer
+          default: ''
+      tags:
+      - Accounts
+      security:
+      - bearer: []
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+        account_id:
+          type: integer
+          description: Account ID
+        value_date:
+          type: string
+          description: Date of transaction
+        credit:
+          type: boolean
+          description: Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)
+        details:
+          $ref: '#/components/schemas/TransactionDetails'
+        ticker:
+          type: string
+          description: Asset identifier (e.g. 'BTC', 'USD')
+        amount:
+          type: string
+          description: Transaction amount
+        approved:
+          type: boolean
+          description: Flag is 1 if approved
+        notes:
+          type: string
+          description: Free-text notes
+        source_name:
+          type: string
+          description: Transaction source
+      required:
+      - tx_id
+      - account_id
+      - value_date
+      - credit
+      - details
+      - ticker
+      - approved
+      - amount
+      - notes
+      - source_name
+    BalanceResponse:
+      type: object
+      properties:
+        accountId:
+          type: number
+          description: The id of the account
+        settled:
+          type: string
+          description: The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
+        available:
+          type: string
+          description: The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
+      required:
+      - accountId
+      - settled
+      - available
+    TransactionDetailResponse:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+      required:
+      - tx_id
+    TransactionDetails:
+      type: object
+      description: Sender or receiver account information depending on payment direction
+      properties:
+        bic:
+          type: string
+        iban:
+          type: string
+        blinc_id:
+          type: string
+        reference:
+          type: string
+        sort_code:
+          type: string
+        account_name:
+          type: string
+        account_number:
+          type: string
+        counterparty_reference:
+          type: string
+        endToEndIdentifier:
+          type: string
+        nonce:
+          type: number
+      required:
+      - nonce
+      - endToEndIdentifier
+      - counterparty_reference
+      - account_number
+      - account_name
+      - reference
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Account ID
+        counterparty_id:
+          type: integer
+          description: Counterparty ID
+        aid:
+          type: string
+          description: Alpha-numeric account ID
+        cid:
+          type: string
+          description: Alpha-numeric counterparty ID
+        account_type:
+          type: string
+          enum:
+          - Bank
+          - Custodial
+          - Wallet
+          description: ''
+        ccy:
+          type: string
+          description: Asset ticker, or left hand side of trading symbol
+        host_name:
+          type: string
+          description: Bank Name for bank accounts, Custodian Name for custody accounts, Wallet Name for wallet accounts
+        host_hub:
+          type: string
+          description: Branch Code for bank accounts, optional for custody and wallets
+        host_location:
+          type: string
+        node_name:
+          type: string
+          description: Account holder's legal name
+        node_address:
+          type: string
+          description: Account Number for bank accounts, wallet address for wallets, optional for custody
+        node_location:
+          type: string
+          description: Account holder's residential address for bank accounts, optional memo field for custody and wallets
+        node_country:
+          type: string
+          description: Account holder's residential address country code (2-letter ISO country code), optional memo field for custody and wallets
+        iban:
+          type: string
+          description: IBAN for bank accounts
+        account_label:
+          type: string
+          description: Display name for account
+        description:
+          type: string
+          description: Free-text description of account
+        bcb_controlled:
+          type: string
+          description: Flag is 1 if BCB can operate the account, 0 otherwise
+        settlement_reference:
+          type: string
+          description: Optional settlement reference for payments
+        created_at:
+          type: string
+          description: Timestamp of account record creation (YYYY-MM-DDTHH:MM:SS.000Z)
+        updated_at:
+          type: string
+          description: Timestamp of account record update (YYYY-MM-DDTHH:MM:SS.000Z)
+        blinc_id:
+          type: string
+          description: Only applicable to BLINC accounts - account id within BLINC network
+        partner_id:
+          type: string
+          description: This field is deprecated.
+        email:
+          type: string
+          description: Email address of client
+        reporting_ccy:
+          type: string
+          description: Home currency of client
+        pid:
+          type: string
+          description: This field is deprecated.
+        partner_name:
+          type: string
+          description: This field is deprecated.
+      required:
+      - id
+      - counterparty_id

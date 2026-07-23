@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: BCB Group Payments Accounts Tools API
+  description: This is the api documentation for the BCB Group Payments API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.bcb.group
+  description: Production
+- url: https://api.uat.bcb.group
+  description: Sandbox
+tags:
+- name: Tools
+paths:
+  /v1/bank-lookup:
+    get:
+      summary: Bank Lookup
+      description: Retrieve the bank code (BIC) of the bank holding an account from its IBAN
+      operationId: Tools_BankLookup
+      parameters:
+      - name: iban
+        required: true
+        in: query
+        description: The IBAN used to identify the associated bank code.
+        schema:
+          example: DE89370400440532013000
+          type: string
+      responses:
+        '200':
+          description: The BIC was resolved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankLookupResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No BIC could be found for the given IBAN
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+      - Tools
+      security:
+      - bearer: []
+components:
+  schemas:
+    BankLookupResponse:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: The bank code (BIC) of the supplied IBAN
+          example: COBADEFF
+      required:
+      - bic
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode

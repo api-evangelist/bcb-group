@@ -1,0 +1,313 @@
+openapi: 3.0.0
+info:
+  title: BCB Group Payments Accounts Beneficiaries API
+  description: This is the api documentation for the BCB Group Payments API
+  version: 1.0.0
+  contact: {}
+servers:
+- url: https://api.bcb.group
+  description: Production
+- url: https://api.uat.bcb.group
+  description: Sandbox
+tags:
+- name: Beneficiaries
+paths:
+  /v4/accounts:
+    post:
+      summary: Create Beneficiary
+      description: Create a new beneficiary
+      operationId: Beneficiaries_CreateBeneficiaryV4
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Invalid token
+        '403':
+          description: Forbidden
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Forbidden
+        '500':
+          description: Internal Server Error
+          content:
+            text/html:
+              schema:
+                type: string
+                example: Internal Server Error
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBeneficiaryRequest'
+            examples:
+              Wallet:
+                summary: Wallet
+                value: "Account Type: Wallet\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Wallet' (MANDATORY),\n    ccy: 'BTC' (MANDATORY),\n    host_name: 'NULL' (DO NOT FILL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'NULL' (DO NOT FILL),\n    host_country: 'NULL' (DO NOT FILL),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'WALLET ADDRESS' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL' (DO NOT FILL),\n    bic: 'NULL' (DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'NULL' (DO NOT FILL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              Any CCY excluding USD - AU & NZ:
+                summary: Any CCY excluding USD - AU & NZ
+                value: "/**\n * CCY: Any CCY excluding USD\n * Country: AU & NZ\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'AUD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'BSB NUMBER' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'AU' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              USD Any IBAN country (Including GB):
+                summary: USD Any IBAN country (Including GB)
+                value: "/**\n * CCY: USD\n * Country: Any IBAN country (Including GB)\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'USD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (MANDATORY),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'BANK ADDRESS' (MANDATORY),\n    host_country: 'SG' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'NULL' (DO NOT FILL),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(MANDATORY),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              USD Any non-IBAN country:
+                summary: USD Any non-IBAN country
+                value: "/**\n * CCY: USD\n * Country: Any non-IBAN country\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'USD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (MANDATORY),\n    host_hub: 'NATIONAL CLEARING CODE' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (MANDATORY),\n    host_country: 'SG' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}{}"
+              USD - US:
+                summary: USD - US
+                value: "/**\n * CCY: USD\n * Country: US\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'USD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'FEDWIRE ROUTING NUMBER' (MANDATORY),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'US' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'NULL'(DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              Any CCY excluding USD - CA:
+                summary: Any CCY excluding USD - CA
+                value: "/**\n * CCY: Any CCY excluding USD\n * Country: CA\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'CAD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'CANADIAN ROUTING NUMBER' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'CA' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              Any non-IBAN country excluding AU & NZ & CA & US:
+                summary: Any non-IBAN country excluding AU & NZ & CA & US
+                value: "/**\n * CCY: Any CCY excluding USD\n * Country: Any non-IBAN country excluding AU & NZ & CA & US\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'HKD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'NATIONAL CLEARING CODE' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'SG' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              Any IBAN Country excluding GB:
+                summary: Any IBAN Country excluding GB
+                value: "/**\n * CCY: Any CCY excluding USD\n * Country: Any IBAN Country excluding GB\n * Account Type: Bank\n */ \n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'EUR' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'DE' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'NULL' (DO NOT FILL),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(MANDATORY),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              Any CCY excluding GBP & USD - GB:
+                summary: Any CCY excluding GBP & USD - GB
+                value: "/**\n * CCY: Any CCY excluding GBP & USD\n * Country: GB\n * Account Type: Bank\n */ \n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'EUR' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'GB' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (OPTIONAL),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(MANDATORY),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+              Account Number + Sort Code - GB:
+                summary: Account Number + Sort Code - GB
+                value: "/**\n * CCY: GBP\n * Country: GB\n * Scenario: Account Number + Sort Code\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'GBP' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'SORT CODE' (MANDATORY),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'GB' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY for CHAPS Payments),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY for CHAPS Payments),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (MANDATORY for CHAPS Payments),\n    node_country: 'CC' (OPTIONAL - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(OPTIONAL),\n    bic: 'BIC'(OPTIONAL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+      tags:
+      - Beneficiaries
+      security:
+      - bearer: []
+  /v3/beneficiaries:
+    get:
+      summary: List Beneficiaries
+      description: List all beneficiary bank accounts, custody accounts and wallet accounts.
+      operationId: Beneficiaries_ListBeneficiariesV3
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Beneficiary'
+              examples:
+                OK:
+                  summary: OK
+                  value:
+                  - id: 378
+                    counterparty_id: 483
+                    aid: A01-CX00000101
+                    cid: CX00000101
+                    account_type: Wallet
+                    ccy: BTC
+                    host_name: BCB Group
+                    host_hub: ''
+                    host_location: ''
+                    node_name: BCB Payments Ltd
+                    node_address: 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo
+                    node_location: ''
+                    node_country: ''
+                    node_subaddress: ''
+                    iban: ''
+                    account_label: LNS 5 BTC hszo
+                    description: BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC
+                    settlement_reference: ''
+                    created_at: '2018-12-28T14:42:44.000Z'
+                    updated_at: '2019-01-24T21:26:27.000Z'
+                    partner_id: 4
+                    email: otc@bcbgroup.io
+                    pid: P01061701
+                    partner_name: BCB Direct
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: number
+        description: Limit result set for server-side paging
+      - in: query
+        name: pageToken
+        schema:
+          type: number
+        description: Offset result set when paging
+      tags:
+      - Beneficiaries
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateBeneficiaryRequest:
+      type: object
+      properties:
+        counterparty_id:
+          type: integer
+        cid:
+          type: string
+        name:
+          type: string
+        account_type:
+          type: string
+          enum:
+          - Bank
+          - Wallet
+        ccy:
+          type: string
+          description: Account currency - ISO Code 3
+        host_name:
+          type: string
+          description: Bank name
+        host_hub:
+          type: string
+          description: Bank sort code
+        host_location:
+          type: string
+          description: Bank address
+        host_country:
+          type: string
+          description: 'Account country - ISO Code 2 '
+        node_name:
+          type: string
+          description: Account name
+        node_address:
+          type: string
+          description: Account number
+        node_location_line_1:
+          type: string
+          description: Beneficiary address line 1 - Mandatory for CHAPS payments
+        node_location_line_2:
+          type: string
+          description: Beneficiary address line 2
+        node_location_line_3:
+          type: string
+          description: Beneficiary address line 3
+        node_location_city:
+          type: string
+          description: Beneficiary address city
+        node_location_region:
+          type: string
+          description: Beneficiary address region
+        node_location_postcode:
+          type: string
+          description: Beneficiary address postcode
+        node_country:
+          type: string
+          description: ISO Code 2 letters
+        node_type:
+          type: string
+          enum:
+          - individual
+          - corporate
+        iban:
+          type: string
+        bic:
+          type: string
+        account_label:
+          type: string
+          description: Name - CCY
+        payment_type:
+          type: string
+        email:
+          type: string
+          description: Beneficiary email address
+        bcb_controlled:
+          type: integer
+          description: 'This is always 1 '
+          default: '1'
+        settlement_reference:
+          type: string
+        is_beneficiary:
+          type: integer
+          default: '1'
+          description: 'This is always 1 '
+      required:
+      - is_beneficiary
+      - bcb_controlled
+      - node_type
+      - host_country
+      - account_type
+      - name
+      - cid
+      - counterparty_id
+    Beneficiary:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 378
+          default: 0
+        counterparty_id:
+          type: integer
+          example: 483
+          default: 0
+        aid:
+          type: string
+          example: A01-CX00000101
+        cid:
+          type: string
+          example: CX00000101
+        account_type:
+          type: string
+          example: Wallet
+        ccy:
+          type: string
+          example: BTC
+        host_name:
+          type: string
+          example: BCB Group
+        host_hub:
+          type: string
+          example: ''
+        host_location:
+          type: string
+          example: ''
+        node_name:
+          type: string
+          example: BCB Payments Ltd
+        node_address:
+          type: string
+          example: 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo
+        node_location:
+          type: string
+          example: ''
+        node_country:
+          type: string
+          example: ''
+        node_subaddress:
+          type: string
+          example: ''
+        iban:
+          type: string
+          example: ''
+        account_label:
+          type: string
+          example: LNS 5 BTC hszo
+        description:
+          type: string
+          example: BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC
+        settlement_reference:
+          type: string
+          example: ''
+        created_at:
+          type: string
+          example: '2018-12-28T14:42:44.000Z'
+        updated_at:
+          type: string
+          example: '2019-01-24T21:26:27.000Z'
+        partner_id:
+          type: integer
+          example: 4
+          default: 0
+        email:
+          type: string
+          example: otc@bcbgroup.io
+        pid:
+          type: string
+          example: P01061701
+        partner_name:
+          type: string
+          example: BCB Direct
