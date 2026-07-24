@@ -1,0 +1,69 @@
+# BCB Group API Documentation
+
+> Documentation for BCB Group API
+
+## Guides
+- [Introduction](https://docs.bcb.group/docs/introduction.md)
+- [API Resources](https://docs.bcb.group/docs/api-resources.md)
+- [BCB Group Environments](https://docs.bcb.group/docs/bcb-group-environments.md)
+- [API Authentication](https://docs.bcb.group/docs/api-authentication.md)
+- [Status Codes](https://docs.bcb.group/docs/status-codes.md)
+- [Rate Limiting](https://docs.bcb.group/docs/rate-limiting.md)
+- [Idempotency and Duplicate Prevention](https://docs.bcb.group/docs/idempotency-and-duplicate-prevention.md)
+- [Purpose / Reason Codes](https://docs.bcb.group/docs/purpose-codes.md)
+- [Pagination](https://docs.bcb.group/docs/pagination.md)
+- [Introduction](https://docs.bcb.group/docs/introduction-1.md)
+- [Webhook verification](https://docs.bcb.group/docs/webhook-setup.md): Receive event notifications
+- [Management through Console](https://docs.bcb.group/docs/management-through-console.md)
+- [BCB API Overview](https://docs.bcb.group/docs/bcb-api-overview.md)
+- [Core Concepts](https://docs.bcb.group/docs/core-concepts.md)
+- [Seeking Support for BCB API Services](https://docs.bcb.group/docs/support.md)
+- [Prerequisites](https://docs.bcb.group/docs/prerequisites.md)
+- [Account Setup](https://docs.bcb.group/docs/account-setup.md)
+- [Required Tools/Software](https://docs.bcb.group/docs/required-toolssoftware.md)
+- [Accounts](https://docs.bcb.group/docs/accounts.md)
+- [Accounts and Balances](https://docs.bcb.group/docs/accounts-and-balances.md)
+- [Transactions](https://docs.bcb.group/docs/transactions.md)
+- [Transactions and Details](https://docs.bcb.group/docs/transactions-and-details.md)
+- [Create a Payment Request](https://docs.bcb.group/docs/create-a-payment-request.md): How to create an API Payment request
+- [Virtual Accounts](https://docs.bcb.group/docs/virtual-accounts.md)
+- [Account Creation](https://docs.bcb.group/docs/account-creation.md)
+- [Account Closure](https://docs.bcb.group/docs/account-closure.md)
+- [Payment](https://docs.bcb.group/docs/payment.md)
+- [Virtual Account Information](https://docs.bcb.group/docs/virtual-account-information.md)
+- [Update Bank Details](https://docs.bcb.group/docs/update-bank-details.md)
+- [Update Address](https://docs.bcb.group/docs/update-address.md)
+- [Email](https://docs.bcb.group/docs/email.md)
+- [Webhooks](https://docs.bcb.group/docs/webhooks.md)
+- [Webhook Types](https://docs.bcb.group/docs/webhook-types.md)
+- [Examples](https://docs.bcb.group/docs/examples-2.md)
+- [Webhook Signature](https://docs.bcb.group/docs/webhook-signature.md)
+- [FAQ](https://docs.bcb.group/docs/faq-2.md)
+- [Changle Log](https://docs.bcb.group/docs/changle-log.md)
+- [Fix API Overview](https://docs.bcb.group/docs/fix-api-overview.md)
+
+## API Reference
+- [Get Token](https://docs.bcb.group/reference/get-token.md): The api uses Bearer Tokens to authenticate requests
+- [Balance](https://docs.bcb.group/reference/accounts-account-balance.md): Get balance for a specific account
+- [Accounts](https://docs.bcb.group/reference/accounts-list.md): List Accounts List all bank accounts, custody accounts and wallet accounts
+- [Transactions](https://docs.bcb.group/reference/accounts-transactions.md): List Account Transactions
+- [Transaction Detail](https://docs.bcb.group/reference/accounts-transaction-detail.md): List details of a transaction within user permissions
+- [List Beneficiaries](https://docs.bcb.group/reference/beneficiary-list.md): List all beneficiary bank accounts and wallet accounts.
+- [Create Beneficiary](https://docs.bcb.group/reference/beneficiary-create.md): Create a new beneficiary
+- [Beneficiaries](https://docs.bcb.group/reference/blinc-beneficiaries.md): Returns an array of BLINC accounts of all BLINC members to which you are currently connected to
+- [Members](https://docs.bcb.group/reference/blinc-members.md): Returns a single BLINC account based on the BLINC member BLINC id
+- [Payment Status Webhook](https://docs.bcb.group/reference/notifications-payment-status-webhook.md): Webhook to track the status of your payment.
+- [Authorise Payment](https://docs.bcb.group/reference/payments-authorise-payment.md): **Each payment type requires a different payload, depending on the requirements of the scheme and currency. Check the examples on the right to see the different supported transfers**
+- [List Payments](https://docs.bcb.group/reference/payments-list.md): List the payments for an account
+- [Get Payment](https://docs.bcb.group/reference/payments-get-payment-by-id.md): Get the details of a single payment for a given account and transaction id
+- [Get Payment By Nonce](https://docs.bcb.group/reference/payments-get-payment-by-nonce.md): Get the details of a single payment for a given account and nonce
+- [Reverse Deposit](https://docs.bcb.group/reference/payments-reverse-deposit.md): Reverse a Deposit
+- [Approve](https://docs.bcb.group/reference/approve.md): Approve a payment where the beneficiary name does not match the name on the account
+- [Cancel](https://docs.bcb.group/reference/cancel.md): Cancel a payment where the beneficiary name does not match the name on the account
+- [List Accounts](https://docs.bcb.group/reference/virtual-accounts-all-account-data.md): List all virtual accounts for the given segregated account
+- [Make a Payment](https://docs.bcb.group/reference/virtual-accounts-authorise-pyment.md): Sends a payment from the virtual account with the given IBAN
+- [Close Virtual Account](https://docs.bcb.group/reference/virtual-accounts-close-virtual-account.md): Closes the virtual account with the given IBAN
+- [Create Virtual Account](https://docs.bcb.group/reference/virtual-accounts-create-virtual-account.md): Creates new virtual accounts for the given owners
+- [Update Owner Address](https://docs.bcb.group/reference/virtual-accounts-owner-address.md): Updates the owner address for the virtual account with the given IBAN
+- [Update Owner Bank Details](https://docs.bcb.group/reference/virtual-accounts-owner-bank-details.md): Updates the owner bank details for the virtual account with the given IBAN
+- [Bank Lookup](https://docs.bcb.group/reference/bank-lookup.md): Retrieve the bank code (BIC) of the bank holding an account from its IBAN

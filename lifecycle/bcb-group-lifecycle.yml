@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bcb.group/llms.txt
+versioning:
+  scheme: uri-path
+  note: Major version embedded per-resource in the path (v1..v5); versions differ across endpoints.
+  docs: https://docs.bcb.group/docs/api-resources
+environments:
+  sandbox: https://api.uat.bcb.group
+  production: https://api.bcb.group
+  docs: https://docs.bcb.group/docs/bcb-group-environments
+changelog:
+  url: https://docs.bcb.group/docs/changle-log
+  note: Provider maintains a public change log page for API/service updates.
+deprecation:
+  policy_url: null
+  note: >-
+    No dedicated deprecation/Sunset-header policy published; some response fields
+    (token `scope`, `token_type`) are documented as deprecated inline.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

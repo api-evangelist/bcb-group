@@ -1,0 +1,4371 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "BCB Group Payments API",
+    "description": "This is the api documentation for the BCB Group Payments API",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "https://api.bcb.group",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.uat.bcb.group",
+      "description": "Sandbox"
+    }
+  ],
+  "paths": {
+    "/v4/accounts/balance/{accountId}": {
+      "get": {
+        "summary": "Balance",
+        "description": "Get the balance for an account",
+        "operationId": "Accounts_BalanceV4",
+        "responses": {
+          "200": {
+            "description": "The balance was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BalanceResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The balance for the account was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "The account id",
+            "schema": {
+              "example": 123,
+              "type": "integer",
+              "default": ""
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v3/accounts": {
+      "get": {
+        "summary": "Accounts",
+        "description": "List Accounts",
+        "operationId": "Accounts_ListAccountsV3",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": [
+                      {
+                        "id": 378,
+                        "counterparty_id": 483,
+                        "aid": "A01-CX00000101",
+                        "cid": "CX00000101",
+                        "account_type": "Wallet",
+                        "ccy": "BTC",
+                        "host_name": "BCB Group",
+                        "host_hub": "",
+                        "host_location": "",
+                        "node_name": "BCB Payments Ltd",
+                        "node_address": "3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo",
+                        "node_location": "",
+                        "node_country": "",
+                        "node_subaddress": "",
+                        "iban": "",
+                        "account_label": "LNS 5 BTC hszo",
+                        "description": "BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC",
+                        "bcb_controlled": 1,
+                        "settlement_reference": "",
+                        "created_at": "2018-12-28T14:42:44.000Z",
+                        "updated_at": "2019-01-24T21:26:27.000Z",
+                        "partner_id": 4,
+                        "email": "otc@bcbgroup.io",
+                        "reporting_ccy": "GBP",
+                        "pid": "P01061701",
+                        "partner_name": "BCB Direct"
+                      },
+                      {
+                        "id": 383,
+                        "counterparty_id": 483,
+                        "aid": "A02-CX00000101",
+                        "cid": "CX00000101",
+                        "account_type": "Bank",
+                        "ccy": "CHF",
+                        "host_name": "Credit Suisse",
+                        "host_hub": "Zurich",
+                        "host_location": "Lake View, Zurich, CH 2001, Switzerland",
+                        "node_name": "Best Swiss OTC LLC",
+                        "node_address": "6013354000",
+                        "node_location": "",
+                        "node_country": "CH",
+                        "node_subaddress": "",
+                        "iban": "CH04NWBK53616776013354",
+                        "account_label": "Best Swiss CHF Main Account",
+                        "description": "Best Swiss, Credit Suisse CH04NWBK53616776013354, CHF",
+                        "bcb_controlled": 0,
+                        "settlement_reference": "",
+                        "created_at": "2018-12-28T14:42:44.000Z",
+                        "updated_at": "2018-12-28T14:42:44.000Z",
+                        "partner_id": 4,
+                        "email": "otc@bestswiss.io",
+                        "reporting_ccy": "CHF",
+                        "pid": "P01061701",
+                        "partner_name": "Best Swiss OTC"
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Account"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "counterparty_id",
+            "in": "query",
+            "required": false,
+            "description": "Limit accounts by Counterparty ID",
+            "schema": {
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "Limit result set to a specific Account ID",
+            "schema": {
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Limit result set for server-side paging",
+            "schema": {
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "required": false,
+            "description": "Offset result set when paging",
+            "schema": {
+              "type": "integer",
+              "default": "0"
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v3/accounts/{accountId}/transactions/{transactionId}": {
+      "get": {
+        "summary": "Transaction Detail",
+        "description": "List details of a transaction within user permissions",
+        "operationId": "Accounts_TransactionDetailV3",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": {
+                      "tx_id": "7b73263d-65dc-11e9-b39c-42010a8400a9",
+                      "account_id": 539,
+                      "blinc_id": null,
+                      "network": "FPS",
+                      "value_date": "2019-04-23T14:28:26.000Z",
+                      "credit": 0,
+                      "details": {
+                        "bic": null,
+                        "iban": "GB41CLRB04054100000033",
+                        "blinc_id": null,
+                        "reference": "BCB Pay 53135 GBP",
+                        "sort_code": "040541",
+                        "account_name": "BCB Payments Ltd",
+                        "account_number": "00000033",
+                        "counterparty_reference": "BCB Pay 53135 GBP",
+                        "endToEndIdentifier": "fcb60b45a4b94371b7cf2321ec318117",
+                        "nonce": 1598455372829
+                      },
+                      "ticker": "GBP",
+                      "amount": 5858.94,
+                      "approved": 1,
+                      "notes": null,
+                      "source_name": "clearbank"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDetailResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "The account id",
+            "schema": {
+              "example": 123,
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "in": "path",
+            "name": "transactionId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v3/accounts/{accountId}/transactions": {
+      "get": {
+        "summary": "Transactions",
+        "description": "List Account Transactions",
+        "operationId": "Accounts_TransactionsV3",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": [
+                      {
+                        "tx_id": "7b73263d-65dc-11e9-b39c-42010a8400a9",
+                        "account_id": 539,
+                        "blinc_id": null,
+                        "network": "FPS",
+                        "value_date": "2019-04-23T14:28:26.000Z",
+                        "credit": 0,
+                        "details": {
+                          "bic": null,
+                          "iban": "GB41CLRB04054100000033",
+                          "blinc_id": null,
+                          "reference": "BCB Pay 53135 GBP",
+                          "sort_code": "040541",
+                          "account_name": "BCB Payments Ltd",
+                          "account_number": "00000033",
+                          "counterparty_reference": "BCB Pay 53135 GBP",
+                          "endToEndIdentifier": "fcb60b45a4b94371b7cf2321ec318117",
+                          "nonce": 1598455372829
+                        },
+                        "ticker": "GBP",
+                        "amount": 5858.94,
+                        "approved": 1,
+                        "notes": null,
+                        "source_name": "clearbank"
+                      },
+                      {
+                        "tx_id": "38aa62fa-653e-11e9-b39c-42010a8400a9",
+                        "account_id": 539,
+                        "blinc_id": null,
+                        "network": "FPS",
+                        "value_date": "2019-04-22T19:35:37.000Z",
+                        "credit": 1,
+                        "details": {
+                          "bic": null,
+                          "iban": "GB41CLRB04054100000033",
+                          "blinc_id": null,
+                          "reference": "BCB Pay 53135 GBP",
+                          "sort_code": "040541",
+                          "account_name": "BCB Payments Ltd",
+                          "account_number": "00000033",
+                          "counterparty_reference": "BCB Pay 53135 GBP",
+                          "endToEndIdentifier": "fcb60b45a4b94371b7cf2321ec318117",
+                          "nonce": 1623419032251
+                        },
+                        "ticker": "GBP",
+                        "amount": 8280,
+                        "approved": 1,
+                        "notes": null,
+                        "source_name": "clearbank"
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "The account id",
+            "schema": {
+              "example": 123,
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "required": false,
+            "description": "The date to get results from",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": ""
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "required": false,
+            "description": "The date to get results to",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "default": ""
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Limit result set for server-side paging",
+            "schema": {
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "required": false,
+            "description": "Offset result set when paging",
+            "schema": {
+              "type": "integer",
+              "default": ""
+            }
+          }
+        ],
+        "tags": [
+          "Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/{accountId}/verification-of-payee/{end2endId}/approve": {
+      "post": {
+        "summary": "VOP Approve",
+        "description": "Approve a payment where the beneficiary name does not match the name on the account",
+        "operationId": "Payments_VerificationOfPayeeApproveV1",
+        "responses": {
+          "200": {
+            "description": "The unverified payment was approved successfully."
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationOfPayeeErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No unverified payment was found for this account with the given end-to-end id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationOfPayeeErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The payment is not unverified.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationOfPayeeErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The account id"
+          },
+          {
+            "in": "path",
+            "name": "end2endId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The end-to-end id of the payment"
+          }
+        ],
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/bank-lookup": {
+      "get": {
+        "summary": "Bank Lookup",
+        "description": "Retrieve the bank code (BIC) of the bank holding an account from its IBAN",
+        "operationId": "Tools_BankLookup",
+        "parameters": [
+          {
+            "name": "iban",
+            "required": true,
+            "in": "query",
+            "description": "The IBAN used to identify the associated bank code.",
+            "schema": {
+              "example": "DE89370400440532013000",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The BIC was resolved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BankLookupResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No BIC could be found for the given IBAN",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Tools"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v4/accounts": {
+      "post": {
+        "summary": "Create Beneficiary",
+        "description": "Create a new beneficiary",
+        "operationId": "Beneficiaries_CreateBeneficiaryV4",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBeneficiaryRequest"
+              },
+              "examples": {
+                "Wallet": {
+                  "summary": "Wallet",
+                  "value": "Account Type: Wallet\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Wallet' (MANDATORY),\n    ccy: 'BTC' (MANDATORY),\n    host_name: 'NULL' (DO NOT FILL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'NULL' (DO NOT FILL),\n    host_country: 'NULL' (DO NOT FILL),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'WALLET ADDRESS' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL' (DO NOT FILL),\n    bic: 'NULL' (DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'NULL' (DO NOT FILL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "Any CCY excluding USD - AU & NZ": {
+                  "summary": "Any CCY excluding USD - AU & NZ",
+                  "value": "/**\n * CCY: Any CCY excluding USD\n * Country: AU & NZ\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'AUD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'BSB NUMBER' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'AU' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "USD Any IBAN country (Including GB)": {
+                  "summary": "USD Any IBAN country (Including GB)",
+                  "value": "/**\n * CCY: USD\n * Country: Any IBAN country (Including GB)\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'USD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (MANDATORY),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'BANK ADDRESS' (MANDATORY),\n    host_country: 'SG' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'NULL' (DO NOT FILL),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(MANDATORY),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "USD Any non-IBAN country": {
+                  "summary": "USD Any non-IBAN country",
+                  "value": "/**\n * CCY: USD\n * Country: Any non-IBAN country\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'USD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (MANDATORY),\n    host_hub: 'NATIONAL CLEARING CODE' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (MANDATORY),\n    host_country: 'SG' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}{}"
+                },
+                "USD - US": {
+                  "summary": "USD - US",
+                  "value": "/**\n * CCY: USD\n * Country: US\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'USD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'FEDWIRE ROUTING NUMBER' (MANDATORY),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'US' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'NULL'(DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "Any CCY excluding USD - CA": {
+                  "summary": "Any CCY excluding USD - CA",
+                  "value": "/**\n * CCY: Any CCY excluding USD\n * Country: CA\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'CAD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'CANADIAN ROUTING NUMBER' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'CA' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "Any non-IBAN country excluding AU & NZ & CA & US": {
+                  "summary": "Any non-IBAN country excluding AU & NZ & CA & US",
+                  "value": "/**\n * CCY: Any CCY excluding USD\n * Country: Any non-IBAN country excluding AU & NZ & CA & US\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'HKD' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'NATIONAL CLEARING CODE' (OPTIONAL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'SG' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL'(DO NOT FILL),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "Any IBAN Country excluding GB": {
+                  "summary": "Any IBAN Country excluding GB",
+                  "value": "/**\n * CCY: Any CCY excluding USD\n * Country: Any IBAN Country excluding GB\n * Account Type: Bank\n */ \n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'EUR' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'DE' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'NULL' (DO NOT FILL),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(MANDATORY),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "Any CCY excluding GBP & USD - GB": {
+                  "summary": "Any CCY excluding GBP & USD - GB",
+                  "value": "/**\n * CCY: Any CCY excluding GBP & USD\n * Country: GB\n * Account Type: Bank\n */ \n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'EUR' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'GB' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (OPTIONAL),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(MANDATORY),\n    bic: 'BIC'(MANDATORY),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                },
+                "Account Number + Sort Code - GB": {
+                  "summary": "Account Number + Sort Code - GB",
+                  "value": "/**\n * CCY: GBP\n * Country: GB\n * Scenario: Account Number + Sort Code\n * Account Type: Bank\n */\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Bank' (MANDATORY),\n    ccy: 'GBP' (MANDATORY - CCY ISO CODE - 3 letters),\n    host_name: 'BANK NAME' (OPTIONAL),\n    host_hub: 'SORT CODE' (MANDATORY),\n    host_location: 'BANK ADDRESS' (OPTIONAL),\n    host_country: 'GB' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'ACCOUNT NUMBER' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY for CHAPS Payments),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY for CHAPS Payments),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (MANDATORY for CHAPS Payments),\n    node_country: 'CC' (OPTIONAL - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'IBAN'(OPTIONAL),\n    bic: 'BIC'(OPTIONAL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'FPS' (OPTIONAL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Beneficiaries"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v3/beneficiaries": {
+      "get": {
+        "summary": "List Beneficiaries",
+        "description": "List all beneficiary bank accounts, custody accounts and wallet accounts.",
+        "operationId": "Beneficiaries_ListBeneficiariesV3",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Beneficiary"
+                  }
+                },
+                "examples": {
+                  "OK": {
+                    "summary": "OK",
+                    "value": [
+                      {
+                        "id": 378,
+                        "counterparty_id": 483,
+                        "aid": "A01-CX00000101",
+                        "cid": "CX00000101",
+                        "account_type": "Wallet",
+                        "ccy": "BTC",
+                        "host_name": "BCB Group",
+                        "host_hub": "",
+                        "host_location": "",
+                        "node_name": "BCB Payments Ltd",
+                        "node_address": "3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo",
+                        "node_location": "",
+                        "node_country": "",
+                        "node_subaddress": "",
+                        "iban": "",
+                        "account_label": "LNS 5 BTC hszo",
+                        "description": "BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC",
+                        "settlement_reference": "",
+                        "created_at": "2018-12-28T14:42:44.000Z",
+                        "updated_at": "2019-01-24T21:26:27.000Z",
+                        "partner_id": 4,
+                        "email": "otc@bcbgroup.io",
+                        "pid": "P01061701",
+                        "partner_name": "BCB Direct"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Limit result set for server-side paging"
+          },
+          {
+            "in": "query",
+            "name": "pageToken",
+            "schema": {
+              "type": "number"
+            },
+            "description": "Offset result set when paging"
+          }
+        ],
+        "tags": [
+          "Beneficiaries"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v3/accounts/{accountId}/blinc-beneficiaries": {
+      "get": {
+        "summary": "BLINC Beneficiaries",
+        "description": "Returns an array of BLINC accounts of all BLINC members to which you are currently connected to",
+        "operationId": "Accounts_BlincBeneficiariesV3",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": [
+                      {
+                        "id": 9996,
+                        "blinc_id": "800999999999",
+                        "ccy": "GBP",
+                        "name": "BLINC Member"
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BlincBeneficiary"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "The account id",
+            "schema": {
+              "example": 123,
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "ccy",
+            "in": "query",
+            "required": false,
+            "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).",
+            "schema": {
+              "type": "string",
+              "default": "ISO 4217 format"
+            }
+          }
+        ],
+        "tags": [
+          "BLINC"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v3/accounts/blinc-accounts/{blincId}": {
+      "get": {
+        "summary": "BLINC Detail",
+        "description": "Returns a single BLINC account based on the BLINC member BLINC id",
+        "operationId": "Accounts_BlincAccountV3",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": [
+                      {
+                        "id": 9996,
+                        "blinc_id": "800999999999",
+                        "ccy": "GBP",
+                        "name": "BLINC Member"
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BlincBeneficiary"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blincId",
+            "schema": {
+              "type": "string",
+              "default": "800999999999"
+            },
+            "required": true,
+            "description": "\nBLINC ID of another BLINC member"
+          }
+        ],
+        "tags": [
+          "BLINC"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/{accountId}/verification-of-payee/{end2endId}/cancel": {
+      "post": {
+        "summary": "VOP Cancel",
+        "description": "Cancel a payment where the beneficiary name does not match the name on the account",
+        "operationId": "Payments_VerificationOfPayeeCancelV1",
+        "responses": {
+          "200": {
+            "description": "The unverified payment was cancelled successfully."
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationOfPayeeErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No unverified payment was found for this account with the given end-to-end id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationOfPayeeErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The payment is not unverified.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VerificationOfPayeeErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "accountId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "The account id"
+          },
+          {
+            "in": "path",
+            "name": "end2endId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The end-to-end id of the payment"
+          }
+        ],
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/auth/oauth/token": {
+      "post": {
+        "summary": "Get Token",
+        "description": "The api uses Bearer Tokens to authenticate requests",
+        "operationId": "Auth_GetTokenV1",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenRequest"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/v3/payments/register-webhook": {
+      "post": {
+        "summary": "Payment Status Webhooks",
+        "description": "Webhook to track the status of your payment.",
+        "operationId": "Notifications_PaymentsStatusWebhook",
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Payment Status Accepted": {
+                    "summary": "Payment Status Accepted",
+                    "value": {
+                      "event": "TransactionStatus",
+                      "status": "OK"
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookRegistrationResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "tags": [
+          "Notifications"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookRegistrationRequest"
+              },
+              "examples": {
+                "New Example": {
+                  "summary": "New Example",
+                  "value": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v5/payments/authorise": {
+      "post": {
+        "summary": "Authorise Payment",
+        "description": "Make a Payment",
+        "operationId": "Payments_AuthorisePaymentV5",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": [
+                      {
+                        "endToEndIdentification": "PaymentEndToEndIdentification",
+                        "transactionId": "PaymentTransactionId",
+                        "nonce": "PaymentNonce",
+                        "response": "Accepted"
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuthorisePaymentResponse"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorisePaymentRequest"
+              },
+              "examples": {
+                "Beneficiary Payment": {
+                  "summary": "Beneficiary Payment",
+                  "value": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BENEFICIARY_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"URGENT\",\n    \"preferred_scheme\": \"AUTO\",\n    \"nonce\": \"933829795\"\n}"
+                },
+                "BLINC Payment": {
+                  "summary": "BLINC Payment",
+                  "value": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BLINC_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"BLINC Payment\",\n    \"preferred_scheme\": \"BLINC\",\n    \"nonce\": \"933829795\"\n}"
+                },
+                "Internal Transfer": {
+                  "summary": "Internal Transfer",
+                  "value": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": OTHER_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Inter account transfer\",\n    \"reason\": \"Account Transfer\",\n    \"notes\": \"BLINC account topup\",\n    \"preferred_scheme\": \"INTERNAL\",\n    \"nonce\": \"933829795\"\n}"
+                },
+                "USD - SWIFT": {
+                  "summary": "USD - SWIFT",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_routing_number\": \"BENEFICIARY_ROUTING_NUMBER\",\n  \"beneficiary_wire_routing\": \"BENEFICIARY_WIRE_ROUTING\" (OPTIONAL),\n  \"beneficiary_bank_name\": \"BANK NAME\",\n  \"beneficiary_bank_address\": \"BANK ADDRESS\",\n  \"beneficiary_bank_country\": \"BANK COUNTRY\",\n  \"ccy\": \"USD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\",\n\t\"intermediary_bank\": {\n    \"bic\": \"CORRESPONDING BANK BIC\",\t\n\t\t\"routing_number\": \"CORRESPONDING BANK ABA ROUTING NUMBER\"\n\t}\n}\n"
+                },
+                "USD": {
+                  "summary": "USD",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_routing_number\": \"BENEFICIARY_ROUTING_NUMBER\",\n  \"beneficiary_wire_routing\": \"BENEFICIARY_WIRE_ROUTING\" (OPTIONAL),\n  \"beneficiary_bank_name\": \"BANK NAME\",\n  \"beneficiary_bank_address\": \"BANK ADDRESS\",\n  \"beneficiary_bank_country\": \"BANK COUNTRY\",\n  \"ccy\": \"USD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                },
+                "GBP - SWIFT": {
+                  "summary": "GBP - SWIFT",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\",\n  \"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"beneficiary_swift_code\": \"BENEFICIARY_BIC\",\n  \"ccy\": \"GBP\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                },
+                "GBP - CHAPS": {
+                  "summary": "GBP - CHAPS",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"ccy\": \"GBP\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                },
+                "GBP - FPS": {
+                  "summary": "GBP - FPS",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"ccy\": \"GBP\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                },
+                "CAD": {
+                  "summary": "CAD",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_institution\": \"BENEFICIARY_INSTITUTION\" (OPTIONAL),\n  \"beneficiary_branch\": \"BENEFICIARY_BRANCH\" (OPTIONAL),\n  \"beneficiary_bic\": \"BENEFICIARY_BIC\",\n  \"ccy\": \"CAD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                },
+                "AUD - BECS / NP": {
+                  "summary": "AUD - BECS / NP",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"ACCOUNT NUMBER\",\n  \"beneficiary_national_clearing_code\": \"BENEFICIARY_NATIONAL_CLEARING_CODE\",\n  \"beneficiary_bank_country\": \"BANK COUNTRY\",\n  \"ccy\": \"AUD\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                },
+                "Generic Payments (Most CCY's) - IBAN + BIC": {
+                  "summary": "Generic Payments (Most CCY's) - IBAN + BIC",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" (OPTIONAL) (Bank account number for non-IBAN countries),\n  \"beneficiary_bic\": \"BENEFICIARY_BIC\",\n  \"beneficiary_iban\": \"BENEFICIARY_IBAN\" (OPTIONAL) (IBAN Countries),\n  \"ccy\": \"EUR\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                },
+                "Generic Payments (Most CCY's) - Account Number + Sort Code": {
+                  "summary": "Generic Payments (Most CCY's) - Account Number + Sort Code",
+                  "value": "{\n  \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n  \"sender_account_id\": YOUR_ACCOUNT_ID,\n  \"beneficiary_name\": \"BENEFICIARY NAME\",\n  \"beneficiary_address_line_1\": \"BENEFICIARY_ADDRESS_LINE_1\",\n  \"beneficiary_address_line_2\": \"BENEFICIARY_ADDRESS_LINE_2\" (OPTIONAL),\n  \"beneficiary_address_line_3\": \"BENEFICIARY_ADDRESS_LINE_3\" (OPTIONAL),\n  \"beneficiary_city\": \"BENEFICIARY_ADDRESS_CITY\",\n  \"beneficiary_region\": \"BENEFICIARY_ADDRESS_REGION\" (OPTIONAL),\n  \"beneficiary_postcode\": \"BENEFICIARY_ADDRESS_POSTCODE\" (OPTIONAL),\n  \"beneficiary_country\": \"BENEFICIARY_ADDRESS_COUNTRY\",\n  \"beneficiary_account_number\": \"BENEFICIARY_ACCOUNT_NUMBER\" ,\n\t\"beneficiary_sort_code\": \"BENEFICIARY_SORT_CODE\",\n  \"beneficiary_bic\": \"BENEFICIARY_BIC\",\n  \"ccy\": \"EUR\",\n  \"amount\": \"888.11\",\n  \"reference\": \"Invoice 0801\",\n  \"reason\": \"Payment for goods or services\",\n  \"notes\": \"Urgent Payment\",\n  \"preferred_scheme\": \"AUTO\",\n  \"nonce\": \"933829795\"\n}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/payments/{accountId}/transaction/{transactionId}": {
+      "get": {
+        "summary": "Get Payment By ID",
+        "description": "Get the details of a single payment for a given account and transaction id",
+        "operationId": "Payments_PaymentByIdV1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "The account id",
+            "schema": {
+              "example": 123,
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "transactionId",
+            "required": true,
+            "in": "path",
+            "description": "The transaction id of the payment",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The payment was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No payment was found for the account with the given transaction id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/{accountId}/nonce/{nonce}": {
+      "get": {
+        "summary": "Get Payment By Nonce",
+        "description": "Get the details of a single payment for a given account and nonce",
+        "operationId": "Payments_getPaymentByNonceV1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "The account id",
+            "schema": {
+              "example": 123,
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "nonce",
+            "required": true,
+            "in": "path",
+            "description": "The unique nonce of the payment",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The payment was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPaymentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No payment was found for the account with the given nonce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/{accountId}": {
+      "get": {
+        "operationId": "Payments_ListPaymentsForAccountV1",
+        "summary": "List Payments",
+        "description": "List the payments for an account",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "description": "The account id",
+            "schema": {
+              "example": 123,
+              "type": "integer",
+              "default": ""
+            }
+          },
+          {
+            "name": "dateFrom",
+            "required": false,
+            "in": "query",
+            "description": "The date to get results from",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateTo",
+            "required": false,
+            "in": "query",
+            "description": "The date to get results to",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "required": false,
+            "in": "query",
+            "description": "The page offset of results to return",
+            "schema": {
+              "minimum": 0,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "The limit of number of results to return",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 1000,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The payments were retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedGetPaymentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No payment was found for the account with the given transaction id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v3/payments/reverse-deposit": {
+      "post": {
+        "summary": "Reverse a Deposit",
+        "description": "Reverse a Deposit",
+        "operationId": "Payments_ReverseDepositV1",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": {}
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Invalid token"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Forbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string",
+                  "example": "Internal Server Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/End2EndIdRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/{accountId}/virtual/all-account-data": {
+      "get": {
+        "summary": "List Accounts",
+        "description": "List all virtual accounts for the given segregated account",
+        "operationId": "VirtualAccounts_ListAccountsV1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "path",
+            "description": "The account id for the segregated account",
+            "schema": {
+              "example": 123,
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageIndex",
+            "required": false,
+            "in": "query",
+            "description": "The page offset of results to return",
+            "schema": {
+              "minimum": 0,
+              "maximum": 1.7976931348623157e+308,
+              "default": 0,
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "The limit of number of results to return",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 1000,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The virtual accounts were retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedVirtualAccountDataResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The accountId is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Virtual Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/{accountId}/virtual/{iban}/payment": {
+      "post": {
+        "summary": "Make a Payment",
+        "description": "Sends a payment from the virtual account with the given IBAN",
+        "operationId": "VirtualAccounts_AuthorisePaymentV1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "path",
+            "description": "The account id for the segregated account",
+            "schema": {
+              "example": 123,
+              "type": "number"
+            }
+          },
+          {
+            "name": "iban",
+            "required": true,
+            "in": "path",
+            "description": "The IBAN of the virtual account",
+            "schema": {
+              "example": "GB33BUKB20201555555555",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VirtualAccountPaymentBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The payment was successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VirtualAccountPaymentResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The accountId or IBAN is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Virtual Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/{accountId}/virtual/{iban}/close": {
+      "post": {
+        "summary": "Close Virtual Account",
+        "description": "Closes the virtual account with the given IBAN",
+        "operationId": "VirtualAccounts_CloseVirtualAccountV1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "path",
+            "description": "The account id for the segregated account",
+            "schema": {
+              "example": 123,
+              "type": "number"
+            }
+          },
+          {
+            "name": "iban",
+            "required": true,
+            "in": "path",
+            "description": "The IBAN of the virtual account",
+            "schema": {
+              "example": "GB33BUKB20201555555555",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The virtual account closure request was received successfully"
+          },
+          "404": {
+            "description": "The accountId or IBAN is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Virtual Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v2/accounts/{accountId}/virtual": {
+      "post": {
+        "summary": "Create Virtual Account",
+        "description": "Creates new virtual accounts for the given owners (max 1000 owners). \n\t\tRequest body differs for individual vs company owners, and GBP vs EUR virtual accounts.\n\t\tIt is possible to create virtual accounts without owner bank details - see CreateNoBankDetailsVirtualAccount schemas.\n\t\tIt is not possible to make payments out of virtual accounts without owner bank details.",
+        "operationId": "VirtualAccounts_CreateVirtualAccountV2",
+        "parameters": [
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "path",
+            "description": "The account id for the segregated account",
+            "schema": {
+              "example": 123,
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/CreateEURLocalVirtualAccountForCompany"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreateEURLocalVirtualAccountForIndividual"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreateGBPLocalVirtualAccountForCompany"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreateGBPLocalVirtualAccountForIndividual"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreateInternationalVirtualAccountForCompany"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreateInternationalVirtualAccountForIndividual"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreateNoBankDetailsVirtualAccountForCompany"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreateNoBankDetailsVirtualAccountForIndividual"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "The virtual account creation request was received successfully"
+          },
+          "404": {
+            "description": "The accountId is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Virtual Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/{accountId}/virtual/{iban}/owner-address": {
+      "put": {
+        "summary": "Update Owner Address",
+        "description": "Updates the owner address for the virtual account with the given IBAN",
+        "operationId": "VirtualAccounts_UpdateOwnerAddressV1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "path",
+            "description": "The account id for the segregated account",
+            "schema": {
+              "example": 123,
+              "type": "number"
+            }
+          },
+          {
+            "name": "iban",
+            "required": true,
+            "in": "path",
+            "description": "The IBAN of the virtual account",
+            "schema": {
+              "example": "GB33BUKB20201555555555",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOwnerAddressRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The owner address was updated successfully"
+          },
+          "400": {
+            "description": "The request is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The accountId or iban is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Virtual Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/{accountId}/virtual/{iban}/owner-bank-details": {
+      "put": {
+        "summary": "Update Owner Bank Details",
+        "description": "Updates the owner bank details for the virtual account with the given IBAN",
+        "operationId": "VirtualAccounts_UpdateOwnerBankDetailsV1",
+        "parameters": [
+          {
+            "name": "accountId",
+            "required": true,
+            "in": "path",
+            "description": "The account id for the segregated account",
+            "schema": {
+              "example": 123,
+              "type": "number"
+            }
+          },
+          {
+            "name": "iban",
+            "required": true,
+            "in": "path",
+            "description": "The IBAN of the virtual account",
+            "schema": {
+              "example": "GB33BUKB20201555555555",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateEUROwnerBankDetailsRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateGBPOwnerBankDetailsRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The owner bank details were updated successfully"
+          },
+          "400": {
+            "description": "The request is invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The accountId or iban is unknown",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Virtual Accounts"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BalanceResponse": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "number",
+            "description": "The id of the account"
+          },
+          "settled": {
+            "type": "string",
+            "description": "The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators",
+            "example": "1234.12"
+          },
+          "available": {
+            "type": "string",
+            "description": "The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators",
+            "example": "1234.12"
+          }
+        },
+        "required": [
+          "accountId",
+          "settled",
+          "available"
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The description of the error."
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP Status code representing the error."
+          }
+        },
+        "required": [
+          "message",
+          "statusCode"
+        ]
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Account ID"
+          },
+          "counterparty_id": {
+            "type": "integer",
+            "description": "Counterparty ID"
+          },
+          "aid": {
+            "type": "string",
+            "description": "Alpha-numeric account ID"
+          },
+          "cid": {
+            "type": "string",
+            "description": "Alpha-numeric counterparty ID"
+          },
+          "account_type": {
+            "type": "string",
+            "enum": [
+              "Bank",
+              "Custodial",
+              "Wallet"
+            ],
+            "description": ""
+          },
+          "ccy": {
+            "type": "string",
+            "description": "Asset ticker, or left hand side of trading symbol"
+          },
+          "host_name": {
+            "type": "string",
+            "description": "Bank Name for bank accounts, Custodian Name for custody accounts, Wallet Name for wallet accounts"
+          },
+          "host_hub": {
+            "type": "string",
+            "description": "Branch Code for bank accounts, optional for custody and wallets"
+          },
+          "host_location": {
+            "type": "string"
+          },
+          "node_name": {
+            "type": "string",
+            "description": "Account holder's legal name"
+          },
+          "node_address": {
+            "type": "string",
+            "description": "Account Number for bank accounts, wallet address for wallets, optional for custody"
+          },
+          "node_location": {
+            "type": "string",
+            "description": "Account holder's residential address for bank accounts, optional memo field for custody and wallets"
+          },
+          "node_country": {
+            "type": "string",
+            "description": "Account holder's residential address country code (2-letter ISO country code), optional memo field for custody and wallets"
+          },
+          "iban": {
+            "type": "string",
+            "description": "IBAN for bank accounts"
+          },
+          "account_label": {
+            "type": "string",
+            "description": "Display name for account"
+          },
+          "description": {
+            "type": "string",
+            "description": "Free-text description of account"
+          },
+          "bcb_controlled": {
+            "type": "string",
+            "description": "Flag is 1 if BCB can operate the account, 0 otherwise"
+          },
+          "settlement_reference": {
+            "type": "string",
+            "description": "Optional settlement reference for payments"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Timestamp of account record creation (YYYY-MM-DDTHH:MM:SS.000Z)"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Timestamp of account record update (YYYY-MM-DDTHH:MM:SS.000Z)"
+          },
+          "blinc_id": {
+            "type": "string",
+            "description": "Only applicable to BLINC accounts - account id within BLINC network"
+          },
+          "partner_id": {
+            "type": "string",
+            "description": "This field is deprecated."
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of client"
+          },
+          "reporting_ccy": {
+            "type": "string",
+            "description": "Home currency of client"
+          },
+          "pid": {
+            "type": "string",
+            "description": "This field is deprecated."
+          },
+          "partner_name": {
+            "type": "string",
+            "description": "This field is deprecated."
+          }
+        },
+        "required": [
+          "id",
+          "counterparty_id"
+        ]
+      },
+      "TransactionDetailResponse": {
+        "type": "object",
+        "properties": {
+          "tx_id": {
+            "type": "string",
+            "description": "Transaction ID (unique code)"
+          }
+        },
+        "required": [
+          "tx_id"
+        ]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "tx_id": {
+            "type": "string",
+            "description": "Transaction ID (unique code)"
+          },
+          "account_id": {
+            "type": "integer",
+            "description": "Account ID"
+          },
+          "value_date": {
+            "type": "string",
+            "description": "Date of transaction"
+          },
+          "credit": {
+            "type": "boolean",
+            "description": "Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)"
+          },
+          "details": {
+            "$ref": "#/components/schemas/TransactionDetails"
+          },
+          "ticker": {
+            "type": "string",
+            "description": "Asset identifier (e.g. 'BTC', 'USD')"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Transaction amount"
+          },
+          "approved": {
+            "type": "boolean",
+            "description": "Flag is 1 if approved"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Free-text notes"
+          },
+          "source_name": {
+            "type": "string",
+            "description": "Transaction source"
+          }
+        },
+        "required": [
+          "tx_id",
+          "account_id",
+          "value_date",
+          "credit",
+          "details",
+          "ticker",
+          "approved",
+          "amount",
+          "notes",
+          "source_name"
+        ]
+      },
+      "TransactionDetails": {
+        "type": "object",
+        "description": "Sender or receiver account information depending on payment direction",
+        "properties": {
+          "bic": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          },
+          "blinc_id": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "sort_code": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "counterparty_reference": {
+            "type": "string"
+          },
+          "endToEndIdentifier": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "nonce",
+          "endToEndIdentifier",
+          "counterparty_reference",
+          "account_number",
+          "account_name",
+          "reference"
+        ]
+      },
+      "VerificationOfPayeeErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The description of the error."
+          },
+          "error": {
+            "type": "string",
+            "description": "The title of the error."
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP Status code representing the error."
+          }
+        },
+        "required": [
+          "message",
+          "statusCode"
+        ]
+      },
+      "BankLookupResponse": {
+        "type": "object",
+        "properties": {
+          "bic": {
+            "type": "string",
+            "description": "The bank code (BIC) of the supplied IBAN",
+            "example": "COBADEFF"
+          }
+        },
+        "required": [
+          "bic"
+        ]
+      },
+      "CreateBeneficiaryRequest": {
+        "type": "object",
+        "properties": {
+          "counterparty_id": {
+            "type": "integer"
+          },
+          "cid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string",
+            "enum": [
+              "Bank",
+              "Wallet"
+            ]
+          },
+          "ccy": {
+            "type": "string",
+            "description": "Account currency - ISO Code 3"
+          },
+          "host_name": {
+            "type": "string",
+            "description": "Bank name"
+          },
+          "host_hub": {
+            "type": "string",
+            "description": "Bank sort code"
+          },
+          "host_location": {
+            "type": "string",
+            "description": "Bank address"
+          },
+          "host_country": {
+            "type": "string",
+            "description": "Account country - ISO Code 2 "
+          },
+          "node_name": {
+            "type": "string",
+            "description": "Account name"
+          },
+          "node_address": {
+            "type": "string",
+            "description": "Account number"
+          },
+          "node_location_line_1": {
+            "type": "string",
+            "description": "Beneficiary address line 1 - Mandatory for CHAPS payments"
+          },
+          "node_location_line_2": {
+            "type": "string",
+            "description": "Beneficiary address line 2"
+          },
+          "node_location_line_3": {
+            "type": "string",
+            "description": "Beneficiary address line 3"
+          },
+          "node_location_city": {
+            "type": "string",
+            "description": "Beneficiary address city"
+          },
+          "node_location_region": {
+            "type": "string",
+            "description": "Beneficiary address region"
+          },
+          "node_location_postcode": {
+            "type": "string",
+            "description": "Beneficiary address postcode"
+          },
+          "node_country": {
+            "type": "string",
+            "description": "ISO Code 2 letters"
+          },
+          "node_type": {
+            "type": "string",
+            "enum": [
+              "individual",
+              "corporate"
+            ]
+          },
+          "iban": {
+            "type": "string"
+          },
+          "bic": {
+            "type": "string"
+          },
+          "account_label": {
+            "type": "string",
+            "description": "Name - CCY"
+          },
+          "payment_type": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "description": "Beneficiary email address"
+          },
+          "bcb_controlled": {
+            "type": "integer",
+            "description": "This is always 1 ",
+            "default": "1"
+          },
+          "settlement_reference": {
+            "type": "string"
+          },
+          "is_beneficiary": {
+            "type": "integer",
+            "default": "1",
+            "description": "This is always 1 "
+          }
+        },
+        "required": [
+          "is_beneficiary",
+          "bcb_controlled",
+          "node_type",
+          "host_country",
+          "account_type",
+          "name",
+          "cid",
+          "counterparty_id"
+        ]
+      },
+      "Beneficiary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 378,
+            "default": 0
+          },
+          "counterparty_id": {
+            "type": "integer",
+            "example": 483,
+            "default": 0
+          },
+          "aid": {
+            "type": "string",
+            "example": "A01-CX00000101"
+          },
+          "cid": {
+            "type": "string",
+            "example": "CX00000101"
+          },
+          "account_type": {
+            "type": "string",
+            "example": "Wallet"
+          },
+          "ccy": {
+            "type": "string",
+            "example": "BTC"
+          },
+          "host_name": {
+            "type": "string",
+            "example": "BCB Group"
+          },
+          "host_hub": {
+            "type": "string",
+            "example": ""
+          },
+          "host_location": {
+            "type": "string",
+            "example": ""
+          },
+          "node_name": {
+            "type": "string",
+            "example": "BCB Payments Ltd"
+          },
+          "node_address": {
+            "type": "string",
+            "example": "3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo"
+          },
+          "node_location": {
+            "type": "string",
+            "example": ""
+          },
+          "node_country": {
+            "type": "string",
+            "example": ""
+          },
+          "node_subaddress": {
+            "type": "string",
+            "example": ""
+          },
+          "iban": {
+            "type": "string",
+            "example": ""
+          },
+          "account_label": {
+            "type": "string",
+            "example": "LNS 5 BTC hszo"
+          },
+          "description": {
+            "type": "string",
+            "example": "BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC"
+          },
+          "settlement_reference": {
+            "type": "string",
+            "example": ""
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2018-12-28T14:42:44.000Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2019-01-24T21:26:27.000Z"
+          },
+          "partner_id": {
+            "type": "integer",
+            "example": 4,
+            "default": 0
+          },
+          "email": {
+            "type": "string",
+            "example": "otc@bcbgroup.io"
+          },
+          "pid": {
+            "type": "string",
+            "example": "P01061701"
+          },
+          "partner_name": {
+            "type": "string",
+            "example": "BCB Direct"
+          }
+        }
+      },
+      "BlincBeneficiary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "default": "9996"
+          },
+          "blinc_id": {
+            "type": "string",
+            "default": "800999999999"
+          },
+          "ccy": {
+            "type": "string",
+            "default": "GBP"
+          },
+          "name": {
+            "type": "string",
+            "default": "BLINC Memeber"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "ccy",
+          "blinc_id"
+        ]
+      },
+      "AuthErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "default": "access_denied",
+            "description": "The error key, currently this will always be access_denied but may change in future releases."
+          },
+          "error_description": {
+            "type": "string",
+            "description": "The description of the error."
+          }
+        },
+        "required": [
+          "error",
+          "error_description"
+        ]
+      },
+      "TokenRequest": {
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "YOUR_CLIENT_ID",
+            "default": ""
+          },
+          "client_secret": {
+            "type": "string",
+            "description": "YOUR_CLIENT_SECRET"
+          }
+        },
+        "required": [
+          "client_id",
+          "client_secret"
+        ]
+      },
+      "TokenResponse": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik5vdGhpbmcgdG8gc2VlIGhlcmUsIE1vdmUgQWxvbmchIiwiaWF0IjoxMzA0NTE2MjIwfQ.GmMW5PSzLT3h3pglooMhnApasCQIxGjUZu4BUPDYmOE",
+            "description": "Bearer token required for authenticated requests"
+          },
+          "expires_in": {
+            "type": "number",
+            "default": "1304516220",
+            "description": "unix timestamp of token expiry date"
+          },
+          "scope": {
+            "type": "string",
+            "description": "Please note this is deprecated. "
+          },
+          "token_type": {
+            "type": "string",
+            "default": "Bearer",
+            "description": "Please note this is deprecated. "
+          }
+        },
+        "required": [
+          "access_token",
+          "expires_in",
+          "token_type",
+          "scope"
+        ]
+      },
+      "WebhookRegistrationRequest": {
+        "type": "object",
+        "properties": {
+          "counterparty_id": {
+            "type": "integer"
+          },
+          "event": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "counterparty_id",
+          "event",
+          "url"
+        ]
+      },
+      "WebhookRegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string",
+            "example": "TransactionStatus"
+          },
+          "status": {
+            "type": "string",
+            "example": "OK"
+          }
+        }
+      },
+      "AuthorisePaymentRequest": {
+        "type": "object",
+        "properties": {
+          "counterparty_id": {
+            "type": "integer",
+            "description": "YOUR_COUNTERPARTY_ID"
+          },
+          "sender_account_id": {
+            "type": "string",
+            "description": "YOUR_ACCOUNT_ID"
+          },
+          "ccy": {
+            "type": "string",
+            "description": "ISO4217 currency code EG: GBP"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string",
+            "description": "This information is not relayed on the payment"
+          },
+          "preferred_scheme": {
+            "type": "string",
+            "default": "AUTO",
+            "enum": [
+              "AUTO",
+              "BLINC",
+              "INTERNAL"
+            ],
+            "description": "AUTO > for external payments\nBLINC > for payments inside BLINC network, must use BLINC accounts\nINTERNAL > for payments between BCB accounts of the same counterparty"
+          },
+          "nonce": {
+            "type": "string",
+            "description": "Nonce field ensures that payment requests can only be processed once, If the nonce for a payment request is not unique for the account then it will be rejected."
+          },
+          "beneficiary_account_id": {
+            "type": "integer"
+          },
+          "beneficiary_name": {
+            "type": "string"
+          },
+          "beneficiary_address_line_1": {
+            "type": "string"
+          },
+          "beneficiary_address_line_2": {
+            "type": "string"
+          },
+          "beneficiary_address_line_3": {
+            "type": "string"
+          },
+          "beneficiary_city": {
+            "type": "string"
+          },
+          "beneficiary_region": {
+            "type": "string"
+          },
+          "beneficiary_postcode": {
+            "type": "string"
+          },
+          "beneficiary_country": {
+            "type": "string"
+          },
+          "beneficiary_account_number": {
+            "type": "string"
+          },
+          "beneficiary_sort_code": {
+            "type": "string"
+          },
+          "beneficiary_bic": {
+            "type": "string"
+          },
+          "beneficiary_iban": {
+            "type": "string"
+          },
+          "beneficiary_routing_number": {
+            "type": "string"
+          },
+          "beneficiary_wire_routing": {
+            "type": "string"
+          },
+          "beneficiary_swift_code": {
+            "type": "string"
+          },
+          "beneficiary_national_clearing_code": {
+            "type": "string"
+          },
+          "beneficiary_institution": {
+            "type": "string"
+          },
+          "beneficiary_branch": {
+            "type": "string"
+          },
+          "beneficiary_lei_code": {
+            "type": "string",
+            "description": "Mandatory for CHAPS"
+          },
+          "beneficiary_bank_name": {
+            "type": "string"
+          },
+          "beneficiary_bank_address": {
+            "type": "string"
+          },
+          "beneficiary_bank_country": {
+            "type": "string"
+          },
+          "intermediary_bank": {
+            "$ref": "#/components/schemas/IntermediaryBank"
+          }
+        },
+        "required": [
+          "counterparty_id",
+          "nonce",
+          "preferred_scheme",
+          "reason",
+          "reference",
+          "amount",
+          "ccy",
+          "sender_account_id"
+        ]
+      },
+      "AuthorisePaymentResponse": {
+        "type": "object",
+        "properties": {
+          "endToEndIdentification": {
+            "type": "string",
+            "example": "PaymentEndToEndIdentification"
+          },
+          "transactionId": {
+            "type": "string",
+            "example": "PaymentTransactionId"
+          },
+          "nonce": {
+            "type": "string",
+            "example": "PaymentNonce"
+          },
+          "response": {
+            "type": "string",
+            "example": "Accepted"
+          }
+        },
+        "required": [
+          "endToEndIdentification",
+          "transactionId",
+          "nonce",
+          "response"
+        ]
+      },
+      "IntermediaryBank": {
+        "type": "object",
+        "properties": {
+          "bic": {
+            "type": "string",
+            "description": "Corresponding Bank BIC"
+          },
+          "routing_number": {
+            "type": "string",
+            "description": "Corresponding Bank Routing Number"
+          }
+        },
+        "description": "Only valid for USD SWIFT"
+      },
+      "GetPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "description": "The transaction id of the payment"
+          },
+          "endToEndId": {
+            "type": "string",
+            "description": "The end to end id of the payment"
+          },
+          "nonce": {
+            "type": "string",
+            "description": "The nonce provided when initiating the payment as a technical dupe check and external reference id"
+          },
+          "status": {
+            "type": "string",
+            "description": "The current status of the payment",
+            "enum": [
+              "Received",
+              "Initiated",
+              "Cancelled",
+              "Pending",
+              "Processing",
+              "Rejected",
+              "Settled",
+              "VopHeld"
+            ]
+          },
+          "currency": {
+            "type": "string",
+            "description": "The instructed currency of the payment"
+          },
+          "amount": {
+            "type": "string",
+            "description": "The instructed amount of the payment"
+          },
+          "rejectReason": {
+            "type": "string",
+            "description": "The reject reason for the payment. Only populated if the payment has been rejected, otherwise undefined"
+          }
+        },
+        "required": [
+          "transactionId",
+          "endToEndId",
+          "nonce",
+          "status",
+          "currency",
+          "amount"
+        ]
+      },
+      "PagedGetPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number",
+            "description": "The total number of results in the filtered, un-paged dataset"
+          },
+          "results": {
+            "description": "The paged result set",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "count",
+          "results"
+        ]
+      },
+      "End2EndIdRequest": {
+        "type": "object",
+        "properties": {
+          "endToEndId": {
+            "type": "string",
+            "description": "DEPOSIT_END_TO_END_ID",
+            "default": ""
+          }
+        },
+        "required": [
+          "endToEndId"
+        ]
+      },
+      "GBPRequestVirtualAccountDataResponse": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated"
+          },
+          "virtualAccountDetails": {
+            "description": "The details of the virtual account",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GBPVirtualAccountDetails"
+              },
+              {
+                "$ref": "#/components/schemas/PendingVirtualAccountDetails"
+              }
+            ]
+          },
+          "ownerDetails": {
+            "description": "The details of the virtual account owner",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/GBPVirtualAccountOwnerDetails"
+              },
+              {
+                "$ref": "#/components/schemas/NoBankDetailsVirtualAccountOwnerDetails"
+              }
+            ]
+          }
+        },
+        "required": [
+          "correlationId",
+          "virtualAccountDetails",
+          "ownerDetails"
+        ]
+      },
+      "GBPVirtualAccountDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the virtual account",
+            "example": "71c33ef0-4af9-4814-b81e-d5f4dfa96dec"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the virtual account",
+            "example": "ACTIVE"
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account",
+            "example": "GB33BUKB20201555555555"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The account number of the virtual account",
+            "example": "55555555"
+          },
+          "sortCode": {
+            "type": "string",
+            "description": "The sort code of the virtual account",
+            "example": "202015"
+          },
+          "bic": {
+            "type": "string",
+            "description": "The bic of the virtual account owner",
+            "example": "MONZGB2LXXX"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "iban",
+          "sortCode",
+          "bic"
+        ]
+      },
+      "GBPVirtualAccountOwnerDetails": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner"
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner",
+            "example": "GB33BUKB20201555555555"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The account number of the virtual account owner",
+            "example": "55555555"
+          },
+          "sortCode": {
+            "type": "string",
+            "description": "The sort code of the virtual account owner",
+            "example": "202015"
+          },
+          "bic": {
+            "type": "string",
+            "description": "The bic of the virtual account owner",
+            "example": "MONZGB2LXXX"
+          }
+        },
+        "required": [
+          "name",
+          "iban"
+        ]
+      },
+      "IbanRequestVirtualAccountDataResponse": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated"
+          },
+          "virtualAccountDetails": {
+            "description": "The details of the virtual account",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IbanVirtualAccountDetails"
+              },
+              {
+                "$ref": "#/components/schemas/PendingVirtualAccountDetails"
+              }
+            ]
+          },
+          "ownerDetails": {
+            "description": "The details of the virtual account owner",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IbanVirtualAccountOwnerDetails"
+              },
+              {
+                "$ref": "#/components/schemas/NoBankDetailsVirtualAccountOwnerDetails"
+              }
+            ]
+          }
+        },
+        "required": [
+          "correlationId",
+          "virtualAccountDetails",
+          "ownerDetails"
+        ]
+      },
+      "IbanVirtualAccountDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the virtual account",
+            "example": "71c33ef0-4af9-4814-b81e-d5f4dfa96dec"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the virtual account",
+            "example": "ACTIVE"
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account",
+            "example": "DK5000400440116243"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The account number of the virtual account",
+            "example": "0440116243"
+          },
+          "bic": {
+            "type": "string",
+            "description": "The bic of the virtual account",
+            "example": "SXPYDKKK"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "iban"
+        ]
+      },
+      "IbanVirtualAccountOwnerDetails": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner"
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner",
+            "example": "DK5000400440116243"
+          },
+          "bic": {
+            "type": "string",
+            "description": "The bic of the virtual account owner",
+            "example": "SXPYDKKK"
+          }
+        },
+        "required": [
+          "name",
+          "iban"
+        ]
+      },
+      "NoBankDetailsVirtualAccountOwnerDetails": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "PagedVirtualAccountDataResponse": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number",
+            "description": "Count of virtual accounts",
+            "example": 2
+          },
+          "results": {
+            "type": "array",
+            "description": "Virtual account data",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/GBPRequestVirtualAccountDataResponse"
+                },
+                {
+                  "$ref": "#/components/schemas/IbanRequestVirtualAccountDataResponse"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "count",
+          "results"
+        ]
+      },
+      "PendingVirtualAccountDetails": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the virtual account",
+            "example": "71c33ef0-4af9-4814-b81e-d5f4dfa96dec"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the virtual account",
+            "example": "PENDING"
+          }
+        },
+        "required": [
+          "id",
+          "status"
+        ]
+      },
+      "VirtualAccountPaymentBody": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "description": "The currency code for the payment",
+            "minLength": 3,
+            "maxLength": 4,
+            "example": "GBP"
+          },
+          "amount": {
+            "type": "string",
+            "description": "The amount of the payment",
+            "example": "1.12"
+          },
+          "reference": {
+            "type": "string",
+            "description": "The reference for the payment",
+            "minLength": 1,
+            "maxLength": 255,
+            "example": "payment-ref"
+          },
+          "nonce": {
+            "type": "string",
+            "description": "A unique nonce to guard against duplicate payments",
+            "minimum": 1,
+            "example": "1234567890123456"
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason for the payment",
+            "minLength": 1,
+            "maxLength": 255,
+            "example": "Internal transfer"
+          }
+        },
+        "required": [
+          "currency",
+          "amount",
+          "reference",
+          "nonce",
+          "reason"
+        ]
+      },
+      "VirtualAccountPaymentResponse": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string"
+          },
+          "end2EndId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "transactionId",
+          "end2EndId"
+        ]
+      },
+      "CreateEURLocalVirtualAccountForCompany": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EUR Test Company",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "Friedrichstrasse",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "100",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "10115",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's EUR bank account",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "registrationNumber": {
+            "type": "string",
+            "description": "The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "AB123456",
+            "maxLength": 100
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": false
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's EUR bank account",
+            "example": "DE53202208000099106929"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's EUR bank account",
+            "example": "MHSBDEHBXXX"
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "country",
+          "nationality",
+          "isIndividual",
+          "iban",
+          "bicSwift"
+        ]
+      },
+      "CreateEURLocalVirtualAccountForIndividual": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EUR Test Individual",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "Friedrichstrasse",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "100",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "10115",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's EUR bank account",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "The date of birth of the virtual account owner",
+            "example": "2000-12-31",
+            "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": true
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's EUR bank account",
+            "example": "DE53202208000099106929"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's EUR bank account",
+            "example": "MHSBDEHBXXX"
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "country",
+          "nationality",
+          "dateOfBirth",
+          "isIndividual",
+          "iban",
+          "bicSwift"
+        ]
+      },
+      "CreateGBPLocalVirtualAccountForCompany": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "GBP Test Company",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "One London Wall",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "6th Floor",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "London",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Greater London",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EC2Y 5EB",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's bank account",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "registrationNumber": {
+            "type": "string",
+            "description": "The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "AB123456",
+            "maxLength": 100
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": false
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's bank account",
+            "example": "GB33BUKB20201555555555"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's bank account",
+            "example": "BARCGB22XXX"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The 8-digit account number of the virtual account owner's bank account - mandatory for GBP accounts",
+            "example": "55555555"
+          },
+          "sortCode": {
+            "type": "string",
+            "description": "The 6-digit sort code of the virtual account owner's bank account - mandatory for GBP accounts",
+            "example": "202015"
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "country",
+          "nationality",
+          "isIndividual",
+          "accountNumber",
+          "sortCode"
+        ]
+      },
+      "CreateGBPLocalVirtualAccountForIndividual": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "GBP Test Individual",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "One London Wall",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "6th Floor",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "London",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Greater London",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EC2Y 5EB",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's bank account",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "The date of birth of the virtual account owner - only applicable to an individual",
+            "example": "2000-12-31",
+            "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": true
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's bank account",
+            "example": "GB33BUKB20201555555555"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's bank account",
+            "example": "BARCGB22XXX"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The 8-digit account number of the virtual account owner's bank account - mandatory for GBP accounts",
+            "example": "55555555"
+          },
+          "sortCode": {
+            "type": "string",
+            "description": "The 6-digit sort code of the virtual account owner's bank account - mandatory for GBP accounts",
+            "example": "202015"
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "country",
+          "nationality",
+          "dateOfBirth",
+          "isIndividual",
+          "accountNumber",
+          "sortCode"
+        ]
+      },
+      "CreateInternationalVirtualAccountForCompany": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EUR Test Company",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "Friedrichstrasse",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "100",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "10115",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's EUR bank account",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "registrationNumber": {
+            "type": "string",
+            "description": "The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "AB123456",
+            "maxLength": 100
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": false
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's bank account",
+            "example": "DE53202208000099106929"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's bank account",
+            "example": "MHSBDEHBXXX"
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "postcode",
+          "country",
+          "nationality",
+          "isIndividual",
+          "iban",
+          "bicSwift"
+        ]
+      },
+      "CreateInternationalVirtualAccountForIndividual": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EUR Test Individual",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "Friedrichstrasse",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "100",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Berlin",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "10115",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's EUR bank account",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "DE",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "The date of birth of the virtual account owner",
+            "example": "2000-12-31",
+            "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": true
+          },
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's bank account",
+            "example": "DE53202208000099106929"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's bank account",
+            "example": "MHSBDEHBXXX"
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "postcode",
+          "country",
+          "nationality",
+          "dateOfBirth",
+          "isIndividual",
+          "iban",
+          "bicSwift"
+        ]
+      },
+      "CreateNoBankDetailsVirtualAccountForCompany": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "GBP Test Company",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "One London Wall",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "6th Floor",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "London",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Greater London",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EC2Y 5EB",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's bank account",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "registrationNumber": {
+            "type": "string",
+            "description": "The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "AB123456",
+            "maxLength": 100
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": false
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "country",
+          "nationality",
+          "isIndividual"
+        ]
+      },
+      "CreateNoBankDetailsVirtualAccountForIndividual": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated",
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "GBP Test Individual",
+            "maxLength": 255
+          },
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "One London Wall",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "example": "6th Floor",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+, ]+$",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "London",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "Greater London",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).",
+            "pattern": "^(?! )[a-zA-Z0-9\\/\\-\\?:().'\\+ ]+$",
+            "example": "EC2Y 5EB",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's bank account",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "nationality": {
+            "type": "string",
+            "description": "The 2-letter country code for the virtual account owner's nationality",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "The date of birth of the virtual account owner - only applicable to an individual",
+            "example": "2000-12-31",
+            "pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+          },
+          "isIndividual": {
+            "type": "boolean",
+            "description": "Whether the virtual account owner is an individual as opposed to a corporation",
+            "example": true
+          }
+        },
+        "required": [
+          "name",
+          "addressLine1",
+          "city",
+          "country",
+          "nationality",
+          "dateOfBirth",
+          "isIndividual"
+        ]
+      },
+      "UpdateOwnerAddressRequest": {
+        "type": "object",
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "description": "The first line of the address of the virtual account owner",
+            "example": "One London Wall",
+            "maxLength": 1023
+          },
+          "addressLine2": {
+            "type": "string",
+            "description": "The second line of the address of the virtual account owner",
+            "example": "6th Floor",
+            "maxLength": 1023
+          },
+          "addressLine3": {
+            "type": "string",
+            "description": "The third line of the address of the virtual account owner",
+            "maxLength": 1023
+          },
+          "city": {
+            "type": "string",
+            "description": "The postal city or town of the virtual account owner",
+            "example": "London",
+            "maxLength": 255
+          },
+          "region": {
+            "type": "string",
+            "description": "The region (e.g. county, state, province, etc.) of the virtual account owner",
+            "example": "Greater London",
+            "maxLength": 255
+          },
+          "postcode": {
+            "type": "string",
+            "description": "The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments",
+            "example": "EC2Y 5EB",
+            "maxLength": 255
+          },
+          "country": {
+            "type": "string",
+            "description": "The 2-letter country code of the virtual account owner's bank account",
+            "example": "GB",
+            "minLength": 2,
+            "maxLength": 2
+          }
+        },
+        "required": [
+          "addressLine1",
+          "city",
+          "country"
+        ]
+      },
+      "UpdateEUROwnerBankDetailsRequest": {
+        "type": "object",
+        "properties": {
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's bank account - mandatory for EUR accounts",
+            "example": "GB33BUKB20201555555555"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's bank account - mandatory for EUR accounts",
+            "example": "BARCGB22XXX"
+          }
+        },
+        "required": [
+          "iban",
+          "bicSwift"
+        ]
+      },
+      "UpdateGBPOwnerBankDetailsRequest": {
+        "type": "object",
+        "properties": {
+          "iban": {
+            "type": "string",
+            "description": "The IBAN of the virtual account owner's bank account - optional for GBP accounts",
+            "example": "GB33BUKB20201555555555"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "The 8-digit account number of the virtual account owner's bank account - mandatory for GBP accounts",
+            "example": "12345678"
+          },
+          "sortCode": {
+            "type": "string",
+            "description": "The 6-digit sort code of the virtual account owner's bank account - mandatory for GBP accounts",
+            "example": "000000"
+          },
+          "bicSwift": {
+            "type": "string",
+            "description": "The BIC of the virtual account owner's bank account - optional for GBP accounts",
+            "example": "BARCGB22XXX"
+          }
+        },
+        "required": [
+          "accountNumber",
+          "sortCode"
+        ]
+      }
+    }
+  }
+}

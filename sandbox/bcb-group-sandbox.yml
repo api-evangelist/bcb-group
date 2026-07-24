@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bcb.group/docs/bcb-group-environments.md
+docs: https://docs.bcb.group/docs/bcb-group-environments
+summary: >-
+  BCB Group exposes a dedicated Sandbox (UAT) environment for development and
+  testing, isolated from Production. Credentials (Client ID/Secret and Access
+  Tokens) are unique per environment; production access requires completing
+  onboarding and certification. Sandbox contains simulated, non-production data
+  and moves no real funds.
+environments:
+  - name: Sandbox
+    purpose: Development, testing, UAT, simulating transaction scenarios (success/failure/edge cases).
+    base_url: https://api.uat.bcb.group
+    token_url: https://api.uat.bcb.group/v1/auth/oauth/token
+    data: Simulated / non-production. No real funds moved, no real accounts affected.
+    credentials: Requires separate Sandbox Client ID and Client Secret.
+  - name: Production
+    purpose: Live financial transactions on real BCB Group accounts and global payment rails.
+    base_url: https://api.bcb.group
+    token_url: https://api.bcb.group/v1/auth/oauth/token
+    data: Live, production-critical.
+    credentials: Distinct Production credentials issued after onboarding + security checks.
+test_values:
+  note: >-
+    BCB Group does not publish fixed magic test identifiers (test cards / IBANs)
+    in public docs; sandbox scenarios are exercised with Sandbox-issued credentials
+    and simulated transaction flows. No test values are reproduced here (none published).
+best_practices:
+  - Always begin new development and testing in Sandbox before requesting Production access.
+  - Treat Production credentials as highly sensitive; never embed in client-side code.

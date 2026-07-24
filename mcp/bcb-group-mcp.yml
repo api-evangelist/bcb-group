@@ -1,0 +1,82 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/bcb-group-payments-openapi.json
+server:
+  name: bcb-group
+  transport: http
+note: No official BCB Group MCP server was found. Candidate tool list derived one-per-operation from the
+  harvested OpenAPI.
+tools:
+- name: Accounts_BalanceV4
+  description: Balance
+  source_operation: openapi/bcb-group-payments-openapi.json#Accounts_BalanceV4
+- name: Accounts_ListAccountsV3
+  description: Accounts
+  source_operation: openapi/bcb-group-payments-openapi.json#Accounts_ListAccountsV3
+- name: Accounts_TransactionDetailV3
+  description: Transaction Detail
+  source_operation: openapi/bcb-group-payments-openapi.json#Accounts_TransactionDetailV3
+- name: Accounts_TransactionsV3
+  description: Transactions
+  source_operation: openapi/bcb-group-payments-openapi.json#Accounts_TransactionsV3
+- name: Payments_VerificationOfPayeeApproveV1
+  description: VOP Approve
+  source_operation: openapi/bcb-group-payments-openapi.json#Payments_VerificationOfPayeeApproveV1
+- name: Tools_BankLookup
+  description: Bank Lookup
+  source_operation: openapi/bcb-group-payments-openapi.json#Tools_BankLookup
+- name: Beneficiaries_CreateBeneficiaryV4
+  description: Create Beneficiary
+  source_operation: openapi/bcb-group-payments-openapi.json#Beneficiaries_CreateBeneficiaryV4
+- name: Beneficiaries_ListBeneficiariesV3
+  description: List Beneficiaries
+  source_operation: openapi/bcb-group-payments-openapi.json#Beneficiaries_ListBeneficiariesV3
+- name: Accounts_BlincBeneficiariesV3
+  description: BLINC Beneficiaries
+  source_operation: openapi/bcb-group-payments-openapi.json#Accounts_BlincBeneficiariesV3
+- name: Accounts_BlincAccountV3
+  description: BLINC Detail
+  source_operation: openapi/bcb-group-payments-openapi.json#Accounts_BlincAccountV3
+- name: Payments_VerificationOfPayeeCancelV1
+  description: VOP Cancel
+  source_operation: openapi/bcb-group-payments-openapi.json#Payments_VerificationOfPayeeCancelV1
+- name: Auth_GetTokenV1
+  description: Get Token
+  source_operation: openapi/bcb-group-payments-openapi.json#Auth_GetTokenV1
+- name: Notifications_PaymentsStatusWebhook
+  description: Payment Status Webhooks
+  source_operation: openapi/bcb-group-payments-openapi.json#Notifications_PaymentsStatusWebhook
+- name: Payments_AuthorisePaymentV5
+  description: Authorise Payment
+  source_operation: openapi/bcb-group-payments-openapi.json#Payments_AuthorisePaymentV5
+- name: Payments_PaymentByIdV1
+  description: Get Payment By ID
+  source_operation: openapi/bcb-group-payments-openapi.json#Payments_PaymentByIdV1
+- name: Payments_getPaymentByNonceV1
+  description: Get Payment By Nonce
+  source_operation: openapi/bcb-group-payments-openapi.json#Payments_getPaymentByNonceV1
+- name: Payments_ListPaymentsForAccountV1
+  description: List Payments
+  source_operation: openapi/bcb-group-payments-openapi.json#Payments_ListPaymentsForAccountV1
+- name: Payments_ReverseDepositV1
+  description: Reverse a Deposit
+  source_operation: openapi/bcb-group-payments-openapi.json#Payments_ReverseDepositV1
+- name: VirtualAccounts_ListAccountsV1
+  description: List Accounts
+  source_operation: openapi/bcb-group-payments-openapi.json#VirtualAccounts_ListAccountsV1
+- name: VirtualAccounts_AuthorisePaymentV1
+  description: Make a Payment
+  source_operation: openapi/bcb-group-payments-openapi.json#VirtualAccounts_AuthorisePaymentV1
+- name: VirtualAccounts_CloseVirtualAccountV1
+  description: Close Virtual Account
+  source_operation: openapi/bcb-group-payments-openapi.json#VirtualAccounts_CloseVirtualAccountV1
+- name: VirtualAccounts_CreateVirtualAccountV2
+  description: Create Virtual Account
+  source_operation: openapi/bcb-group-payments-openapi.json#VirtualAccounts_CreateVirtualAccountV2
+- name: VirtualAccounts_UpdateOwnerAddressV1
+  description: Update Owner Address
+  source_operation: openapi/bcb-group-payments-openapi.json#VirtualAccounts_UpdateOwnerAddressV1
+- name: VirtualAccounts_UpdateOwnerBankDetailsV1
+  description: Update Owner Bank Details
+  source_operation: openapi/bcb-group-payments-openapi.json#VirtualAccounts_UpdateOwnerBankDetailsV1

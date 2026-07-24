@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bcb-group-payments-openapi.json
+docs: https://www.bcbgroup.com/about/our-licences-and-regulations/
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: OAuth 2.0 Client Credentials grant documented for API access (docs/api-authentication).
+  - id: oauth2-client-credentials
+    conforms: true
+    evidence: Token endpoint POST /v1/auth/oauth/token exchanges client_id/client_secret for a Bearer token.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use bespoke JSON envelopes (ErrorResponse/AuthErrorResponse), not application/problem+json.
+  - id: idempotency
+    conforms: true
+    evidence: correlationId-based exactly-once processing documented (docs/idempotency-and-duplicate-prevention).
+  - id: webhook-hmac-signing
+    conforms: true
+    evidence: Webhooks signed with HMAC-SHA256 in X-BCB-Signature header.
+  - id: pagination
+    conforms: true
+    evidence: limit + pageToken server-side paging with date range filters.
+  - id: iso-20022-payments
+    conforms: partial
+    evidence: Payment purpose/reason codes reference published (docs/purpose-codes); IBAN/BIC bank lookup supported.
+compliance:
+  regulated: true
+  note: >-
+    BCB Group is a regulated, multi-jurisdictional payments provider (electronic
+    money / crypto services) with published licences and regulatory registrations.
+  licences_page: https://www.bcbgroup.com/about/our-licences-and-regulations/
+  customer_protection: https://www.bcbgroup.com/customer-protection/

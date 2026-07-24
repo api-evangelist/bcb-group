@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bcb.group/docs/webhooks.md
+spec_type: Webhooks
+docs: https://docs.bcb.group/docs/webhooks
+summary: >-
+  The BCB notifications service delivers webhooks for real-time updates on key
+  account activity, so integrators can avoid polling. Each payload is a signed
+  JSON object; verify the X-BCB-Signature header (HMAC-SHA256 over the raw body
+  with your shared secret) before trusting it.
+security:
+  signature_header: X-BCB-Signature
+  algorithm: HMAC-SHA256
+  verification: >-
+    Recompute HMAC-SHA256 over the exact raw payload with your secret key and
+    constant-time compare against X-BCB-Signature; reject on mismatch.
+  docs: https://docs.bcb.group/docs/webhook-signature
+subscription:
+  registration_operation: Notifications_PaymentsStatusWebhook  # POST /v3/payments/register-webhook
+  note: Transaction webhooks are registered via your BCB Customer Success Agent.
+events:
+  - name: payment.status
+    description: Fires when a payment reaches a Complete status.
+    reference: https://docs.bcb.group/reference/notifications-payment-status-webhook
+  - name: deposit.credited
+    description: Fires when a new deposit is credited to your account.
+  - name: transaction
+    description: >-
+      Transaction webhook payload (transaction id, status e.g. Complete/Failed/Pending,
+      amount & currency, timestamp).
+    docs: https://docs.bcb.group/docs/webhook-types

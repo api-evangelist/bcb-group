@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+hosts:
+- host: https://bcbgroup.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: bcb-group-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://www.bcbgroup.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: same content as bcbgroup.io
+- host: https://api.bcb.group
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404

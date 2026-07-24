@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for BCB Group Payments API
+  version: 1.0.0
+extends: openapi/bcb-group-payments-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-18'
+      x-apievangelist-source: https://docs.bcb.group/
+      x-authentication: OAuth 2.0 Client Credentials -> Bearer token (see authentication/bcb-group-authentication.yml)
+      x-idempotency: correlationId (exactly-once); see conventions/bcb-group-conventions.yml
+      x-pagination: limit + pageToken with date_From/date_To filters
+      x-webhooks: HMAC-SHA256 signed via X-BCB-Signature; see asyncapi/bcb-group-webhooks.yml
+  - target: $.servers
+    update:
+      x-environments:
+        sandbox: https://api.uat.bcb.group
+        production: https://api.bcb.group

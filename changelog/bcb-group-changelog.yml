@@ -1,0 +1,11 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bcb.group/docs/changle-log
+url: https://docs.bcb.group/docs/changle-log
+scheme: uri-path-versioned
+summary: >-
+  BCB Group maintains a public Change Log page recording updates, improvements,
+  and fixes across its APIs and services, including regulatory changes that may
+  affect integrations. The page is prose-based and does not publish discrete
+  dated version entries in a machine-readable form at capture time.
+entries: []

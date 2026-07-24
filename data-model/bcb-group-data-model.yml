@@ -1,0 +1,586 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bcb-group-payments-openapi.json
+domains:
+  Account: iban / accountId-keyed bank, custody and wallet accounts + balances
+  Payment: payment authorisation, status, reversal; keyed by transactionId / nonce / end2EndId
+  Beneficiary: payee bank/wallet accounts, incl. BLINC network members
+  VirtualAccount: multi-currency virtual IBAN accounts and owner details
+id_reference_fields:
+- accountId
+- transactionId
+- iban
+- nonce
+- end2EndId
+- correlationId
+- blincId
+relationships:
+- from: Account
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: AuthorisePaymentRequest
+  via: nonce
+  kind: belongs_to
+  to: Payment
+- from: AuthorisePaymentResponse
+  via: transactionId
+  kind: belongs_to
+  to: Transaction
+- from: AuthorisePaymentResponse
+  via: nonce
+  kind: belongs_to
+  to: Payment
+- from: BalanceResponse
+  via: accountId
+  kind: belongs_to
+  to: Account
+- from: Beneficiary
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateBeneficiaryRequest
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateEURLocalVirtualAccountForCompany
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: CreateEURLocalVirtualAccountForCompany
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateEURLocalVirtualAccountForIndividual
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: CreateEURLocalVirtualAccountForIndividual
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateGBPLocalVirtualAccountForCompany
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: CreateGBPLocalVirtualAccountForCompany
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateGBPLocalVirtualAccountForIndividual
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: CreateGBPLocalVirtualAccountForIndividual
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateInternationalVirtualAccountForCompany
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: CreateInternationalVirtualAccountForCompany
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateInternationalVirtualAccountForIndividual
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: CreateInternationalVirtualAccountForIndividual
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: CreateNoBankDetailsVirtualAccountForCompany
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: CreateNoBankDetailsVirtualAccountForIndividual
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: GBPRequestVirtualAccountDataResponse
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: GBPVirtualAccountDetails
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: GBPVirtualAccountOwnerDetails
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: GetPaymentResponse
+  via: transactionId
+  kind: belongs_to
+  to: Transaction
+- from: GetPaymentResponse
+  via: nonce
+  kind: belongs_to
+  to: Payment
+- from: IbanRequestVirtualAccountDataResponse
+  via: correlationId
+  kind: belongs_to
+  to: Request
+- from: IbanVirtualAccountDetails
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: IbanVirtualAccountOwnerDetails
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: TransactionDetails
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: TransactionDetails
+  via: nonce
+  kind: belongs_to
+  to: Payment
+- from: UpdateEUROwnerBankDetailsRequest
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: UpdateGBPOwnerBankDetailsRequest
+  via: iban
+  kind: belongs_to
+  to: VirtualAccount
+- from: VirtualAccountPaymentBody
+  via: nonce
+  kind: belongs_to
+  to: Payment
+- from: VirtualAccountPaymentResponse
+  via: transactionId
+  kind: belongs_to
+  to: Transaction
+- from: VirtualAccountPaymentResponse
+  via: end2EndId
+  kind: belongs_to
+  to: Payment
+entity_count: 44
+entities:
+- name: Account
+  fields:
+  - id
+  - counterparty_id
+  - aid
+  - cid
+  - account_type
+  - ccy
+  - host_name
+  - host_hub
+  - host_location
+  - node_name
+  - node_address
+  - node_location
+  - node_country
+  - iban
+  - account_label
+  - description
+  - bcb_controlled
+  - settlement_reference
+  - created_at
+  - updated_at
+  - blinc_id
+  - partner_id
+  - email
+  - reporting_ccy
+  - pid
+  - partner_name
+- name: AuthErrorResponse
+  fields:
+  - error
+  - error_description
+- name: AuthorisePaymentRequest
+  fields:
+  - counterparty_id
+  - sender_account_id
+  - ccy
+  - amount
+  - reference
+  - reason
+  - notes
+  - preferred_scheme
+  - nonce
+  - beneficiary_account_id
+  - beneficiary_name
+  - beneficiary_address_line_1
+  - beneficiary_address_line_2
+  - beneficiary_address_line_3
+  - beneficiary_city
+  - beneficiary_region
+  - beneficiary_postcode
+  - beneficiary_country
+  - beneficiary_account_number
+  - beneficiary_sort_code
+  - beneficiary_bic
+  - beneficiary_iban
+  - beneficiary_routing_number
+  - beneficiary_wire_routing
+  - beneficiary_swift_code
+  - beneficiary_national_clearing_code
+  - beneficiary_institution
+  - beneficiary_branch
+  - beneficiary_lei_code
+  - beneficiary_bank_name
+  - beneficiary_bank_address
+  - beneficiary_bank_country
+  - intermediary_bank
+- name: AuthorisePaymentResponse
+  fields:
+  - endToEndIdentification
+  - transactionId
+  - nonce
+  - response
+- name: BalanceResponse
+  fields:
+  - accountId
+  - settled
+  - available
+- name: BankLookupResponse
+  fields:
+  - bic
+- name: Beneficiary
+  fields:
+  - id
+  - counterparty_id
+  - aid
+  - cid
+  - account_type
+  - ccy
+  - host_name
+  - host_hub
+  - host_location
+  - node_name
+  - node_address
+  - node_location
+  - node_country
+  - node_subaddress
+  - iban
+  - account_label
+  - description
+  - settlement_reference
+  - created_at
+  - updated_at
+  - partner_id
+  - email
+  - pid
+  - partner_name
+- name: BlincBeneficiary
+  fields:
+  - id
+  - blinc_id
+  - ccy
+  - name
+- name: CreateBeneficiaryRequest
+  fields:
+  - counterparty_id
+  - cid
+  - name
+  - account_type
+  - ccy
+  - host_name
+  - host_hub
+  - host_location
+  - host_country
+  - node_name
+  - node_address
+  - node_location_line_1
+  - node_location_line_2
+  - node_location_line_3
+  - node_location_city
+  - node_location_region
+  - node_location_postcode
+  - node_country
+  - node_type
+  - iban
+  - bic
+  - account_label
+  - payment_type
+  - email
+  - bcb_controlled
+  - settlement_reference
+  - is_beneficiary
+- name: CreateEURLocalVirtualAccountForCompany
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - registrationNumber
+  - isIndividual
+  - iban
+  - bicSwift
+- name: CreateEURLocalVirtualAccountForIndividual
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - dateOfBirth
+  - isIndividual
+  - iban
+  - bicSwift
+- name: CreateGBPLocalVirtualAccountForCompany
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - registrationNumber
+  - isIndividual
+  - iban
+  - bicSwift
+  - accountNumber
+  - sortCode
+- name: CreateGBPLocalVirtualAccountForIndividual
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - dateOfBirth
+  - isIndividual
+  - iban
+  - bicSwift
+  - accountNumber
+  - sortCode
+- name: CreateInternationalVirtualAccountForCompany
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - registrationNumber
+  - isIndividual
+  - iban
+  - bicSwift
+- name: CreateInternationalVirtualAccountForIndividual
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - dateOfBirth
+  - isIndividual
+  - iban
+  - bicSwift
+- name: CreateNoBankDetailsVirtualAccountForCompany
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - registrationNumber
+  - isIndividual
+- name: CreateNoBankDetailsVirtualAccountForIndividual
+  fields:
+  - correlationId
+  - name
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+  - nationality
+  - dateOfBirth
+  - isIndividual
+- name: End2EndIdRequest
+  fields:
+  - endToEndId
+- name: ErrorResponse
+  fields:
+  - message
+  - statusCode
+- name: GBPRequestVirtualAccountDataResponse
+  fields:
+  - correlationId
+  - virtualAccountDetails
+  - ownerDetails
+- name: GBPVirtualAccountDetails
+  fields:
+  - id
+  - status
+  - iban
+  - accountNumber
+  - sortCode
+  - bic
+- name: GBPVirtualAccountOwnerDetails
+  fields:
+  - name
+  - iban
+  - accountNumber
+  - sortCode
+  - bic
+- name: GetPaymentResponse
+  fields:
+  - transactionId
+  - endToEndId
+  - nonce
+  - status
+  - currency
+  - amount
+  - rejectReason
+- name: IbanRequestVirtualAccountDataResponse
+  fields:
+  - correlationId
+  - virtualAccountDetails
+  - ownerDetails
+- name: IbanVirtualAccountDetails
+  fields:
+  - id
+  - status
+  - iban
+  - accountNumber
+  - bic
+- name: IbanVirtualAccountOwnerDetails
+  fields:
+  - name
+  - iban
+  - bic
+- name: IntermediaryBank
+  fields:
+  - bic
+  - routing_number
+- name: NoBankDetailsVirtualAccountOwnerDetails
+  fields:
+  - name
+- name: PagedGetPaymentResponse
+  fields:
+  - count
+  - results
+- name: PagedVirtualAccountDataResponse
+  fields:
+  - count
+  - results
+- name: PendingVirtualAccountDetails
+  fields:
+  - id
+  - status
+- name: TokenRequest
+  fields:
+  - client_id
+  - client_secret
+- name: TokenResponse
+  fields:
+  - access_token
+  - expires_in
+  - scope
+  - token_type
+- name: Transaction
+  fields:
+  - tx_id
+  - account_id
+  - value_date
+  - credit
+  - details
+  - ticker
+  - amount
+  - approved
+  - notes
+  - source_name
+- name: TransactionDetailResponse
+  fields:
+  - tx_id
+- name: TransactionDetails
+  fields:
+  - bic
+  - iban
+  - blinc_id
+  - reference
+  - sort_code
+  - account_name
+  - account_number
+  - counterparty_reference
+  - endToEndIdentifier
+  - nonce
+- name: UpdateEUROwnerBankDetailsRequest
+  fields:
+  - iban
+  - bicSwift
+- name: UpdateGBPOwnerBankDetailsRequest
+  fields:
+  - iban
+  - accountNumber
+  - sortCode
+  - bicSwift
+- name: UpdateOwnerAddressRequest
+  fields:
+  - addressLine1
+  - addressLine2
+  - addressLine3
+  - city
+  - region
+  - postcode
+  - country
+- name: VerificationOfPayeeErrorResponse
+  fields:
+  - message
+  - error
+  - statusCode
+- name: VirtualAccountPaymentBody
+  fields:
+  - currency
+  - amount
+  - reference
+  - nonce
+  - reason
+- name: VirtualAccountPaymentResponse
+  fields:
+  - transactionId
+  - end2EndId
+- name: WebhookRegistrationRequest
+  fields:
+  - counterparty_id
+  - event
+  - url
+- name: WebhookRegistrationResponse
+  fields:
+  - event
+  - status

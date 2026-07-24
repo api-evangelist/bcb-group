@@ -1,0 +1,50 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.bcb.group/llms.txt
+docs: https://docs.bcb.group/docs
+summary: Cross-cutting request/response semantics for the BCB Group Payments API.
+authentication:
+  style: OAuth 2.0 Client Credentials -> Bearer token
+  header: Authorization
+  ref: authentication/bcb-group-authentication.yml
+idempotency:
+  supported: true
+  mechanism: correlationId
+  scope: request body field on payment / write requests
+  behaviour: >-
+    Include a unique identifier in the request `correlationId` to guarantee a
+    request is processed exactly once. A subsequent request reusing a
+    correlationId is rejected, so failed connections can be safely retried
+    without duplicate transactions.
+  docs: https://docs.bcb.group/docs/idempotency-and-duplicate-prevention
+pagination:
+  style: limit + pageToken (server-side paging with date range filter)
+  params:
+    - {name: limit, type: integer, description: Limit result set for server-side paging}
+    - {name: pageToken, type: string, description: Offset result set when paging}
+    - {name: date_From, type: string, format: YYYY-MM-DD, description: Objects created on or after this date}
+    - {name: date_To, type: string, format: YYYY-MM-DD, description: Objects created on or before this date}
+  docs: https://docs.bcb.group/docs/pagination
+versioning:
+  scheme: uri-path
+  note: Path-embedded major versions per resource (e.g. /v1, /v3, /v4, /v5); versions vary by endpoint.
+error_envelope:
+  formats:
+    - {schema: ErrorResponse, content_type: application/json}
+    - {schema: AuthErrorResponse, content_type: application/json, fields: [error, error_description]}
+    - {schema: VerificationOfPayeeErrorResponse, content_type: application/json}
+  ref: errors/bcb-group-problem-types.yml
+  note: Some list/write endpoints return text/html on 4xx/5xx rather than a JSON envelope.
+rate_limiting:
+  enforced: false
+  note: >-
+    No rigid rate limits enforced at this time; traffic is monitored for abuse.
+    BCB recommends a webhook-based architecture to reduce polling.
+  docs: https://docs.bcb.group/docs/rate-limiting
+webhooks:
+  supported: true
+  signature: X-BCB-Signature header, HMAC-SHA256 over the raw payload with a shared secret
+  ref: asyncapi/bcb-group-webhooks.yml
+status_codes:
+  documented: [200, 202, 401, 403, 404, 500]
+  docs: https://docs.bcb.group/docs/status-codes

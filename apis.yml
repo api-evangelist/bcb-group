@@ -1,9 +1,28 @@
 aid: bcb-group
 name: BCB Group
-description: 'BCB Group is a company surfaced as a portfolio company of pantera-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  BCB Group is a regulated, multi-jurisdictional payments infrastructure provider connecting
+  traditional finance with digital assets for financial institutions across global fiat and crypto
+  markets. Its products include multi-currency payment accounts, virtual IBANs, crypto and e-money
+  accounts, trading, stablecoin earn, and the BLINC instant, fee-free 24/7 settlement network linking
+  100+ ecosystem members. BCB serves 250+ clients (including Bitstamp, Circle, Ripple, Fireblocks and
+  Copper) and exposes a Bearer-token Payments API (OAuth 2.0 client credentials) covering accounts,
+  balances, transactions, beneficiaries, payments, virtual accounts and webhooks. Surfaced as a
+  portfolio company of Pantera Capital and enriched from its public developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/bcb-group/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.bcbgroup.com/wp-content/uploads/2026/03/bcb-icons.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +31,223 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Crypto
-apis: []
+- Payments
+- Banking
+- Digital Assets
+- Stablecoins
+- Financial Services
+- Fintech
+apis:
+- aid: bcb-group:bcb-group-accounts-api
+  name: BCB Group Accounts API
+  description: The Accounts API from BCB Group — 4 operation(s) for accounts.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-accounts-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
+- aid: bcb-group:bcb-group-authentication-api
+  name: BCB Group Authentication API
+  description: The Authentication API from BCB Group — 1 operation(s) for authentication.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-authentication-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
+- aid: bcb-group:bcb-group-beneficiaries-api
+  name: BCB Group Beneficiaries API
+  description: The Beneficiaries API from BCB Group — 2 operation(s) for beneficiaries.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - Beneficiaries
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-beneficiaries-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
+- aid: bcb-group:bcb-group-blinc-api
+  name: BCB Group BLINC API
+  description: The BLINC API from BCB Group — 2 operation(s) for blinc.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - BLINC
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-blinc-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
+- aid: bcb-group:bcb-group-notifications-api
+  name: BCB Group Notifications API
+  description: The Notifications API from BCB Group — 1 operation(s) for notifications.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-notifications-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
+- aid: bcb-group:bcb-group-payments-api
+  name: BCB Group Payments API
+  description: The Payments API from BCB Group — 7 operation(s) for payments.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-payments-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
+- aid: bcb-group:bcb-group-tools-api
+  name: BCB Group Tools API
+  description: The Tools API from BCB Group — 1 operation(s) for tools.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-tools-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
+- aid: bcb-group:bcb-group-virtual-accounts-api
+  name: BCB Group Virtual Accounts API
+  description: The Virtual Accounts API from BCB Group — 6 operation(s) for virtual accounts.
+  humanURL: https://docs.bcb.group/
+  baseURL: https://api.bcb.group
+  tags:
+  - Virtual Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/bcb-group-virtual-accounts-api-openapi.yml
+  - type: APIReference
+    url: https://docs.bcb.group/reference
+  - type: Documentation
+    url: https://docs.bcb.group/docs
+  - type: Authentication
+    url: authentication/bcb-group-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+# --- identity / link properties ---
 - type: Website
   url: https://bcbgroup.io/
+- type: DeveloperPortal
+  url: https://docs.bcb.group/
+- type: Documentation
+  url: https://docs.bcb.group/docs
+- type: APIReference
+  url: https://docs.bcb.group/reference
+- type: GettingStarted
+  url: https://docs.bcb.group/docs/introduction
+- type: Support
+  url: https://www.bcbgroup.com/contact-us/
+- type: Blog
+  url: https://www.bcbgroup.com/insights/
+- type: Login
+  url: https://console.bcb.group/login
+- type: TermsOfService
+  url: https://www.bcbgroup.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.bcbgroup.com/privacy-policy/
+- type: Compliance
+  url: https://www.bcbgroup.com/about/our-licences-and-regulations/
+- type: ChangeLog
+  url: https://docs.bcb.group/docs/changle-log
+# --- artifacts ---
+- type: LLMsTxt
+  url: llms/bcb-group-llms.txt
+- type: Authentication
+  url: authentication/bcb-group-authentication.yml
+- type: Conventions
+  url: conventions/bcb-group-conventions.yml
+- type: Idempotency
+  url: conventions/bcb-group-conventions.yml
+- type: ErrorCatalog
+  url: errors/bcb-group-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/bcb-group-lifecycle.yml
+- type: Webhooks
+  url: asyncapi/bcb-group-webhooks.yml
+- type: Conformance
+  url: conformance/bcb-group-conformance.yml
+- type: DataModel
+  url: data-model/bcb-group-data-model.yml
+- type: Sandbox
+  url: sandbox/bcb-group-sandbox.yml
+- type: MCPServer
+  url: mcp/bcb-group-mcp.yml
+- type: AgenticAccess
+  url: agentic-access/bcb-group-agentic-access.yml
+- type: WellKnown
+  url: well-known/bcb-group-well-known.yml
+- type: SecurityTxt
+  url: well-known/bcb-group-security.txt
+- type: Security
+  url: https://bcbgroup.io/.well-known/security.txt
+- type: VulnerabilityDisclosure
+  url: security/bcb-group-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/bcb-group-domain-security.yml
+# --- agent skills ---
+- type: AgentSkill
+  name: Authenticate and check BCB account balances
+  url: skills/bcb-group-authenticate-and-check-balances.md
+- type: AgentSkill
+  name: Authorise a BCB payment with idempotency
+  url: skills/bcb-group-authorise-a-payment.md
+- type: AgentSkill
+  name: Manage BCB virtual accounts
+  url: skills/bcb-group-manage-virtual-accounts.md
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

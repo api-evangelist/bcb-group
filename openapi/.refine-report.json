@@ -1,0 +1,28 @@
+{
+  "provider": "bcb-group",
+  "sources": [
+    "bcb-group-accounts-api-openapi.yml",
+    "bcb-group-authentication-api-openapi.yml",
+    "bcb-group-beneficiaries-api-openapi.yml",
+    "bcb-group-blinc-api-openapi.yml",
+    "bcb-group-notifications-api-openapi.yml",
+    "bcb-group-payments-api-openapi.yml",
+    "bcb-group-tools-api-openapi.yml",
+    "bcb-group-virtual-accounts-api-openapi.yml"
+  ],
+  "outputs": [
+    "bcb-group-accounts-api-openapi.yml",
+    "bcb-group-authentication-api-openapi.yml",
+    "bcb-group-beneficiaries-api-openapi.yml",
+    "bcb-group-blinc-api-openapi.yml",
+    "bcb-group-notifications-api-openapi.yml",
+    "bcb-group-payments-api-openapi.yml",
+    "bcb-group-tools-api-openapi.yml",
+    "bcb-group-virtual-accounts-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

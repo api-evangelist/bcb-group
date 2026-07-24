@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bcb-group-payments-openapi.json
+docs: https://docs.bcb.group/docs/status-codes
+format: json
+envelope:
+  schemas:
+    - name: ErrorResponse
+      content_type: application/json
+    - name: AuthErrorResponse
+      content_type: application/json
+      fields: [error, error_description]
+      note: error currently always "access_denied"; error_description carries detail.
+    - name: VerificationOfPayeeErrorResponse
+      content_type: application/json
+  note: >-
+    Not RFC 9457 problem+json. Several list/write endpoints return text/html for
+    4xx/5xx instead of a JSON body.
+problems:
+  - status: 400
+    title: Bad Request
+    description: The request is invalid.
+    schema: ErrorResponse
+    seen_on: [VirtualAccounts_UpdateOwnerAddressV1, VirtualAccounts_UpdateOwnerBankDetailsV1]
+  - status: 401
+    title: Unauthorized
+    description: No valid token or no token was provided.
+    schema: [ErrorResponse, AuthErrorResponse]
+    seen_on: [Auth_GetTokenV1, Accounts_BalanceV4, Payments_PaymentByIdV1, and most operations]
+  - status: 403
+    title: Forbidden
+    description: The token does not have the necessary permissions to perform the request.
+    seen_on: [Accounts_TransactionsV3, Payments_AuthorisePaymentV5, Payments_ReverseDepositV1]
+  - status: 404
+    title: Not Found
+    description: The requested resource (account, IBAN, payment, BIC) could not be found.
+    schema: ErrorResponse
+    seen_on: [Accounts_BalanceV4, Tools_BankLookup, Payments_PaymentByIdV1, VirtualAccounts_ListAccountsV1]
+  - status: 409
+    title: Conflict
+    description: The payment is not in an unverified state (verification-of-payee approve/cancel).
+    schema: VerificationOfPayeeErrorResponse
+    seen_on: [Payments_VerificationOfPayeeApproveV1, Payments_VerificationOfPayeeCancelV1]
+  - status: 500
+    title: Internal Server Error
+    description: BCB Payments API internal error. Retry using an idempotency (correlationId) key.
+    seen_on: [Auth_GetTokenV1, Accounts_ListAccountsV3, Payments_AuthorisePaymentV5]

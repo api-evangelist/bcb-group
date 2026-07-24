@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/bcb-group-payments-openapi.json
+skills:
+  - file: bcb-group-authenticate-and-check-balances.md
+    name: Authenticate and check BCB account balances
+    api: openapi/bcb-group-payments-openapi.json
+    operations: [Auth_GetTokenV1, Accounts_ListAccountsV3, Accounts_BalanceV4, Accounts_TransactionsV3, Accounts_TransactionDetailV3]
+  - file: bcb-group-authorise-a-payment.md
+    name: Authorise a BCB payment with idempotency
+    api: openapi/bcb-group-payments-openapi.json
+    operations: [Auth_GetTokenV1, Beneficiaries_CreateBeneficiaryV4, Beneficiaries_ListBeneficiariesV3, Payments_AuthorisePaymentV5, Payments_PaymentByIdV1, Payments_VerificationOfPayeeApproveV1, Payments_VerificationOfPayeeCancelV1]
+  - file: bcb-group-manage-virtual-accounts.md
+    name: Manage BCB virtual accounts
+    api: openapi/bcb-group-payments-openapi.json
+    operations: [Auth_GetTokenV1, VirtualAccounts_CreateVirtualAccountV2, VirtualAccounts_ListAccountsV1, VirtualAccounts_AuthorisePaymentV1, VirtualAccounts_UpdateOwnerAddressV1, VirtualAccounts_UpdateOwnerBankDetailsV1, VirtualAccounts_CloseVirtualAccountV1]

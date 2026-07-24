@@ -1,0 +1,3 @@
+Contact: mailto:security@bcbgroup.io
+Expires: 2028-01-30T15:30:00Z
+Preferred-Languages: en
