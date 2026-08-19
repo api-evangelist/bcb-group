@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BCB Group Payments Accounts Beneficiaries API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Beneficiaries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Beneficiary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v4/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new beneficiary"
+        },
+        {
+          "info": {
+            "name": "List Beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v3/beneficiaries",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set for server-side paging"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Offset result set when paging"
+              }
+            ]
+          },
+          "docs": "List all beneficiary bank accounts, custody accounts and wallet accounts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

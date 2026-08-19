@@ -1,0 +1,1234 @@
+{
+  "item": [
+    {
+      "id": "8e218acf-fd63-4627-94b6-73e03126f5cd",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35fc3000-94e6-4b0a-8d7e-4bd84670e2da",
+          "name": "Balance",
+          "request": {
+            "name": "Balance",
+            "description": {
+              "content": "Get the balance for an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v4",
+                "accounts",
+                "balance",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0bcf8292-c63c-409d-a2ed-bfbb56e6f85d",
+              "name": "The balance was retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    "balance",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 4674.857800807224,\n  \"settled\": \"1234.12\",\n  \"available\": \"1234.12\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15f4dae7-543c-4e61-a714-f2fb8392ee0e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    "balance",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 8388\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5486a8d-6e83-4615-bb1e-89e0a585a622",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    "balance",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 8388\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc0fafab-ff29-4e41-927a-c2be2b056387",
+              "name": "The balance for the account was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    "balance",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 8388\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b975cdca-4e62-4ac8-865c-ed4aa9b1c804",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v4",
+                    "accounts",
+                    "balance",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 8388\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea0320b3-dd56-418a-a37d-e172efba4b84",
+          "name": "Accounts",
+          "request": {
+            "name": "Accounts",
+            "description": {
+              "content": "List Accounts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "counterparty_id",
+                  "value": "",
+                  "description": "Limit accounts by Counterparty ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "",
+                  "description": "Limit result set to a specific Account ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "",
+                  "description": "Limit result set for server-side paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "0",
+                  "description": "Offset result set when paging"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c8dba274-fc68-4a85-9995-39869b20b5a0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "counterparty_id",
+                      "value": ""
+                    },
+                    {
+                      "key": "id",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 378,\n    \"counterparty_id\": 483,\n    \"aid\": \"A01-CX00000101\",\n    \"cid\": \"CX00000101\",\n    \"account_type\": \"Wallet\",\n    \"ccy\": \"BTC\",\n    \"host_name\": \"BCB Group\",\n    \"host_hub\": \"\",\n    \"host_location\": \"\",\n    \"node_name\": \"BCB Payments Ltd\",\n    \"node_address\": \"3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo\",\n    \"node_location\": \"\",\n    \"node_country\": \"\",\n    \"node_subaddress\": \"\",\n    \"iban\": \"\",\n    \"account_label\": \"LNS 5 BTC hszo\",\n    \"description\": \"BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC\",\n    \"bcb_controlled\": 1,\n    \"settlement_reference\": \"\",\n    \"created_at\": \"2018-12-28T14:42:44.000Z\",\n    \"updated_at\": \"2019-01-24T21:26:27.000Z\",\n    \"partner_id\": 4,\n    \"email\": \"otc@bcbgroup.io\",\n    \"reporting_ccy\": \"GBP\",\n    \"pid\": \"P01061701\",\n    \"partner_name\": \"BCB Direct\"\n  },\n  {\n    \"id\": 383,\n    \"counterparty_id\": 483,\n    \"aid\": \"A02-CX00000101\",\n    \"cid\": \"CX00000101\",\n    \"account_type\": \"Bank\",\n    \"ccy\": \"CHF\",\n    \"host_name\": \"Credit Suisse\",\n    \"host_hub\": \"Zurich\",\n    \"host_location\": \"Lake View, Zurich, CH 2001, Switzerland\",\n    \"node_name\": \"Best Swiss OTC LLC\",\n    \"node_address\": \"6013354000\",\n    \"node_location\": \"\",\n    \"node_country\": \"CH\",\n    \"node_subaddress\": \"\",\n    \"iban\": \"CH04NWBK53616776013354\",\n    \"account_label\": \"Best Swiss CHF Main Account\",\n    \"description\": \"Best Swiss, Credit Suisse CH04NWBK53616776013354, CHF\",\n    \"bcb_controlled\": 0,\n    \"settlement_reference\": \"\",\n    \"created_at\": \"2018-12-28T14:42:44.000Z\",\n    \"updated_at\": \"2018-12-28T14:42:44.000Z\",\n    \"partner_id\": 4,\n    \"email\": \"otc@bestswiss.io\",\n    \"reporting_ccy\": \"CHF\",\n    \"pid\": \"P01061701\",\n    \"partner_name\": \"Best Swiss OTC\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0573fd39-d768-4380-86e8-8fb59d4cde31",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "counterparty_id",
+                      "value": ""
+                    },
+                    {
+                      "key": "id",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Invalid token",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62b9ec72-922a-4c03-869f-30f703094ea3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "counterparty_id",
+                      "value": ""
+                    },
+                    {
+                      "key": "id",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Internal Server Error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d92733f-4268-4163-bd49-5b57fd69a173",
+          "name": "Transaction Detail",
+          "request": {
+            "name": "Transaction Detail",
+            "description": {
+              "content": "List details of a transaction within user permissions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "accounts",
+                ":accountId",
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3ea8a39b-4d6a-4878-8379-c175a5516ffa",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tx_id\": \"7b73263d-65dc-11e9-b39c-42010a8400a9\",\n  \"account_id\": 539,\n  \"blinc_id\": null,\n  \"network\": \"FPS\",\n  \"value_date\": \"2019-04-23T14:28:26.000Z\",\n  \"credit\": 0,\n  \"details\": {\n    \"bic\": null,\n    \"iban\": \"GB41CLRB04054100000033\",\n    \"blinc_id\": null,\n    \"reference\": \"BCB Pay 53135 GBP\",\n    \"sort_code\": \"040541\",\n    \"account_name\": \"BCB Payments Ltd\",\n    \"account_number\": \"00000033\",\n    \"counterparty_reference\": \"BCB Pay 53135 GBP\",\n    \"endToEndIdentifier\": \"fcb60b45a4b94371b7cf2321ec318117\",\n    \"nonce\": 1598455372829\n  },\n  \"ticker\": \"GBP\",\n  \"amount\": 5858.94,\n  \"approved\": 1,\n  \"notes\": null,\n  \"source_name\": \"clearbank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77673512-3285-4454-a3e3-fc98caa8ac3c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Invalid token",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d426ddd6-7e68-4a07-9319-6e602d41338a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Forbidden",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1fd377e-9660-480b-98dd-7c09328de8bc",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Not Found",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "00fa7156-22ea-4b53-ab8c-ad5cc742f5cf",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Internal Server Error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0abb151-ab9b-46f5-ac69-423a1a137501",
+          "name": "Transactions",
+          "request": {
+            "name": "Transactions",
+            "description": {
+              "content": "List Account Transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "accounts",
+                ":accountId",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "",
+                  "description": "The date to get results from"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "",
+                  "description": "The date to get results to"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "",
+                  "description": "Limit result set for server-side paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "",
+                  "description": "Offset result set when paging"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "186e93aa-af7c-4ddc-9dc7-f327d0080c8d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": ""
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"tx_id\": \"7b73263d-65dc-11e9-b39c-42010a8400a9\",\n    \"account_id\": 539,\n    \"blinc_id\": null,\n    \"network\": \"FPS\",\n    \"value_date\": \"2019-04-23T14:28:26.000Z\",\n    \"credit\": 0,\n    \"details\": {\n      \"bic\": null,\n      \"iban\": \"GB41CLRB04054100000033\",\n      \"blinc_id\": null,\n      \"reference\": \"BCB Pay 53135 GBP\",\n      \"sort_code\": \"040541\",\n      \"account_name\": \"BCB Payments Ltd\",\n      \"account_number\": \"00000033\",\n      \"counterparty_reference\": \"BCB Pay 53135 GBP\",\n      \"endToEndIdentifier\": \"fcb60b45a4b94371b7cf2321ec318117\",\n      \"nonce\": 1598455372829\n    },\n    \"ticker\": \"GBP\",\n    \"amount\": 5858.94,\n    \"approved\": 1,\n    \"notes\": null,\n    \"source_name\": \"clearbank\"\n  },\n  {\n    \"tx_id\": \"38aa62fa-653e-11e9-b39c-42010a8400a9\",\n    \"account_id\": 539,\n    \"blinc_id\": null,\n    \"network\": \"FPS\",\n    \"value_date\": \"2019-04-22T19:35:37.000Z\",\n    \"credit\": 1,\n    \"details\": {\n      \"bic\": null,\n      \"iban\": \"GB41CLRB04054100000033\",\n      \"blinc_id\": null,\n      \"reference\": \"BCB Pay 53135 GBP\",\n      \"sort_code\": \"040541\",\n      \"account_name\": \"BCB Payments Ltd\",\n      \"account_number\": \"00000033\",\n      \"counterparty_reference\": \"BCB Pay 53135 GBP\",\n      \"endToEndIdentifier\": \"fcb60b45a4b94371b7cf2321ec318117\",\n      \"nonce\": 1623419032251\n    },\n    \"ticker\": \"GBP\",\n    \"amount\": 8280,\n    \"approved\": 1,\n    \"notes\": null,\n    \"source_name\": \"clearbank\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8763a6e-d581-4a69-84b2-bacaf47dec0c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": ""
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Invalid token",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d589d84-d8d4-4e33-8d35-f258e2b03581",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": ""
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Forbidden",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "150efc3b-c0fc-4869-b75a-c57401792665",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": ""
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Not Found",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d60fe89c-4812-4027-809b-7dbc90991a77",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "accounts",
+                    ":accountId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": ""
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Internal Server Error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bcb.group",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3caaf9f7-57b1-4162-b20e-dde426f05fb3",
+    "name": "BCB Group Payments Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the api documentation for the BCB Group Payments API",
+      "type": "text/plain"
+    }
+  }
+}

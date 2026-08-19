@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BCB Group Payments Accounts BLINC API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BLINC",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "BLINC Beneficiaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v3/accounts/:accountId/blinc-beneficiaries",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "ccy",
+                "value": "",
+                "type": "query",
+                "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF)."
+              }
+            ]
+          },
+          "docs": "Returns an array of BLINC accounts of all BLINC members to which you are currently connected to"
+        },
+        {
+          "info": {
+            "name": "BLINC Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v3/accounts/blinc-accounts/:blincId",
+            "params": [
+              {
+                "name": "blincId",
+                "value": "",
+                "type": "path",
+                "description": "\nBLINC ID of another BLINC member"
+              }
+            ]
+          },
+          "docs": "Returns a single BLINC account based on the BLINC member BLINC id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BCB Group Payments Accounts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v4/accounts/balance/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              }
+            ]
+          },
+          "docs": "Get the balance for an account"
+        },
+        {
+          "info": {
+            "name": "Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v3/accounts",
+            "params": [
+              {
+                "name": "counterparty_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit accounts by Counterparty ID"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to a specific Account ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set for server-side paging"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Offset result set when paging"
+              }
+            ]
+          },
+          "docs": "List Accounts"
+        },
+        {
+          "info": {
+            "name": "Transaction Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v3/accounts/:accountId/transactions/:transactionId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List details of a transaction within user permissions"
+        },
+        {
+          "info": {
+            "name": "Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v3/accounts/:accountId/transactions",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "The date to get results from"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "The date to get results to"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set for server-side paging"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Offset result set when paging"
+              }
+            ]
+          },
+          "docs": "List Account Transactions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

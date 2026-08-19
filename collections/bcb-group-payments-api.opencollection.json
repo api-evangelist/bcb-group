@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BCB Group Accounts Payments API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "VOP Approve",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v1/payments/:accountId/verification-of-payee/:end2endId/approve",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "end2endId",
+                "value": "",
+                "type": "path",
+                "description": "The end-to-end id of the payment"
+              }
+            ]
+          },
+          "docs": "Approve a payment where the beneficiary name does not match the name on the account"
+        },
+        {
+          "info": {
+            "name": "VOP Cancel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v1/payments/:accountId/verification-of-payee/:end2endId/cancel",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "end2endId",
+                "value": "",
+                "type": "path",
+                "description": "The end-to-end id of the payment"
+              }
+            ]
+          },
+          "docs": "Cancel a payment where the beneficiary name does not match the name on the account"
+        },
+        {
+          "info": {
+            "name": "Authorise Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v5/payments/authorise",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Make a Payment"
+        },
+        {
+          "info": {
+            "name": "Get Payment By ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v1/payments/:accountId/transaction/:transactionId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The transaction id of the payment"
+              }
+            ]
+          },
+          "docs": "Get the details of a single payment for a given account and transaction id"
+        },
+        {
+          "info": {
+            "name": "Get Payment By Nonce",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v1/payments/:accountId/nonce/:nonce",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "path",
+                "description": "The unique nonce of the payment"
+              }
+            ]
+          },
+          "docs": "Get the details of a single payment for a given account and nonce"
+        },
+        {
+          "info": {
+            "name": "List Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v1/payments/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id"
+              },
+              {
+                "name": "dateFrom",
+                "value": "",
+                "type": "query",
+                "description": "The date to get results from"
+              },
+              {
+                "name": "dateTo",
+                "value": "",
+                "type": "query",
+                "description": "The date to get results to"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The page offset of results to return"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The limit of number of results to return"
+              }
+            ]
+          },
+          "docs": "List the payments for an account"
+        },
+        {
+          "info": {
+            "name": "Reverse a Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v3/payments/reverse-deposit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reverse a Deposit"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

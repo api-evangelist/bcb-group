@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BCB Group Payments Accounts Tools API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bank Lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v1/bank-lookup",
+            "params": [
+              {
+                "name": "iban",
+                "value": "",
+                "type": "query",
+                "description": "The IBAN used to identify the associated bank code."
+              }
+            ]
+          },
+          "docs": "Retrieve the bank code (BIC) of the bank holding an account from its IBAN"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

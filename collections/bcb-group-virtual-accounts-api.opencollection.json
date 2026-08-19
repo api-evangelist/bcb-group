@@ -1,0 +1,184 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BCB Group Payments Accounts Virtual Accounts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bcb.group/v1/accounts/:accountId/virtual/all-account-data",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id for the segregated account"
+              },
+              {
+                "name": "pageIndex",
+                "value": "",
+                "type": "query",
+                "description": "The page offset of results to return"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The limit of number of results to return"
+              }
+            ]
+          },
+          "docs": "List all virtual accounts for the given segregated account"
+        },
+        {
+          "info": {
+            "name": "Make a Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v1/accounts/:accountId/virtual/:iban/payment",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id for the segregated account"
+              },
+              {
+                "name": "iban",
+                "value": "",
+                "type": "path",
+                "description": "The IBAN of the virtual account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a payment from the virtual account with the given IBAN"
+        },
+        {
+          "info": {
+            "name": "Close Virtual Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v1/accounts/:accountId/virtual/:iban/close",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id for the segregated account"
+              },
+              {
+                "name": "iban",
+                "value": "",
+                "type": "path",
+                "description": "The IBAN of the virtual account"
+              }
+            ]
+          },
+          "docs": "Closes the virtual account with the given IBAN"
+        },
+        {
+          "info": {
+            "name": "Create Virtual Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v2/accounts/:accountId/virtual",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id for the segregated account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates new virtual accounts for the given owners (max 1000 owners). \n\t\tRequest body differs for individual vs company owners, and GBP vs EUR virtual accounts.\n\t\tIt is possible to create virtual accounts without owner bank details - see CreateNoBankDetailsVirtualAccount schemas.\n\t\tIt is not possible to make payments out of virtual accounts without owner bank details."
+        },
+        {
+          "info": {
+            "name": "Update Owner Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.bcb.group/v1/accounts/:accountId/virtual/:iban/owner-address",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id for the segregated account"
+              },
+              {
+                "name": "iban",
+                "value": "",
+                "type": "path",
+                "description": "The IBAN of the virtual account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the owner address for the virtual account with the given IBAN"
+        },
+        {
+          "info": {
+            "name": "Update Owner Bank Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.bcb.group/v1/accounts/:accountId/virtual/:iban/owner-bank-details",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The account id for the segregated account"
+              },
+              {
+                "name": "iban",
+                "value": "",
+                "type": "path",
+                "description": "The IBAN of the virtual account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the owner bank details for the virtual account with the given IBAN"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -80,3 +80,9 @@ tools:
 - name: VirtualAccounts_UpdateOwnerBankDetailsV1
   description: Update Owner Bank Details
   source_operation: openapi/bcb-group-payments-openapi.json#VirtualAccounts_UpdateOwnerBankDetailsV1
+deployment:
+  mode: none
+  verified: derived
+  tools: 24
+  checked: '2026-08-12'
+  source: catalog MCP census

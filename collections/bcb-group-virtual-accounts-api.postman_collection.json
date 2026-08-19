@@ -1,0 +1,1214 @@
+{
+  "item": [
+    {
+      "id": "a0930c70-d5b3-4f5d-8699-5992dd756365",
+      "name": "Virtual Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4535cd91-a019-43c5-a8fb-4b1b2f1eb431",
+          "name": "List Accounts",
+          "request": {
+            "name": "List Accounts",
+            "description": {
+              "content": "List all virtual accounts for the given segregated account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountId",
+                "virtual",
+                "all-account-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageIndex",
+                  "value": "0",
+                  "description": "The page offset of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1000",
+                  "description": "The limit of number of results to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "accountId",
+                  "description": "(Required) The account id for the segregated account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "52a0d4ea-573e-4cdd-a870-31ec7bde0277",
+              "name": "The virtual accounts were retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    "all-account-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2,\n  \"results\": [\n    {\n      \"correlationId\": \"string\",\n      \"virtualAccountDetails\": {\n        \"id\": \"71c33ef0-4af9-4814-b81e-d5f4dfa96dec\",\n        \"status\": \"ACTIVE\",\n        \"iban\": \"GB33BUKB20201555555555\",\n        \"sortCode\": \"202015\",\n        \"bic\": \"MONZGB2LXXX\",\n        \"accountNumber\": \"55555555\"\n      },\n      \"ownerDetails\": {\n        \"name\": \"string\",\n        \"iban\": \"GB33BUKB20201555555555\",\n        \"accountNumber\": \"55555555\",\n        \"sortCode\": \"202015\",\n        \"bic\": \"MONZGB2LXXX\"\n      }\n    },\n    {\n      \"correlationId\": \"string\",\n      \"virtualAccountDetails\": {\n        \"id\": \"71c33ef0-4af9-4814-b81e-d5f4dfa96dec\",\n        \"status\": \"ACTIVE\",\n        \"iban\": \"GB33BUKB20201555555555\",\n        \"sortCode\": \"202015\",\n        \"bic\": \"MONZGB2LXXX\",\n        \"accountNumber\": \"55555555\"\n      },\n      \"ownerDetails\": {\n        \"name\": \"string\",\n        \"iban\": \"GB33BUKB20201555555555\",\n        \"accountNumber\": \"55555555\",\n        \"sortCode\": \"202015\",\n        \"bic\": \"MONZGB2LXXX\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9a0a607-469d-487d-8c43-7d67cf937971",
+              "name": "The accountId is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    "all-account-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3b12acc-d7c8-4218-ac62-2027fbf7bfda",
+          "name": "Make a Payment",
+          "request": {
+            "name": "Make a Payment",
+            "description": {
+              "content": "Sends a payment from the virtual account with the given IBAN",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountId",
+                "virtual",
+                ":iban",
+                "payment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "accountId",
+                  "description": "(Required) The account id for the segregated account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) The IBAN of the virtual account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0d9eedb-aa58-41fc-a787-87bb49e31a38",
+              "name": "The payment was successfully created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "payment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"GBP\",\n  \"amount\": \"1.12\",\n  \"reference\": \"payment-ref\",\n  \"nonce\": \"1234567890123456\",\n  \"reason\": \"Internal transfer\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"end2EndId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "beb6b512-da6b-415d-a799-a133c11ff062",
+              "name": "The accountId or IBAN is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "payment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"GBP\",\n  \"amount\": \"1.12\",\n  \"reference\": \"payment-ref\",\n  \"nonce\": \"1234567890123456\",\n  \"reason\": \"Internal transfer\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbd2d27f-9207-430e-b5d7-717abb60ac58",
+          "name": "Close Virtual Account",
+          "request": {
+            "name": "Close Virtual Account",
+            "description": {
+              "content": "Closes the virtual account with the given IBAN",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountId",
+                "virtual",
+                ":iban",
+                "close"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "accountId",
+                  "description": "(Required) The account id for the segregated account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) The IBAN of the virtual account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "72a29610-e8a6-4c46-bcaa-04805268496a",
+              "name": "The virtual account closure request was received successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "close"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4867e6ec-1029-4d43-b57b-9f1a5ab4ea68",
+              "name": "The accountId or IBAN is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "close"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eea7adce-1f2b-49e6-a4b2-3f9e54811dd2",
+          "name": "Create Virtual Account",
+          "request": {
+            "name": "Create Virtual Account",
+            "description": {
+              "content": "Creates new virtual accounts for the given owners (max 1000 owners). \n\t\tRequest body differs for individual vs company owners, and GBP vs EUR virtual accounts.\n\t\tIt is possible to create virtual accounts without owner bank details - see CreateNoBankDetailsVirtualAccount schemas.\n\t\tIt is not possible to make payments out of virtual accounts without owner bank details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "virtual"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "accountId",
+                  "description": "(Required) The account id for the segregated account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"isIndividual\": \"<boolean>\",\n    \"iban\": \"<string>\",\n    \"bicSwift\": \"<string>\",\n    \"correlationId\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressLine3\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"registrationNumber\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"isIndividual\": \"<boolean>\",\n    \"iban\": \"<string>\",\n    \"bicSwift\": \"<string>\",\n    \"correlationId\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressLine3\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"registrationNumber\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dffd2d87-ddc3-4269-ad02-83b1be4f988a",
+              "name": "The virtual account creation request was received successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "virtual"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"EUR Test Company\",\n    \"addressLine1\": \"Friedrichstrasse\",\n    \"city\": \"Berlin\",\n    \"country\": \"DE\",\n    \"nationality\": \"DE\",\n    \"isIndividual\": false,\n    \"iban\": \"DE53202208000099106929\",\n    \"bicSwift\": \"MHSBDEHBXXX\",\n    \"correlationId\": \"<string>\",\n    \"addressLine2\": \"100\",\n    \"addressLine3\": \"<string>\",\n    \"region\": \"Berlin\",\n    \"postcode\": \"10115\",\n    \"registrationNumber\": \"AB123456\"\n  },\n  {\n    \"name\": \"EUR Test Company\",\n    \"addressLine1\": \"Friedrichstrasse\",\n    \"city\": \"Berlin\",\n    \"country\": \"DE\",\n    \"nationality\": \"DE\",\n    \"isIndividual\": false,\n    \"iban\": \"DE53202208000099106929\",\n    \"bicSwift\": \"MHSBDEHBXXX\",\n    \"correlationId\": \"<string>\",\n    \"addressLine2\": \"100\",\n    \"addressLine3\": \"<string>\",\n    \"region\": \"Berlin\",\n    \"postcode\": \"10115\",\n    \"registrationNumber\": \"AB123456\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "157e7986-8e3e-49e9-8a46-eddb4542c2d2",
+              "name": "The accountId is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "virtual"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"EUR Test Company\",\n    \"addressLine1\": \"Friedrichstrasse\",\n    \"city\": \"Berlin\",\n    \"country\": \"DE\",\n    \"nationality\": \"DE\",\n    \"isIndividual\": false,\n    \"iban\": \"DE53202208000099106929\",\n    \"bicSwift\": \"MHSBDEHBXXX\",\n    \"correlationId\": \"<string>\",\n    \"addressLine2\": \"100\",\n    \"addressLine3\": \"<string>\",\n    \"region\": \"Berlin\",\n    \"postcode\": \"10115\",\n    \"registrationNumber\": \"AB123456\"\n  },\n  {\n    \"name\": \"EUR Test Company\",\n    \"addressLine1\": \"Friedrichstrasse\",\n    \"city\": \"Berlin\",\n    \"country\": \"DE\",\n    \"nationality\": \"DE\",\n    \"isIndividual\": false,\n    \"iban\": \"DE53202208000099106929\",\n    \"bicSwift\": \"MHSBDEHBXXX\",\n    \"correlationId\": \"<string>\",\n    \"addressLine2\": \"100\",\n    \"addressLine3\": \"<string>\",\n    \"region\": \"Berlin\",\n    \"postcode\": \"10115\",\n    \"registrationNumber\": \"AB123456\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcce10e8-9d76-43f3-b9a6-6e9e948cb911",
+          "name": "Update Owner Address",
+          "request": {
+            "name": "Update Owner Address",
+            "description": {
+              "content": "Updates the owner address for the virtual account with the given IBAN",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountId",
+                "virtual",
+                ":iban",
+                "owner-address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "accountId",
+                  "description": "(Required) The account id for the segregated account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) The IBAN of the virtual account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addressLine1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"country\": \"<string>\",\n  \"addressLine2\": \"<string>\",\n  \"addressLine3\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58119904-2593-4603-88ac-b83784844840",
+              "name": "The owner address was updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "owner-address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addressLine1\": \"One London Wall\",\n  \"city\": \"London\",\n  \"country\": \"GB\",\n  \"addressLine2\": \"6th Floor\",\n  \"addressLine3\": \"<string>\",\n  \"region\": \"Greater London\",\n  \"postcode\": \"EC2Y 5EB\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1fe6393-d4d5-4afb-9533-4b7afaa6b1dc",
+              "name": "The request is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "owner-address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addressLine1\": \"One London Wall\",\n  \"city\": \"London\",\n  \"country\": \"GB\",\n  \"addressLine2\": \"6th Floor\",\n  \"addressLine3\": \"<string>\",\n  \"region\": \"Greater London\",\n  \"postcode\": \"EC2Y 5EB\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2c370b2-5960-47a6-aca4-838ccbb07498",
+              "name": "The accountId or iban is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "owner-address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addressLine1\": \"One London Wall\",\n  \"city\": \"London\",\n  \"country\": \"GB\",\n  \"addressLine2\": \"6th Floor\",\n  \"addressLine3\": \"<string>\",\n  \"region\": \"Greater London\",\n  \"postcode\": \"EC2Y 5EB\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75393f2e-077d-4a07-876b-e42e69820a45",
+          "name": "Update Owner Bank Details",
+          "request": {
+            "name": "Update Owner Bank Details",
+            "description": {
+              "content": "Updates the owner bank details for the virtual account with the given IBAN",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounts",
+                ":accountId",
+                "virtual",
+                ":iban",
+                "owner-bank-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "accountId",
+                  "description": "(Required) The account id for the segregated account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iban",
+                  "description": "(Required) The IBAN of the virtual account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"iban\": \"<string>\",\n  \"bicSwift\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38844ca1-9673-42f9-a287-a8198e04c9ad",
+              "name": "The owner bank details were updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "owner-bank-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"iban\": \"GB33BUKB20201555555555\",\n  \"bicSwift\": \"BARCGB22XXX\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bf7de7ec-7413-4703-b176-63b6410cee16",
+              "name": "The request is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "owner-bank-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"iban\": \"GB33BUKB20201555555555\",\n  \"bicSwift\": \"BARCGB22XXX\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1a467f5-caab-45a6-bbc9-484e66a0978f",
+              "name": "The accountId or iban is unknown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounts",
+                    ":accountId",
+                    "virtual",
+                    ":iban",
+                    "owner-bank-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "accountId",
+                      "description": "(Required) The account id for the segregated account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iban",
+                      "description": "(Required) The IBAN of the virtual account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"iban\": \"GB33BUKB20201555555555\",\n  \"bicSwift\": \"BARCGB22XXX\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 6488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bcb.group",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "49aed829-88d1-4714-8845-f556b75c30e9",
+    "name": "BCB Group Payments Accounts Virtual Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the api documentation for the BCB Group Payments API",
+      "type": "text/plain"
+    }
+  }
+}

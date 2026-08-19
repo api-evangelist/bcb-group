@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "BCB Group Payments Accounts Authentication API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bcb.group/v1/auth/oauth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The api uses Bearer Tokens to authenticate requests"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

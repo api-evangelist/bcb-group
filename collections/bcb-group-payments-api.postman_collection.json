@@ -1,0 +1,1801 @@
+{
+  "item": [
+    {
+      "id": "6b23a66a-7e54-493f-a354-804abb3df8a3",
+      "name": "Payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "674f304d-0ba9-443e-86a9-7224ef65dc81",
+          "name": "VOP Approve",
+          "request": {
+            "name": "VOP Approve",
+            "description": {
+              "content": "Approve a payment where the beneficiary name does not match the name on the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":accountId",
+                "verification-of-payee",
+                ":end2endId",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "end2endId",
+                  "description": "(Required) The end-to-end id of the payment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "e8dd83c2-fc8c-40d1-9866-4ba5700cf01e",
+              "name": "The unverified payment was approved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0f9aad4a-f23f-49de-bc2e-e541d1410d90",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 981,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c39ffd88-250f-4f71-9018-2aa724b8a0a7",
+              "name": "No unverified payment was found for this account with the given end-to-end id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 981,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "766bece1-120d-4566-b5f0-d0fd49656caa",
+              "name": "The payment is not unverified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 981,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0131af5-128a-4316-a17d-3135ccbab711",
+          "name": "VOP Cancel",
+          "request": {
+            "name": "VOP Cancel",
+            "description": {
+              "content": "Cancel a payment where the beneficiary name does not match the name on the account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":accountId",
+                "verification-of-payee",
+                ":end2endId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "end2endId",
+                  "description": "(Required) The end-to-end id of the payment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "7e668cbd-f403-4672-9ccb-7f9094319eee",
+              "name": "The unverified payment was cancelled successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f70dea53-7a7a-4d97-bccf-efe4bf5d806e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 981,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55845900-f1ca-42cc-9138-891afc8093d1",
+              "name": "No unverified payment was found for this account with the given end-to-end id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 981,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c74ea065-1e60-4129-8c00-8771d72eae91",
+              "name": "The payment is not unverified.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "verification-of-payee",
+                    ":end2endId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "end2endId",
+                      "description": "(Required) The end-to-end id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 981,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11aebd8f-68d1-423d-acd1-87dc750dea49",
+          "name": "Authorise Payment",
+          "request": {
+            "name": "Authorise Payment",
+            "description": {
+              "content": "Make a Payment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v5",
+                "payments",
+                "authorise"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"nonce\": \"<string>\",\n  \"preferred_scheme\": \"AUTO\",\n  \"reason\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"amount\": \"<string>\",\n  \"ccy\": \"<string>\",\n  \"sender_account_id\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"beneficiary_account_id\": \"<integer>\",\n  \"beneficiary_name\": \"<string>\",\n  \"beneficiary_address_line_1\": \"<string>\",\n  \"beneficiary_address_line_2\": \"<string>\",\n  \"beneficiary_address_line_3\": \"<string>\",\n  \"beneficiary_city\": \"<string>\",\n  \"beneficiary_region\": \"<string>\",\n  \"beneficiary_postcode\": \"<string>\",\n  \"beneficiary_country\": \"<string>\",\n  \"beneficiary_account_number\": \"<string>\",\n  \"beneficiary_sort_code\": \"<string>\",\n  \"beneficiary_bic\": \"<string>\",\n  \"beneficiary_iban\": \"<string>\",\n  \"beneficiary_routing_number\": \"<string>\",\n  \"beneficiary_wire_routing\": \"<string>\",\n  \"beneficiary_swift_code\": \"<string>\",\n  \"beneficiary_national_clearing_code\": \"<string>\",\n  \"beneficiary_institution\": \"<string>\",\n  \"beneficiary_branch\": \"<string>\",\n  \"beneficiary_lei_code\": \"<string>\",\n  \"beneficiary_bank_name\": \"<string>\",\n  \"beneficiary_bank_address\": \"<string>\",\n  \"beneficiary_bank_country\": \"<string>\",\n  \"intermediary_bank\": {\n    \"bic\": \"<string>\",\n    \"routing_number\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97c8bbc9-b8bf-4241-8c02-6938d6b3c615",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v5",
+                    "payments",
+                    "authorise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BENEFICIARY_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"URGENT\",\n    \"preferred_scheme\": \"AUTO\",\n    \"nonce\": \"933829795\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"endToEndIdentification\": \"PaymentEndToEndIdentification\",\n    \"transactionId\": \"PaymentTransactionId\",\n    \"nonce\": \"PaymentNonce\",\n    \"response\": \"Accepted\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ceff2183-454f-4c95-93b1-67a1fe07cdde",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v5",
+                    "payments",
+                    "authorise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BENEFICIARY_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"URGENT\",\n    \"preferred_scheme\": \"AUTO\",\n    \"nonce\": \"933829795\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Invalid token",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c54e7f0-6474-4c06-94b1-dbaa1101d798",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v5",
+                    "payments",
+                    "authorise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BENEFICIARY_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"URGENT\",\n    \"preferred_scheme\": \"AUTO\",\n    \"nonce\": \"933829795\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Forbidden",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ea1b7991-90cc-4f97-8ae6-aabbc9dc3b5f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v5",
+                    "payments",
+                    "authorise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BENEFICIARY_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"URGENT\",\n    \"preferred_scheme\": \"AUTO\",\n    \"nonce\": \"933829795\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Not Found",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "274e8cd3-028f-4f36-9d69-172a7d69f8b0",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v5",
+                    "payments",
+                    "authorise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"sender_account_id\": YOUR_ACCOUNT_ID,\n    \"beneficiary_account_id\": BENEFICIARY_ACCOUNT_ID,\n    \"ccy\": \"GBP\",\n    \"amount\": \"888.11\",\n    \"reference\": \"Buy goods 0801\",\n    \"reason\": \"Payment for goods or services\",\n    \"notes\": \"URGENT\",\n    \"preferred_scheme\": \"AUTO\",\n    \"nonce\": \"933829795\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Internal Server Error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24e23d69-5bf6-4fdf-9002-7b04cb5554c1",
+          "name": "Get Payment By ID",
+          "request": {
+            "name": "Get Payment By ID",
+            "description": {
+              "content": "Get the details of a single payment for a given account and transaction id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":accountId",
+                "transaction",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) The transaction id of the payment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "aff09e1b-1054-4bf2-806c-ebbf32e74f7d",
+              "name": "The payment was retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"endToEndId\": \"string\",\n  \"nonce\": \"string\",\n  \"status\": \"Pending\",\n  \"currency\": \"string\",\n  \"amount\": \"string\",\n  \"rejectReason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7c95454-2f78-495b-936e-6a9e45231aa6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 5966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d519f66-0e3a-4e35-9292-49fe0458d363",
+              "name": "No payment was found for the account with the given transaction id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction id of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 5966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf53bf6b-b7bc-432a-a3e5-05ea580bd289",
+          "name": "Get Payment By Nonce",
+          "request": {
+            "name": "Get Payment By Nonce",
+            "description": {
+              "content": "Get the details of a single payment for a given account and nonce",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":accountId",
+                "nonce",
+                ":nonce"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "nonce",
+                  "description": "(Required) The unique nonce of the payment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3f440673-3e5a-4a08-b198-59b92c8bc53f",
+              "name": "The payment was retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "nonce",
+                    ":nonce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nonce",
+                      "description": "(Required) The unique nonce of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"string\",\n  \"endToEndId\": \"string\",\n  \"nonce\": \"string\",\n  \"status\": \"Pending\",\n  \"currency\": \"string\",\n  \"amount\": \"string\",\n  \"rejectReason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df9cf210-9f7d-4dac-a8de-cef77a09712d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "nonce",
+                    ":nonce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nonce",
+                      "description": "(Required) The unique nonce of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 5966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e8b965f-0960-47a8-bc85-cc897e5de821",
+              "name": "No payment was found for the account with the given nonce",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId",
+                    "nonce",
+                    ":nonce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "nonce",
+                      "description": "(Required) The unique nonce of the payment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 5966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dea5b26-d75b-48de-a712-806223eeee97",
+          "name": "List Payments",
+          "request": {
+            "name": "List Payments",
+            "description": {
+              "content": "List the payments for an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dateFrom",
+                  "value": "<dateTime>",
+                  "description": "The date to get results from"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateTo",
+                  "value": "<dateTime>",
+                  "description": "The date to get results to"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageIndex",
+                  "value": "0",
+                  "description": "The page offset of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1000",
+                  "description": "The limit of number of results to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "",
+                  "key": "accountId",
+                  "description": "(Required) The account id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e387b26c-9c33-4415-8856-4a8b63970595",
+              "name": "The payments were retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1320.201823710031,\n  \"results\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbf5744a-d008-43dc-b3d6-c57c05bb558b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 5966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b4279ed-64b0-4a22-b549-6c79121505ed",
+              "name": "No payment was found for the account with the given transaction id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dateFrom",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateTo",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "pageIndex",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "",
+                      "key": "accountId",
+                      "description": "(Required) The account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 5966\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbbb1e7e-a5cc-444e-9eda-3217ee8bc9c1",
+          "name": "Reverse a Deposit",
+          "request": {
+            "name": "Reverse a Deposit",
+            "description": {
+              "content": "Reverse a Deposit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "payments",
+                "reverse-deposit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endToEndId\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79c4fbda-30e2-4390-bf83-fafea01570e6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "payments",
+                    "reverse-deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endToEndId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3909c0a-79af-4269-b184-90fdfefd8320",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "payments",
+                    "reverse-deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endToEndId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Invalid token",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e95da2a-4737-4b58-9a6e-344fbeb073a3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "payments",
+                    "reverse-deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endToEndId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Forbidden",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86883b99-d9e3-4a29-8ae7-366c46e329a4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "payments",
+                    "reverse-deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endToEndId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Not Found",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d520aa35-8f09-4875-96b4-07aa2e94115e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "payments",
+                    "reverse-deposit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endToEndId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/html"
+                }
+              ],
+              "body": "Internal Server Error",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bcb.group",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "86ddd2d5-96d6-41fb-b099-9ccac11aa45e",
+    "name": "BCB Group Accounts Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the api documentation for the BCB Group Payments API",
+      "type": "text/plain"
+    }
+  }
+}
