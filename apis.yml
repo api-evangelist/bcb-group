@@ -39,6 +39,15 @@ tags:
 - Banking
 - Digital Assets
 - Stablecoins
+- Financial-Services
+- Fintech
+tags_raw:
+- Company
+- Crypto
+- Payments
+- Banking
+- Digital Assets
+- Stablecoins
 - Financial Services
 - Fintech
 apis:
@@ -48,6 +57,8 @@ apis:
   humanURL: https://docs.bcb.group/
   baseURL: https://api.bcb.group
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -112,6 +123,8 @@ apis:
   humanURL: https://docs.bcb.group/
   baseURL: https://api.bcb.group
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
