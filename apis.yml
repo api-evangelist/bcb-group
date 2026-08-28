@@ -10,6 +10,18 @@ description: >-
   balances, transactions, beneficiaries, payments, virtual accounts and webhooks. Surfaced as a
   portfolio company of Pantera Capital and enriched from its public developer documentation.
 url: https://raw.githubusercontent.com/api-evangelist/bcb-group/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
