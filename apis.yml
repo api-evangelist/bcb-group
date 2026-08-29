@@ -201,6 +201,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/bcb-group-capability-edges.yml
+  name: BCB Group Business Capability Map
 - type: Overlay
   url: overlays/bcb-group-payments-overlay.yaml
 # --- identity / link properties ---
