@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: BCB Group Payments Accounts Beneficiaries API
+  title: BCB Group Payments Beneficiaries API
   description: This is the api documentation for the BCB Group Payments API
   version: 1.0.0
   contact: {}
@@ -141,6 +141,84 @@ paths:
       - bearer: []
 components:
   schemas:
+    Beneficiary:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 378
+          default: 0
+        counterparty_id:
+          type: integer
+          example: 483
+          default: 0
+        aid:
+          type: string
+          example: A01-CX00000101
+        cid:
+          type: string
+          example: CX00000101
+        account_type:
+          type: string
+          example: Wallet
+        ccy:
+          type: string
+          example: BTC
+        host_name:
+          type: string
+          example: BCB Group
+        host_hub:
+          type: string
+          example: ''
+        host_location:
+          type: string
+          example: ''
+        node_name:
+          type: string
+          example: BCB Payments Ltd
+        node_address:
+          type: string
+          example: 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo
+        node_location:
+          type: string
+          example: ''
+        node_country:
+          type: string
+          example: ''
+        node_subaddress:
+          type: string
+          example: ''
+        iban:
+          type: string
+          example: ''
+        account_label:
+          type: string
+          example: LNS 5 BTC hszo
+        description:
+          type: string
+          example: BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC
+        settlement_reference:
+          type: string
+          example: ''
+        created_at:
+          type: string
+          example: '2018-12-28T14:42:44.000Z'
+        updated_at:
+          type: string
+          example: '2019-01-24T21:26:27.000Z'
+        partner_id:
+          type: integer
+          example: 4
+          default: 0
+        email:
+          type: string
+          example: otc@bcbgroup.io
+        pid:
+          type: string
+          example: P01061701
+        partner_name:
+          type: string
+          example: BCB Direct
     CreateBeneficiaryRequest:
       type: object
       properties:
@@ -233,81 +311,3 @@ components:
       - name
       - cid
       - counterparty_id
-    Beneficiary:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 378
-          default: 0
-        counterparty_id:
-          type: integer
-          example: 483
-          default: 0
-        aid:
-          type: string
-          example: A01-CX00000101
-        cid:
-          type: string
-          example: CX00000101
-        account_type:
-          type: string
-          example: Wallet
-        ccy:
-          type: string
-          example: BTC
-        host_name:
-          type: string
-          example: BCB Group
-        host_hub:
-          type: string
-          example: ''
-        host_location:
-          type: string
-          example: ''
-        node_name:
-          type: string
-          example: BCB Payments Ltd
-        node_address:
-          type: string
-          example: 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo
-        node_location:
-          type: string
-          example: ''
-        node_country:
-          type: string
-          example: ''
-        node_subaddress:
-          type: string
-          example: ''
-        iban:
-          type: string
-          example: ''
-        account_label:
-          type: string
-          example: LNS 5 BTC hszo
-        description:
-          type: string
-          example: BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC
-        settlement_reference:
-          type: string
-          example: ''
-        created_at:
-          type: string
-          example: '2018-12-28T14:42:44.000Z'
-        updated_at:
-          type: string
-          example: '2019-01-24T21:26:27.000Z'
-        partner_id:
-          type: integer
-          example: 4
-          default: 0
-        email:
-          type: string
-          example: otc@bcbgroup.io
-        pid:
-          type: string
-          example: P01061701
-        partner_name:
-          type: string
-          example: BCB Direct

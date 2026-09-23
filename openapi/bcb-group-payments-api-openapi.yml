@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: BCB Group Accounts Payments API
+  title: BCB Group Payments API
   description: This is the api documentation for the BCB Group Payments API
   version: 1.0.0
   contact: {}
@@ -352,7 +352,6 @@ paths:
   /v3/payments/reverse-deposit:
     post:
       summary: Reverse a Deposit
-      description: Reverse a Deposit
       operationId: Payments_ReverseDepositV1
       responses:
         '200':
@@ -403,106 +402,6 @@ paths:
               $ref: '#/components/schemas/End2EndIdRequest'
 components:
   schemas:
-    PagedGetPaymentResponse:
-      type: object
-      properties:
-        count:
-          type: number
-          description: The total number of results in the filtered, un-paged dataset
-        results:
-          description: The paged result set
-          type: array
-          items:
-            type: string
-      required:
-      - count
-      - results
-    IntermediaryBank:
-      type: object
-      properties:
-        bic:
-          type: string
-          description: Corresponding Bank BIC
-        routing_number:
-          type: string
-          description: Corresponding Bank Routing Number
-      description: Only valid for USD SWIFT
-    VerificationOfPayeeErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The description of the error.
-        error:
-          type: string
-          description: The title of the error.
-        statusCode:
-          type: integer
-          description: HTTP Status code representing the error.
-      required:
-      - message
-      - statusCode
-    GetPaymentResponse:
-      type: object
-      properties:
-        transactionId:
-          type: string
-          description: The transaction id of the payment
-        endToEndId:
-          type: string
-          description: The end to end id of the payment
-        nonce:
-          type: string
-          description: The nonce provided when initiating the payment as a technical dupe check and external reference id
-        status:
-          type: string
-          description: The current status of the payment
-          enum:
-          - Received
-          - Initiated
-          - Cancelled
-          - Pending
-          - Processing
-          - Rejected
-          - Settled
-          - VopHeld
-        currency:
-          type: string
-          description: The instructed currency of the payment
-        amount:
-          type: string
-          description: The instructed amount of the payment
-        rejectReason:
-          type: string
-          description: The reject reason for the payment. Only populated if the payment has been rejected, otherwise undefined
-      required:
-      - transactionId
-      - endToEndId
-      - nonce
-      - status
-      - currency
-      - amount
-    End2EndIdRequest:
-      type: object
-      properties:
-        endToEndId:
-          type: string
-          description: DEPOSIT_END_TO_END_ID
-          default: ''
-      required:
-      - endToEndId
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The description of the error.
-        statusCode:
-          type: integer
-          description: HTTP Status code representing the error.
-      required:
-      - message
-      - statusCode
     AuthorisePaymentResponse:
       type: object
       properties:
@@ -523,6 +422,54 @@ components:
       - transactionId
       - nonce
       - response
+    VerificationOfPayeeErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        error:
+          type: string
+          description: The title of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode
+    PagedGetPaymentResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: The total number of results in the filtered, un-paged dataset
+        results:
+          description: The paged result set
+          type: array
+          items:
+            type: string
+      required:
+      - count
+      - results
+    End2EndIdRequest:
+      type: object
+      properties:
+        endToEndId:
+          type: string
+          description: DEPOSIT_END_TO_END_ID
+          default: ''
+      required:
+      - endToEndId
+    IntermediaryBank:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: Corresponding Bank BIC
+        routing_number:
+          type: string
+          description: Corresponding Bank Routing Number
+      description: Only valid for USD SWIFT
     AuthorisePaymentRequest:
       type: object
       properties:
@@ -617,3 +564,55 @@ components:
       - amount
       - ccy
       - sender_account_id
+    GetPaymentResponse:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: The transaction id of the payment
+        endToEndId:
+          type: string
+          description: The end to end id of the payment
+        nonce:
+          type: string
+          description: The nonce provided when initiating the payment as a technical dupe check and external reference id
+        status:
+          type: string
+          description: The current status of the payment
+          enum:
+          - Received
+          - Initiated
+          - Cancelled
+          - Pending
+          - Processing
+          - Rejected
+          - Settled
+          - VopHeld
+        currency:
+          type: string
+          description: The instructed currency of the payment
+        amount:
+          type: string
+          description: The instructed amount of the payment
+        rejectReason:
+          type: string
+          description: The reject reason for the payment. Only populated if the payment has been rejected, otherwise undefined
+      required:
+      - transactionId
+      - endToEndId
+      - nonce
+      - status
+      - currency
+      - amount
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode

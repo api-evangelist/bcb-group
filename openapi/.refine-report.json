@@ -1,20 +1,13 @@
 {
   "provider": "bcb-group",
   "sources": [
-    "bcb-group-accounts-api-openapi.yml",
-    "bcb-group-authentication-api-openapi.yml",
-    "bcb-group-beneficiaries-api-openapi.yml",
-    "bcb-group-blinc-api-openapi.yml",
-    "bcb-group-notifications-api-openapi.yml",
-    "bcb-group-payments-api-openapi.yml",
-    "bcb-group-tools-api-openapi.yml",
-    "bcb-group-virtual-accounts-api-openapi.yml"
+    "_original/bcb-group-payments-openapi.json"
   ],
   "outputs": [
     "bcb-group-accounts-api-openapi.yml",
     "bcb-group-authentication-api-openapi.yml",
-    "bcb-group-beneficiaries-api-openapi.yml",
     "bcb-group-blinc-api-openapi.yml",
+    "bcb-group-beneficiaries-api-openapi.yml",
     "bcb-group-notifications-api-openapi.yml",
     "bcb-group-payments-api-openapi.yml",
     "bcb-group-tools-api-openapi.yml",
@@ -23,6 +16,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bcb-group-payments-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "bcb-group-payments-openapi.json: declared missing tag: Accounts",
+    "bcb-group-payments-openapi.json: declared missing tag: Authentication",
+    "bcb-group-payments-openapi.json: declared missing tag: BLINC",
+    "bcb-group-payments-openapi.json: declared missing tag: Beneficiaries",
+    "bcb-group-payments-openapi.json: declared missing tag: Notifications",
+    "bcb-group-payments-openapi.json: declared missing tag: Payments",
+    "bcb-group-payments-openapi.json: declared missing tag: Tools",
+    "bcb-group-payments-openapi.json: declared missing tag: Virtual Accounts",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bcb-group-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bcb-group-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bcb-group-beneficiaries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bcb-group-blinc-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bcb-group-notifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bcb-group-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bcb-group-tools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bcb-group-virtual-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

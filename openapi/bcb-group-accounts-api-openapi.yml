@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: BCB Group Payments Accounts API
   description: This is the api documentation for the BCB Group Payments API
@@ -397,118 +397,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    Transaction:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: Transaction ID (unique code)
-        account_id:
-          type: integer
-          description: Account ID
-        value_date:
-          type: string
-          description: Date of transaction
-        credit:
-          type: boolean
-          description: Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)
-        details:
-          $ref: '#/components/schemas/TransactionDetails'
-        ticker:
-          type: string
-          description: Asset identifier (e.g. 'BTC', 'USD')
-        amount:
-          type: string
-          description: Transaction amount
-        approved:
-          type: boolean
-          description: Flag is 1 if approved
-        notes:
-          type: string
-          description: Free-text notes
-        source_name:
-          type: string
-          description: Transaction source
-      required:
-      - tx_id
-      - account_id
-      - value_date
-      - credit
-      - details
-      - ticker
-      - approved
-      - amount
-      - notes
-      - source_name
-    BalanceResponse:
-      type: object
-      properties:
-        accountId:
-          type: number
-          description: The id of the account
-        settled:
-          type: string
-          description: The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators
-          example: '1234.12'
-        available:
-          type: string
-          description: The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators
-          example: '1234.12'
-      required:
-      - accountId
-      - settled
-      - available
-    TransactionDetailResponse:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: Transaction ID (unique code)
-      required:
-      - tx_id
-    TransactionDetails:
-      type: object
-      description: Sender or receiver account information depending on payment direction
-      properties:
-        bic:
-          type: string
-        iban:
-          type: string
-        blinc_id:
-          type: string
-        reference:
-          type: string
-        sort_code:
-          type: string
-        account_name:
-          type: string
-        account_number:
-          type: string
-        counterparty_reference:
-          type: string
-        endToEndIdentifier:
-          type: string
-        nonce:
-          type: number
-      required:
-      - nonce
-      - endToEndIdentifier
-      - counterparty_reference
-      - account_number
-      - account_name
-      - reference
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The description of the error.
-        statusCode:
-          type: integer
-          description: HTTP Status code representing the error.
-      required:
-      - message
-      - statusCode
     Account:
       type: object
       properties:
@@ -596,3 +484,115 @@ components:
       required:
       - id
       - counterparty_id
+    BalanceResponse:
+      type: object
+      properties:
+        accountId:
+          type: number
+          description: The id of the account
+        settled:
+          type: string
+          description: The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
+        available:
+          type: string
+          description: The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
+      required:
+      - accountId
+      - settled
+      - available
+    TransactionDetailResponse:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+      required:
+      - tx_id
+    TransactionDetails:
+      type: object
+      description: Sender or receiver account information depending on payment direction
+      properties:
+        bic:
+          type: string
+        iban:
+          type: string
+        blinc_id:
+          type: string
+        reference:
+          type: string
+        sort_code:
+          type: string
+        account_name:
+          type: string
+        account_number:
+          type: string
+        counterparty_reference:
+          type: string
+        endToEndIdentifier:
+          type: string
+        nonce:
+          type: number
+      required:
+      - nonce
+      - endToEndIdentifier
+      - counterparty_reference
+      - account_number
+      - account_name
+      - reference
+    Transaction:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+        account_id:
+          type: integer
+          description: Account ID
+        value_date:
+          type: string
+          description: Date of transaction
+        credit:
+          type: boolean
+          description: Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)
+        details:
+          $ref: '#/components/schemas/TransactionDetails'
+        ticker:
+          type: string
+          description: Asset identifier (e.g. 'BTC', 'USD')
+        amount:
+          type: string
+          description: Transaction amount
+        approved:
+          type: boolean
+          description: Flag is 1 if approved
+        notes:
+          type: string
+          description: Free-text notes
+        source_name:
+          type: string
+          description: Transaction source
+      required:
+      - tx_id
+      - account_id
+      - value_date
+      - credit
+      - details
+      - ticker
+      - approved
+      - amount
+      - notes
+      - source_name
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode
