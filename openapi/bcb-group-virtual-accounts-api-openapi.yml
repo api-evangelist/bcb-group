@@ -278,129 +278,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    CreateEURLocalVirtualAccountForIndividual:
-      type: object
-      properties:
-        correlationId:
-          type: string
-          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
-          maxLength: 255
-        name:
-          type: string
-          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: EUR Test Individual
-          maxLength: 255
-        addressLine1:
-          type: string
-          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: Friedrichstrasse
-          maxLength: 1023
-        addressLine2:
-          type: string
-          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: '100'
-          maxLength: 1023
-        addressLine3:
-          type: string
-          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          maxLength: 1023
-        city:
-          type: string
-          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: Berlin
-          maxLength: 255
-        region:
-          type: string
-          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: Berlin
-          maxLength: 255
-        postcode:
-          type: string
-          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: '10115'
-          maxLength: 255
-        country:
-          type: string
-          description: The 2-letter country code of the virtual account owner's EUR bank account
-          example: DE
-          minLength: 2
-          maxLength: 2
-        nationality:
-          type: string
-          description: The 2-letter country code for the virtual account owner's nationality
-          example: DE
-          minLength: 2
-          maxLength: 2
-        dateOfBirth:
-          type: string
-          description: The date of birth of the virtual account owner
-          example: '2000-12-31'
-          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'
-        isIndividual:
-          type: boolean
-          description: Whether the virtual account owner is an individual as opposed to a corporation
-          example: true
-        iban:
-          type: string
-          description: The IBAN of the virtual account owner's EUR bank account
-          example: DE53202208000099106929
-        bicSwift:
-          type: string
-          description: The BIC of the virtual account owner's EUR bank account
-          example: MHSBDEHBXXX
-      required:
-      - name
-      - addressLine1
-      - city
-      - country
-      - nationality
-      - dateOfBirth
-      - isIndividual
-      - iban
-      - bicSwift
-    VirtualAccountPaymentBody:
-      type: object
-      properties:
-        currency:
-          type: string
-          description: The currency code for the payment
-          minLength: 3
-          maxLength: 4
-          example: GBP
-        amount:
-          type: string
-          description: The amount of the payment
-          example: '1.12'
-        reference:
-          type: string
-          description: The reference for the payment
-          minLength: 1
-          maxLength: 255
-          example: payment-ref
-        nonce:
-          type: string
-          description: A unique nonce to guard against duplicate payments
-          minimum: 1
-          example: '1234567890123456'
-        reason:
-          type: string
-          description: The reason for the payment
-          minLength: 1
-          maxLength: 255
-          example: Internal transfer
-      required:
-      - currency
-      - amount
-      - reference
-      - nonce
-      - reason
     CreateEURLocalVirtualAccountForCompany:
       type: object
       properties:
@@ -488,397 +365,14 @@ components:
       - isIndividual
       - iban
       - bicSwift
-    CreateInternationalVirtualAccountForCompany:
+    NoBankDetailsVirtualAccountOwnerDetails:
       type: object
       properties:
-        correlationId:
-          type: string
-          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
-          maxLength: 255
         name:
           type: string
-          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: EUR Test Company
-          maxLength: 255
-        addressLine1:
-          type: string
-          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: Friedrichstrasse
-          maxLength: 1023
-        addressLine2:
-          type: string
-          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: '100'
-          maxLength: 1023
-        addressLine3:
-          type: string
-          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          maxLength: 1023
-        city:
-          type: string
-          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: Berlin
-          maxLength: 255
-        region:
-          type: string
-          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: Berlin
-          maxLength: 255
-        postcode:
-          type: string
-          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: '10115'
-          maxLength: 255
-        country:
-          type: string
-          description: The 2-letter country code of the virtual account owner's EUR bank account
-          example: DE
-          minLength: 2
-          maxLength: 2
-        nationality:
-          type: string
-          description: The 2-letter country code for the virtual account owner's nationality
-          example: DE
-          minLength: 2
-          maxLength: 2
-        registrationNumber:
-          type: string
-          description: The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: AB123456
-          maxLength: 100
-        isIndividual:
-          type: boolean
-          description: Whether the virtual account owner is an individual as opposed to a corporation
-          example: false
-        iban:
-          type: string
-          description: The IBAN of the virtual account owner's bank account
-          example: DE53202208000099106929
-        bicSwift:
-          type: string
-          description: The BIC of the virtual account owner's bank account
-          example: MHSBDEHBXXX
+          description: The name of the virtual account owner
       required:
       - name
-      - addressLine1
-      - city
-      - postcode
-      - country
-      - nationality
-      - isIndividual
-      - iban
-      - bicSwift
-    CreateNoBankDetailsVirtualAccountForIndividual:
-      type: object
-      properties:
-        correlationId:
-          type: string
-          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
-          maxLength: 255
-        name:
-          type: string
-          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: GBP Test Individual
-          maxLength: 255
-        addressLine1:
-          type: string
-          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: One London Wall
-          maxLength: 1023
-        addressLine2:
-          type: string
-          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: 6th Floor
-          maxLength: 1023
-        addressLine3:
-          type: string
-          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          maxLength: 1023
-        city:
-          type: string
-          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: London
-          maxLength: 255
-        region:
-          type: string
-          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: Greater London
-          maxLength: 255
-        postcode:
-          type: string
-          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: EC2Y 5EB
-          maxLength: 255
-        country:
-          type: string
-          description: The 2-letter country code of the virtual account owner's bank account
-          example: GB
-          minLength: 2
-          maxLength: 2
-        nationality:
-          type: string
-          description: The 2-letter country code for the virtual account owner's nationality
-          example: GB
-          minLength: 2
-          maxLength: 2
-        dateOfBirth:
-          type: string
-          description: The date of birth of the virtual account owner - only applicable to an individual
-          example: '2000-12-31'
-          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'
-        isIndividual:
-          type: boolean
-          description: Whether the virtual account owner is an individual as opposed to a corporation
-          example: true
-      required:
-      - name
-      - addressLine1
-      - city
-      - country
-      - nationality
-      - dateOfBirth
-      - isIndividual
-    UpdateGBPOwnerBankDetailsRequest:
-      type: object
-      properties:
-        iban:
-          type: string
-          description: The IBAN of the virtual account owner's bank account - optional for GBP accounts
-          example: GB33BUKB20201555555555
-        accountNumber:
-          type: string
-          description: The 8-digit account number of the virtual account owner's bank account - mandatory for GBP accounts
-          example: '12345678'
-        sortCode:
-          type: string
-          description: The 6-digit sort code of the virtual account owner's bank account - mandatory for GBP accounts
-          example: '000000'
-        bicSwift:
-          type: string
-          description: The BIC of the virtual account owner's bank account - optional for GBP accounts
-          example: BARCGB22XXX
-      required:
-      - accountNumber
-      - sortCode
-    CreateGBPLocalVirtualAccountForIndividual:
-      type: object
-      properties:
-        correlationId:
-          type: string
-          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
-          maxLength: 255
-        name:
-          type: string
-          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: GBP Test Individual
-          maxLength: 255
-        addressLine1:
-          type: string
-          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: One London Wall
-          maxLength: 1023
-        addressLine2:
-          type: string
-          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          example: 6th Floor
-          maxLength: 1023
-        addressLine3:
-          type: string
-          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
-          maxLength: 1023
-        city:
-          type: string
-          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: London
-          maxLength: 255
-        region:
-          type: string
-          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: Greater London
-          maxLength: 255
-        postcode:
-          type: string
-          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: EC2Y 5EB
-          maxLength: 255
-        country:
-          type: string
-          description: The 2-letter country code of the virtual account owner's bank account
-          example: GB
-          minLength: 2
-          maxLength: 2
-        nationality:
-          type: string
-          description: The 2-letter country code for the virtual account owner's nationality
-          example: GB
-          minLength: 2
-          maxLength: 2
-        dateOfBirth:
-          type: string
-          description: The date of birth of the virtual account owner - only applicable to an individual
-          example: '2000-12-31'
-          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'
-        isIndividual:
-          type: boolean
-          description: Whether the virtual account owner is an individual as opposed to a corporation
-          example: true
-        iban:
-          type: string
-          description: The IBAN of the virtual account owner's bank account
-          example: GB33BUKB20201555555555
-        bicSwift:
-          type: string
-          description: The BIC of the virtual account owner's bank account
-          example: BARCGB22XXX
-        accountNumber:
-          type: string
-          description: The 8-digit account number of the virtual account owner's bank account - mandatory for GBP accounts
-          example: '55555555'
-        sortCode:
-          type: string
-          description: The 6-digit sort code of the virtual account owner's bank account - mandatory for GBP accounts
-          example: '202015'
-      required:
-      - name
-      - addressLine1
-      - city
-      - country
-      - nationality
-      - dateOfBirth
-      - isIndividual
-      - accountNumber
-      - sortCode
-    IbanRequestVirtualAccountDataResponse:
-      type: object
-      properties:
-        correlationId:
-          type: string
-          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
-        virtualAccountDetails:
-          description: The details of the virtual account
-          oneOf:
-          - $ref: '#/components/schemas/IbanVirtualAccountDetails'
-          - $ref: '#/components/schemas/PendingVirtualAccountDetails'
-        ownerDetails:
-          description: The details of the virtual account owner
-          oneOf:
-          - $ref: '#/components/schemas/IbanVirtualAccountOwnerDetails'
-          - $ref: '#/components/schemas/NoBankDetailsVirtualAccountOwnerDetails'
-      required:
-      - correlationId
-      - virtualAccountDetails
-      - ownerDetails
-    UpdateEUROwnerBankDetailsRequest:
-      type: object
-      properties:
-        iban:
-          type: string
-          description: The IBAN of the virtual account owner's bank account - mandatory for EUR accounts
-          example: GB33BUKB20201555555555
-        bicSwift:
-          type: string
-          description: The BIC of the virtual account owner's bank account - mandatory for EUR accounts
-          example: BARCGB22XXX
-      required:
-      - iban
-      - bicSwift
-    GBPVirtualAccountDetails:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the virtual account
-          example: 71c33ef0-4af9-4814-b81e-d5f4dfa96dec
-        status:
-          type: string
-          description: The status of the virtual account
-          example: ACTIVE
-        iban:
-          type: string
-          description: The IBAN of the virtual account
-          example: GB33BUKB20201555555555
-        accountNumber:
-          type: string
-          description: The account number of the virtual account
-          example: '55555555'
-        sortCode:
-          type: string
-          description: The sort code of the virtual account
-          example: '202015'
-        bic:
-          type: string
-          description: The bic of the virtual account owner
-          example: MONZGB2LXXX
-      required:
-      - id
-      - status
-      - iban
-      - sortCode
-      - bic
-    UpdateOwnerAddressRequest:
-      type: object
-      properties:
-        addressLine1:
-          type: string
-          description: The first line of the address of the virtual account owner
-          example: One London Wall
-          maxLength: 1023
-        addressLine2:
-          type: string
-          description: The second line of the address of the virtual account owner
-          example: 6th Floor
-          maxLength: 1023
-        addressLine3:
-          type: string
-          description: The third line of the address of the virtual account owner
-          maxLength: 1023
-        city:
-          type: string
-          description: The postal city or town of the virtual account owner
-          example: London
-          maxLength: 255
-        region:
-          type: string
-          description: The region (e.g. county, state, province, etc.) of the virtual account owner
-          example: Greater London
-          maxLength: 255
-        postcode:
-          type: string
-          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments
-          example: EC2Y 5EB
-          maxLength: 255
-        country:
-          type: string
-          description: The 2-letter country code of the virtual account owner's bank account
-          example: GB
-          minLength: 2
-          maxLength: 2
-      required:
-      - addressLine1
-      - city
-      - country
     CreateInternationalVirtualAccountForIndividual:
       type: object
       properties:
@@ -967,6 +461,100 @@ components:
       - isIndividual
       - iban
       - bicSwift
+    CreateNoBankDetailsVirtualAccountForIndividual:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
+          maxLength: 255
+        name:
+          type: string
+          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: GBP Test Individual
+          maxLength: 255
+        addressLine1:
+          type: string
+          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: One London Wall
+          maxLength: 1023
+        addressLine2:
+          type: string
+          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: 6th Floor
+          maxLength: 1023
+        addressLine3:
+          type: string
+          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          maxLength: 1023
+        city:
+          type: string
+          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: London
+          maxLength: 255
+        region:
+          type: string
+          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: Greater London
+          maxLength: 255
+        postcode:
+          type: string
+          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: EC2Y 5EB
+          maxLength: 255
+        country:
+          type: string
+          description: The 2-letter country code of the virtual account owner's bank account
+          example: GB
+          minLength: 2
+          maxLength: 2
+        nationality:
+          type: string
+          description: The 2-letter country code for the virtual account owner's nationality
+          example: GB
+          minLength: 2
+          maxLength: 2
+        dateOfBirth:
+          type: string
+          description: The date of birth of the virtual account owner - only applicable to an individual
+          example: '2000-12-31'
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'
+        isIndividual:
+          type: boolean
+          description: Whether the virtual account owner is an individual as opposed to a corporation
+          example: true
+      required:
+      - name
+      - addressLine1
+      - city
+      - country
+      - nationality
+      - dateOfBirth
+      - isIndividual
+    PagedVirtualAccountDataResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: Count of virtual accounts
+          example: 2
+        results:
+          type: array
+          description: Virtual account data
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/GBPRequestVirtualAccountDataResponse'
+            - $ref: '#/components/schemas/IbanRequestVirtualAccountDataResponse'
+      required:
+      - count
+      - results
     IbanVirtualAccountOwnerDetails:
       type: object
       properties:
@@ -984,6 +572,171 @@ components:
       required:
       - name
       - iban
+    CreateInternationalVirtualAccountForCompany:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
+          maxLength: 255
+        name:
+          type: string
+          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: EUR Test Company
+          maxLength: 255
+        addressLine1:
+          type: string
+          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: Friedrichstrasse
+          maxLength: 1023
+        addressLine2:
+          type: string
+          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: '100'
+          maxLength: 1023
+        addressLine3:
+          type: string
+          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          maxLength: 1023
+        city:
+          type: string
+          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: Berlin
+          maxLength: 255
+        region:
+          type: string
+          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: Berlin
+          maxLength: 255
+        postcode:
+          type: string
+          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: '10115'
+          maxLength: 255
+        country:
+          type: string
+          description: The 2-letter country code of the virtual account owner's EUR bank account
+          example: DE
+          minLength: 2
+          maxLength: 2
+        nationality:
+          type: string
+          description: The 2-letter country code for the virtual account owner's nationality
+          example: DE
+          minLength: 2
+          maxLength: 2
+        registrationNumber:
+          type: string
+          description: The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: AB123456
+          maxLength: 100
+        isIndividual:
+          type: boolean
+          description: Whether the virtual account owner is an individual as opposed to a corporation
+          example: false
+        iban:
+          type: string
+          description: The IBAN of the virtual account owner's bank account
+          example: DE53202208000099106929
+        bicSwift:
+          type: string
+          description: The BIC of the virtual account owner's bank account
+          example: MHSBDEHBXXX
+      required:
+      - name
+      - addressLine1
+      - city
+      - postcode
+      - country
+      - nationality
+      - isIndividual
+      - iban
+      - bicSwift
+    CreateNoBankDetailsVirtualAccountForCompany:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
+          maxLength: 255
+        name:
+          type: string
+          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: GBP Test Company
+          maxLength: 255
+        addressLine1:
+          type: string
+          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: One London Wall
+          maxLength: 1023
+        addressLine2:
+          type: string
+          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: 6th Floor
+          maxLength: 1023
+        addressLine3:
+          type: string
+          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          maxLength: 1023
+        city:
+          type: string
+          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: London
+          maxLength: 255
+        region:
+          type: string
+          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: Greater London
+          maxLength: 255
+        postcode:
+          type: string
+          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: EC2Y 5EB
+          maxLength: 255
+        country:
+          type: string
+          description: The 2-letter country code of the virtual account owner's bank account
+          example: GB
+          minLength: 2
+          maxLength: 2
+        nationality:
+          type: string
+          description: The 2-letter country code for the virtual account owner's nationality
+          example: GB
+          minLength: 2
+          maxLength: 2
+        registrationNumber:
+          type: string
+          description: The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: AB123456
+          maxLength: 100
+        isIndividual:
+          type: boolean
+          description: Whether the virtual account owner is an individual as opposed to a corporation
+          example: false
+      required:
+      - name
+      - addressLine1
+      - city
+      - country
+      - nationality
+      - isIndividual
     VirtualAccountPaymentResponse:
       type: object
       properties:
@@ -994,31 +747,218 @@ components:
       required:
       - transactionId
       - end2EndId
-    GBPVirtualAccountOwnerDetails:
+    UpdateOwnerAddressRequest:
       type: object
       properties:
+        addressLine1:
+          type: string
+          description: The first line of the address of the virtual account owner
+          example: One London Wall
+          maxLength: 1023
+        addressLine2:
+          type: string
+          description: The second line of the address of the virtual account owner
+          example: 6th Floor
+          maxLength: 1023
+        addressLine3:
+          type: string
+          description: The third line of the address of the virtual account owner
+          maxLength: 1023
+        city:
+          type: string
+          description: The postal city or town of the virtual account owner
+          example: London
+          maxLength: 255
+        region:
+          type: string
+          description: The region (e.g. county, state, province, etc.) of the virtual account owner
+          example: Greater London
+          maxLength: 255
+        postcode:
+          type: string
+          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments
+          example: EC2Y 5EB
+          maxLength: 255
+        country:
+          type: string
+          description: The 2-letter country code of the virtual account owner's bank account
+          example: GB
+          minLength: 2
+          maxLength: 2
+      required:
+      - addressLine1
+      - city
+      - country
+    CreateEURLocalVirtualAccountForIndividual:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
+          maxLength: 255
         name:
           type: string
-          description: The name of the virtual account owner
+          description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: EUR Test Individual
+          maxLength: 255
+        addressLine1:
+          type: string
+          description: The first line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: Friedrichstrasse
+          maxLength: 1023
+        addressLine2:
+          type: string
+          description: The second line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          example: '100'
+          maxLength: 1023
+        addressLine3:
+          type: string
+          description: The third line of the address of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' ',' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+, ]+$
+          maxLength: 1023
+        city:
+          type: string
+          description: The postal city or town of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: Berlin
+          maxLength: 255
+        region:
+          type: string
+          description: The region (e.g. county, state, province, etc.) of the virtual account owner. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: Berlin
+          maxLength: 255
+        postcode:
+          type: string
+          description: The postal code (e.g. postcode, zip code, etc.) of the virtual account owner. Postcode is required for CHAPS payments. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
+          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
+          example: '10115'
+          maxLength: 255
+        country:
+          type: string
+          description: The 2-letter country code of the virtual account owner's EUR bank account
+          example: DE
+          minLength: 2
+          maxLength: 2
+        nationality:
+          type: string
+          description: The 2-letter country code for the virtual account owner's nationality
+          example: DE
+          minLength: 2
+          maxLength: 2
+        dateOfBirth:
+          type: string
+          description: The date of birth of the virtual account owner
+          example: '2000-12-31'
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'
+        isIndividual:
+          type: boolean
+          description: Whether the virtual account owner is an individual as opposed to a corporation
+          example: true
         iban:
           type: string
-          description: The IBAN of the virtual account owner
+          description: The IBAN of the virtual account owner's EUR bank account
+          example: DE53202208000099106929
+        bicSwift:
+          type: string
+          description: The BIC of the virtual account owner's EUR bank account
+          example: MHSBDEHBXXX
+      required:
+      - name
+      - addressLine1
+      - city
+      - country
+      - nationality
+      - dateOfBirth
+      - isIndividual
+      - iban
+      - bicSwift
+    UpdateEUROwnerBankDetailsRequest:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the virtual account owner's bank account - mandatory for EUR accounts
+          example: GB33BUKB20201555555555
+        bicSwift:
+          type: string
+          description: The BIC of the virtual account owner's bank account - mandatory for EUR accounts
+          example: BARCGB22XXX
+      required:
+      - iban
+      - bicSwift
+    UpdateGBPOwnerBankDetailsRequest:
+      type: object
+      properties:
+        iban:
+          type: string
+          description: The IBAN of the virtual account owner's bank account - optional for GBP accounts
           example: GB33BUKB20201555555555
         accountNumber:
           type: string
-          description: The account number of the virtual account owner
+          description: The 8-digit account number of the virtual account owner's bank account - mandatory for GBP accounts
+          example: '12345678'
+        sortCode:
+          type: string
+          description: The 6-digit sort code of the virtual account owner's bank account - mandatory for GBP accounts
+          example: '000000'
+        bicSwift:
+          type: string
+          description: The BIC of the virtual account owner's bank account - optional for GBP accounts
+          example: BARCGB22XXX
+      required:
+      - accountNumber
+      - sortCode
+    PendingVirtualAccountDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the virtual account
+          example: 71c33ef0-4af9-4814-b81e-d5f4dfa96dec
+        status:
+          type: string
+          description: The status of the virtual account
+          example: PENDING
+      required:
+      - id
+      - status
+    GBPVirtualAccountDetails:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the virtual account
+          example: 71c33ef0-4af9-4814-b81e-d5f4dfa96dec
+        status:
+          type: string
+          description: The status of the virtual account
+          example: ACTIVE
+        iban:
+          type: string
+          description: The IBAN of the virtual account
+          example: GB33BUKB20201555555555
+        accountNumber:
+          type: string
+          description: The account number of the virtual account
           example: '55555555'
         sortCode:
           type: string
-          description: The sort code of the virtual account owner
+          description: The sort code of the virtual account
           example: '202015'
         bic:
           type: string
           description: The bic of the virtual account owner
           example: MONZGB2LXXX
       required:
-      - name
+      - id
+      - status
       - iban
+      - sortCode
+      - bic
     GBPRequestVirtualAccountDataResponse:
       type: object
       properties:
@@ -1039,28 +979,18 @@ components:
       - correlationId
       - virtualAccountDetails
       - ownerDetails
-    PendingVirtualAccountDetails:
+    ErrorResponse:
       type: object
       properties:
-        id:
+        message:
           type: string
-          description: The ID of the virtual account
-          example: 71c33ef0-4af9-4814-b81e-d5f4dfa96dec
-        status:
-          type: string
-          description: The status of the virtual account
-          example: PENDING
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
       required:
-      - id
-      - status
-    NoBankDetailsVirtualAccountOwnerDetails:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the virtual account owner
-      required:
-      - name
+      - message
+      - statusCode
     CreateGBPLocalVirtualAccountForCompany:
       type: object
       properties:
@@ -1156,7 +1086,27 @@ components:
       - isIndividual
       - accountNumber
       - sortCode
-    CreateNoBankDetailsVirtualAccountForCompany:
+    IbanRequestVirtualAccountDataResponse:
+      type: object
+      properties:
+        correlationId:
+          type: string
+          description: The correlation ID provided on the account creation request. If you did not provide correlation ID, it will be generated
+        virtualAccountDetails:
+          description: The details of the virtual account
+          oneOf:
+          - $ref: '#/components/schemas/IbanVirtualAccountDetails'
+          - $ref: '#/components/schemas/PendingVirtualAccountDetails'
+        ownerDetails:
+          description: The details of the virtual account owner
+          oneOf:
+          - $ref: '#/components/schemas/IbanVirtualAccountOwnerDetails'
+          - $ref: '#/components/schemas/NoBankDetailsVirtualAccountOwnerDetails'
+      required:
+      - correlationId
+      - virtualAccountDetails
+      - ownerDetails
+    CreateGBPLocalVirtualAccountForIndividual:
       type: object
       properties:
         correlationId:
@@ -1167,7 +1117,7 @@ components:
           type: string
           description: The name of the virtual account owner. Must contain at least two words separated by a space. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
           pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: GBP Test Company
+          example: GBP Test Individual
           maxLength: 255
         addressLine1:
           type: string
@@ -1216,40 +1166,41 @@ components:
           example: GB
           minLength: 2
           maxLength: 2
-        registrationNumber:
+        dateOfBirth:
           type: string
-          description: The registration number of the virtual account owner - only applicable to a corporation. Only English alphabet letters, numbers, '/-?:().'+' and spaces are allowed (no leading spaces).
-          pattern: ^(?! )[a-zA-Z0-9\/\-\?:().'\+ ]+$
-          example: AB123456
-          maxLength: 100
+          description: The date of birth of the virtual account owner - only applicable to an individual
+          example: '2000-12-31'
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}'
         isIndividual:
           type: boolean
           description: Whether the virtual account owner is an individual as opposed to a corporation
-          example: false
+          example: true
+        iban:
+          type: string
+          description: The IBAN of the virtual account owner's bank account
+          example: GB33BUKB20201555555555
+        bicSwift:
+          type: string
+          description: The BIC of the virtual account owner's bank account
+          example: BARCGB22XXX
+        accountNumber:
+          type: string
+          description: The 8-digit account number of the virtual account owner's bank account - mandatory for GBP accounts
+          example: '55555555'
+        sortCode:
+          type: string
+          description: The 6-digit sort code of the virtual account owner's bank account - mandatory for GBP accounts
+          example: '202015'
       required:
       - name
       - addressLine1
       - city
       - country
       - nationality
+      - dateOfBirth
       - isIndividual
-    PagedVirtualAccountDataResponse:
-      type: object
-      properties:
-        count:
-          type: number
-          description: Count of virtual accounts
-          example: 2
-        results:
-          type: array
-          description: Virtual account data
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/GBPRequestVirtualAccountDataResponse'
-            - $ref: '#/components/schemas/IbanRequestVirtualAccountDataResponse'
-      required:
-      - count
-      - results
+      - accountNumber
+      - sortCode
     IbanVirtualAccountDetails:
       type: object
       properties:
@@ -1277,15 +1228,64 @@ components:
       - id
       - status
       - iban
-    ErrorResponse:
+    GBPVirtualAccountOwnerDetails:
       type: object
       properties:
-        message:
+        name:
           type: string
-          description: The description of the error.
-        statusCode:
-          type: integer
-          description: HTTP Status code representing the error.
+          description: The name of the virtual account owner
+        iban:
+          type: string
+          description: The IBAN of the virtual account owner
+          example: GB33BUKB20201555555555
+        accountNumber:
+          type: string
+          description: The account number of the virtual account owner
+          example: '55555555'
+        sortCode:
+          type: string
+          description: The sort code of the virtual account owner
+          example: '202015'
+        bic:
+          type: string
+          description: The bic of the virtual account owner
+          example: MONZGB2LXXX
       required:
-      - message
-      - statusCode
+      - name
+      - iban
+    VirtualAccountPaymentBody:
+      type: object
+      properties:
+        currency:
+          type: string
+          description: The currency code for the payment
+          minLength: 3
+          maxLength: 4
+          example: GBP
+        amount:
+          type: string
+          description: The amount of the payment
+          example: '1.12'
+        reference:
+          type: string
+          description: The reference for the payment
+          minLength: 1
+          maxLength: 255
+          example: payment-ref
+        nonce:
+          type: string
+          description: A unique nonce to guard against duplicate payments
+          minimum: 1
+          example: '1234567890123456'
+        reason:
+          type: string
+          description: The reason for the payment
+          minLength: 1
+          maxLength: 255
+          example: Internal transfer
+      required:
+      - currency
+      - amount
+      - reference
+      - nonce
+      - reason

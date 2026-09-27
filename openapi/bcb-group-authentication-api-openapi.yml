@@ -46,19 +46,19 @@ paths:
       - Authentication
 components:
   schemas:
-    AuthErrorResponse:
+    TokenRequest:
       type: object
       properties:
-        error:
+        client_id:
           type: string
-          default: access_denied
-          description: The error key, currently this will always be access_denied but may change in future releases.
-        error_description:
+          description: YOUR_CLIENT_ID
+          default: ''
+        client_secret:
           type: string
-          description: The description of the error.
+          description: YOUR_CLIENT_SECRET
       required:
-      - error
-      - error_description
+      - client_id
+      - client_secret
     TokenResponse:
       type: object
       properties:
@@ -82,16 +82,16 @@ components:
       - expires_in
       - token_type
       - scope
-    TokenRequest:
+    AuthErrorResponse:
       type: object
       properties:
-        client_id:
+        error:
           type: string
-          description: YOUR_CLIENT_ID
-          default: ''
-        client_secret:
+          default: access_denied
+          description: The error key, currently this will always be access_denied but may change in future releases.
+        error_description:
           type: string
-          description: YOUR_CLIENT_SECRET
+          description: The description of the error.
       required:
-      - client_id
-      - client_secret
+      - error
+      - error_description
