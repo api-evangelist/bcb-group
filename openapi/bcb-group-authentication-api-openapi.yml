@@ -59,6 +59,19 @@ components:
       required:
       - client_id
       - client_secret
+    AuthErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          default: access_denied
+          description: The error key, currently this will always be access_denied but may change in future releases.
+        error_description:
+          type: string
+          description: The description of the error.
+      required:
+      - error
+      - error_description
     TokenResponse:
       type: object
       properties:
@@ -82,16 +95,3 @@ components:
       - expires_in
       - token_type
       - scope
-    AuthErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          default: access_denied
-          description: The error key, currently this will always be access_denied but may change in future releases.
-        error_description:
-          type: string
-          description: The description of the error.
-      required:
-      - error
-      - error_description

@@ -397,75 +397,6 @@ paths:
       - bearer: []
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The description of the error.
-        statusCode:
-          type: integer
-          description: HTTP Status code representing the error.
-      required:
-      - message
-      - statusCode
-    TransactionDetailResponse:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: Transaction ID (unique code)
-      required:
-      - tx_id
-    TransactionDetails:
-      type: object
-      description: Sender or receiver account information depending on payment direction
-      properties:
-        bic:
-          type: string
-        iban:
-          type: string
-        blinc_id:
-          type: string
-        reference:
-          type: string
-        sort_code:
-          type: string
-        account_name:
-          type: string
-        account_number:
-          type: string
-        counterparty_reference:
-          type: string
-        endToEndIdentifier:
-          type: string
-        nonce:
-          type: number
-      required:
-      - nonce
-      - endToEndIdentifier
-      - counterparty_reference
-      - account_number
-      - account_name
-      - reference
-    BalanceResponse:
-      type: object
-      properties:
-        accountId:
-          type: number
-          description: The id of the account
-        settled:
-          type: string
-          description: The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators
-          example: '1234.12'
-        available:
-          type: string
-          description: The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators
-          example: '1234.12'
-      required:
-      - accountId
-      - settled
-      - available
     Account:
       type: object
       properties:
@@ -596,3 +527,72 @@ components:
       - amount
       - notes
       - source_name
+    TransactionDetailResponse:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+      required:
+      - tx_id
+    BalanceResponse:
+      type: object
+      properties:
+        accountId:
+          type: number
+          description: The id of the account
+        settled:
+          type: string
+          description: The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
+        available:
+          type: string
+          description: The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
+      required:
+      - accountId
+      - settled
+      - available
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode
+    TransactionDetails:
+      type: object
+      description: Sender or receiver account information depending on payment direction
+      properties:
+        bic:
+          type: string
+        iban:
+          type: string
+        blinc_id:
+          type: string
+        reference:
+          type: string
+        sort_code:
+          type: string
+        account_name:
+          type: string
+        account_number:
+          type: string
+        counterparty_reference:
+          type: string
+        endToEndIdentifier:
+          type: string
+        nonce:
+          type: number
+      required:
+      - nonce
+      - endToEndIdentifier
+      - counterparty_reference
+      - account_number
+      - account_name
+      - reference

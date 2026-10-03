@@ -74,15 +74,6 @@ paths:
                 value: "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}"
 components:
   schemas:
-    WebhookRegistrationResponse:
-      type: object
-      properties:
-        event:
-          type: string
-          example: TransactionStatus
-        status:
-          type: string
-          example: OK
     WebhookRegistrationRequest:
       type: object
       properties:
@@ -96,3 +87,12 @@ components:
       - counterparty_id
       - event
       - url
+    WebhookRegistrationResponse:
+      type: object
+      properties:
+        event:
+          type: string
+          example: TransactionStatus
+        status:
+          type: string
+          example: OK

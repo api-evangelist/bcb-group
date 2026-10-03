@@ -402,42 +402,21 @@ paths:
               $ref: '#/components/schemas/End2EndIdRequest'
 components:
   schemas:
-    PagedGetPaymentResponse:
-      type: object
-      properties:
-        count:
-          type: number
-          description: The total number of results in the filtered, un-paged dataset
-        results:
-          description: The paged result set
-          type: array
-          items:
-            type: string
-      required:
-      - count
-      - results
-    ErrorResponse:
+    VerificationOfPayeeErrorResponse:
       type: object
       properties:
         message:
           type: string
           description: The description of the error.
+        error:
+          type: string
+          description: The title of the error.
         statusCode:
           type: integer
           description: HTTP Status code representing the error.
       required:
       - message
       - statusCode
-    IntermediaryBank:
-      type: object
-      properties:
-        bic:
-          type: string
-          description: Corresponding Bank BIC
-        routing_number:
-          type: string
-          description: Corresponding Bank Routing Number
-      description: Only valid for USD SWIFT
     AuthorisePaymentResponse:
       type: object
       properties:
@@ -458,6 +437,20 @@ components:
       - transactionId
       - nonce
       - response
+    PagedGetPaymentResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          description: The total number of results in the filtered, un-paged dataset
+        results:
+          description: The paged result set
+          type: array
+          items:
+            type: string
+      required:
+      - count
+      - results
     End2EndIdRequest:
       type: object
       properties:
@@ -467,6 +460,16 @@ components:
           default: ''
       required:
       - endToEndId
+    IntermediaryBank:
+      type: object
+      properties:
+        bic:
+          type: string
+          description: Corresponding Bank BIC
+        routing_number:
+          type: string
+          description: Corresponding Bank Routing Number
+      description: Only valid for USD SWIFT
     GetPaymentResponse:
       type: object
       properties:
@@ -601,15 +604,12 @@ components:
       - amount
       - ccy
       - sender_account_id
-    VerificationOfPayeeErrorResponse:
+    ErrorResponse:
       type: object
       properties:
         message:
           type: string
           description: The description of the error.
-        error:
-          type: string
-          description: The title of the error.
         statusCode:
           type: integer
           description: HTTP Status code representing the error.
