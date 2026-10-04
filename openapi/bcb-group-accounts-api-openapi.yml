@@ -397,6 +397,57 @@ paths:
       - bearer: []
 components:
   schemas:
+    TransactionDetailResponse:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+      required:
+      - tx_id
+    Transaction:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+        account_id:
+          type: integer
+          description: Account ID
+        value_date:
+          type: string
+          description: Date of transaction
+        credit:
+          type: boolean
+          description: Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)
+        details:
+          $ref: '#/components/schemas/TransactionDetails'
+        ticker:
+          type: string
+          description: Asset identifier (e.g. 'BTC', 'USD')
+        amount:
+          type: string
+          description: Transaction amount
+        approved:
+          type: boolean
+          description: Flag is 1 if approved
+        notes:
+          type: string
+          description: Free-text notes
+        source_name:
+          type: string
+          description: Transaction source
+      required:
+      - tx_id
+      - account_id
+      - value_date
+      - credit
+      - details
+      - ticker
+      - approved
+      - amount
+      - notes
+      - source_name
     Account:
       type: object
       properties:
@@ -484,57 +535,6 @@ components:
       required:
       - id
       - counterparty_id
-    Transaction:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: Transaction ID (unique code)
-        account_id:
-          type: integer
-          description: Account ID
-        value_date:
-          type: string
-          description: Date of transaction
-        credit:
-          type: boolean
-          description: Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)
-        details:
-          $ref: '#/components/schemas/TransactionDetails'
-        ticker:
-          type: string
-          description: Asset identifier (e.g. 'BTC', 'USD')
-        amount:
-          type: string
-          description: Transaction amount
-        approved:
-          type: boolean
-          description: Flag is 1 if approved
-        notes:
-          type: string
-          description: Free-text notes
-        source_name:
-          type: string
-          description: Transaction source
-      required:
-      - tx_id
-      - account_id
-      - value_date
-      - credit
-      - details
-      - ticker
-      - approved
-      - amount
-      - notes
-      - source_name
-    TransactionDetailResponse:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: Transaction ID (unique code)
-      required:
-      - tx_id
     BalanceResponse:
       type: object
       properties:
@@ -553,18 +553,6 @@ components:
       - accountId
       - settled
       - available
-    ErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The description of the error.
-        statusCode:
-          type: integer
-          description: HTTP Status code representing the error.
-      required:
-      - message
-      - statusCode
     TransactionDetails:
       type: object
       description: Sender or receiver account information depending on payment direction
@@ -596,3 +584,15 @@ components:
       - account_number
       - account_name
       - reference
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The description of the error.
+        statusCode:
+          type: integer
+          description: HTTP Status code representing the error.
+      required:
+      - message
+      - statusCode
