@@ -397,57 +397,36 @@ paths:
       - bearer: []
 components:
   schemas:
-    TransactionDetailResponse:
+    BalanceResponse:
       type: object
       properties:
-        tx_id:
+        accountId:
+          type: number
+          description: The id of the account
+        settled:
           type: string
-          description: Transaction ID (unique code)
+          description: The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
+        available:
+          type: string
+          description: The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators
+          example: '1234.12'
       required:
-      - tx_id
-    Transaction:
+      - accountId
+      - settled
+      - available
+    ErrorResponse:
       type: object
       properties:
-        tx_id:
+        message:
           type: string
-          description: Transaction ID (unique code)
-        account_id:
+          description: The description of the error.
+        statusCode:
           type: integer
-          description: Account ID
-        value_date:
-          type: string
-          description: Date of transaction
-        credit:
-          type: boolean
-          description: Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)
-        details:
-          $ref: '#/components/schemas/TransactionDetails'
-        ticker:
-          type: string
-          description: Asset identifier (e.g. 'BTC', 'USD')
-        amount:
-          type: string
-          description: Transaction amount
-        approved:
-          type: boolean
-          description: Flag is 1 if approved
-        notes:
-          type: string
-          description: Free-text notes
-        source_name:
-          type: string
-          description: Transaction source
+          description: HTTP Status code representing the error.
       required:
-      - tx_id
-      - account_id
-      - value_date
-      - credit
-      - details
-      - ticker
-      - approved
-      - amount
-      - notes
-      - source_name
+      - message
+      - statusCode
     Account:
       type: object
       properties:
@@ -535,24 +514,6 @@ components:
       required:
       - id
       - counterparty_id
-    BalanceResponse:
-      type: object
-      properties:
-        accountId:
-          type: number
-          description: The id of the account
-        settled:
-          type: string
-          description: The settled balance of the account. This is formatted with a '.' decimal separator and without thousand separators
-          example: '1234.12'
-        available:
-          type: string
-          description: The balance available with which to make payments from the account. This is formatted with a '.' decimal separator and without thousand separators
-          example: '1234.12'
-      required:
-      - accountId
-      - settled
-      - available
     TransactionDetails:
       type: object
       description: Sender or receiver account information depending on payment direction
@@ -584,15 +545,54 @@ components:
       - account_number
       - account_name
       - reference
-    ErrorResponse:
+    Transaction:
       type: object
       properties:
-        message:
+        tx_id:
           type: string
-          description: The description of the error.
-        statusCode:
+          description: Transaction ID (unique code)
+        account_id:
           type: integer
-          description: HTTP Status code representing the error.
+          description: Account ID
+        value_date:
+          type: string
+          description: Date of transaction
+        credit:
+          type: boolean
+          description: Is the transaction a credit/deposit.  1 for credit (true), 0 for debit (false)
+        details:
+          $ref: '#/components/schemas/TransactionDetails'
+        ticker:
+          type: string
+          description: Asset identifier (e.g. 'BTC', 'USD')
+        amount:
+          type: string
+          description: Transaction amount
+        approved:
+          type: boolean
+          description: Flag is 1 if approved
+        notes:
+          type: string
+          description: Free-text notes
+        source_name:
+          type: string
+          description: Transaction source
       required:
-      - message
-      - statusCode
+      - tx_id
+      - account_id
+      - value_date
+      - credit
+      - details
+      - ticker
+      - approved
+      - amount
+      - notes
+      - source_name
+    TransactionDetailResponse:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: Transaction ID (unique code)
+      required:
+      - tx_id

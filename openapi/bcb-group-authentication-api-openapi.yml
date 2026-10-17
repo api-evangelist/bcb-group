@@ -46,6 +46,19 @@ paths:
       - Authentication
 components:
   schemas:
+    TokenRequest:
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: YOUR_CLIENT_ID
+          default: ''
+        client_secret:
+          type: string
+          description: YOUR_CLIENT_SECRET
+      required:
+      - client_id
+      - client_secret
     AuthErrorResponse:
       type: object
       properties:
@@ -82,16 +95,3 @@ components:
       - expires_in
       - token_type
       - scope
-    TokenRequest:
-      type: object
-      properties:
-        client_id:
-          type: string
-          description: YOUR_CLIENT_ID
-          default: ''
-        client_secret:
-          type: string
-          description: YOUR_CLIENT_SECRET
-      required:
-      - client_id
-      - client_secret
