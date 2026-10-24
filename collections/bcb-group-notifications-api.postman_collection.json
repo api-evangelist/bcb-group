@@ -1,306 +1,359 @@
 {
+  "info": {
+    "_postman_id": "0fb967a3-c350-43ef-88e9-137e815311c7",
+    "name": "BCB Group Payments Notifications API",
+    "description": "This is the api documentation for the BCB Group Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:15:09.000Z",
+    "updatedAt": "2026-10-22T02:15:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0fb967a3-c350-43ef-88e9-137e815311c7"
+  },
   "item": [
     {
-      "id": "80ae5e22-6315-44c5-934c-f44f8ac22669",
-      "name": "Notifications",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v3",
       "item": [
         {
-          "id": "073f5ddd-6ca6-407e-978f-0fd6a50e4974",
-          "name": "Payment Status Webhooks",
-          "request": {
-            "name": "Payment Status Webhooks",
-            "description": {
-              "content": "Webhook to track the status of your payment.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "payments",
-                "register-webhook"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"event\": \"<string>\",\n  \"url\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "payments",
+          "item": [
             {
-              "id": "df26dcc0-01a9-46d8-aa7d-2b2d3965e558",
-              "name": "Succes",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "payments",
-                    "register-webhook"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "register-webhook",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Payment Status Webhooks",
+                  "id": "ec8f8fdd-3915-4bb3-ac73-bc1a67bfadcd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"event\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/payments/register-webhook",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "payments",
+                        "register-webhook"
+                      ]
+                    },
+                    "description": "Webhook to track the status of your payment."
+                  },
+                  "response": [
+                    {
+                      "id": "d3329f55-6ec9-450b-8085-f3b4d0bf9072",
+                      "name": "Succes",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"event\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/payments/register-webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "payments",
+                            "register-webhook"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"event\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:15:10.000Z",
+                      "updatedAt": "2026-10-22T02:15:10.000Z",
+                      "uid": "35240-d3329f55-6ec9-450b-8085-f3b4d0bf9072"
+                    },
+                    {
+                      "id": "135ffb34-21f5-41a0-8360-8fef26290adc",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/html"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"event\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/payments/register-webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "payments",
+                            "register-webhook"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/html"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T02:15:10.000Z",
+                      "updatedAt": "2026-10-22T02:15:10.000Z",
+                      "uid": "35240-135ffb34-21f5-41a0-8360-8fef26290adc"
+                    },
+                    {
+                      "id": "d192d201-ae9b-4c40-a18d-53fa1e33e9ee",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/html"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"event\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/payments/register-webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "payments",
+                            "register-webhook"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/html"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T02:15:10.000Z",
+                      "updatedAt": "2026-10-22T02:15:10.000Z",
+                      "uid": "35240-d192d201-ae9b-4c40-a18d-53fa1e33e9ee"
+                    },
+                    {
+                      "id": "8b450ff1-60f4-4bd4-846d-393de4d87906",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/html"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"event\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/payments/register-webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "payments",
+                            "register-webhook"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/html"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T02:15:10.000Z",
+                      "updatedAt": "2026-10-22T02:15:10.000Z",
+                      "uid": "35240-8b450ff1-60f4-4bd4-846d-393de4d87906"
+                    },
+                    {
+                      "id": "6aa28a3d-5005-476d-b90c-c1658508a85b",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/html"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"counterparty_id\": \"<integer>\",\n  \"event\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/payments/register-webhook",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "payments",
+                            "register-webhook"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/html"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-22T02:15:10.000Z",
+                      "updatedAt": "2026-10-22T02:15:10.000Z",
+                      "uid": "35240-6aa28a3d-5005-476d-b90c-c1658508a85b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:15:09.000Z",
+                  "updatedAt": "2026-10-22T02:15:09.000Z",
+                  "uid": "35240-ec8f8fdd-3915-4bb3-ac73-bc1a67bfadcd"
                 }
               ],
-              "body": "{\n  \"event\": \"TransactionStatus\",\n  \"status\": \"OK\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e64af108-eae5-4a5c-b750-4976f622c849",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "payments",
-                    "register-webhook"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Invalid token",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "1306a168-a942-4696-ab3e-b95fe19c88d9",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "payments",
-                    "register-webhook"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Forbidden",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "6fc023dc-9d2b-42aa-84c6-a1614a07b535",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "payments",
-                    "register-webhook"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Not Found",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "06a0548c-23fa-4d74-8770-9545759253d2",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "payments",
-                    "register-webhook"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"counterparty_id\": YOUR_COUNTERPARTY_ID,\n    \"event\":\"TransactionStatus\",\n    \"url\": \"URL\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Internal Server Error",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "75fa6a48-159c-4923-844b-171edfcb87d0",
+              "createdAt": "2026-10-22T02:15:09.000Z",
+              "updatedAt": "2026-10-22T02:15:09.000Z",
+              "uid": "35240-75fa6a48-159c-4923-844b-171edfcb87d0"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d88ac0a4-29d0-40e7-91f3-b79aa7c4ea19",
+          "createdAt": "2026-10-22T02:15:09.000Z",
+          "updatedAt": "2026-10-22T02:15:09.000Z",
+          "uid": "35240-d88ac0a4-29d0-40e7-91f3-b79aa7c4ea19"
         }
       ],
-      "event": []
+      "id": "d72ac800-187f-46a8-9bff-a5b5af56c796",
+      "createdAt": "2026-10-22T02:15:09.000Z",
+      "updatedAt": "2026-10-22T02:15:09.000Z",
+      "uid": "35240-d72ac800-187f-46a8-9bff-a5b5af56c796"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.bcb.group",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.bcb.group"
     }
-  ],
-  "info": {
-    "_postman_id": "f22faca7-82f8-4643-b244-4d93edb6be56",
-    "name": "BCB Group Payments Accounts Notifications API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "This is the api documentation for the BCB Group Payments API",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

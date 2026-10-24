@@ -1,614 +1,650 @@
 {
+  "info": {
+    "_postman_id": "641345a5-ab01-444c-9797-e154c447dac2",
+    "name": "BCB Group Payments BLINC API",
+    "description": "This is the api documentation for the BCB Group Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:15:04.000Z",
+    "updatedAt": "2026-10-22T02:15:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-641345a5-ab01-444c-9797-e154c447dac2"
+  },
   "item": [
     {
-      "id": "63084ba1-e908-4a7d-81df-924757806b8a",
-      "name": "BLINC",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v3",
       "item": [
         {
-          "id": "290d48be-0b58-43a0-b902-1ad97b859091",
-          "name": "BLINC Beneficiaries",
-          "request": {
-            "name": "BLINC Beneficiaries",
-            "description": {
-              "content": "Returns an array of BLINC accounts of all BLINC members to which you are currently connected to",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "accounts",
-                ":accountId",
-                "blinc-beneficiaries"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "ccy",
-                  "value": "ISO 4217 format",
-                  "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF)."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "",
-                  "key": "accountId",
-                  "description": "(Required) The account id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
+          "name": "accounts",
+          "item": [
             {
-              "id": "957d6661-0aa3-47b2-b2ac-bad036dcb121",
-              "name": "Success",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    ":accountId",
-                    "blinc-beneficiaries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ccy",
-                      "value": "ISO 4217 format"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "",
-                      "key": "accountId",
-                      "description": "(Required) The account id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{accountId}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "blinc-beneficiaries",
+                  "item": [
+                    {
+                      "name": "BLINC Beneficiaries",
+                      "id": "24d7d530-50d8-4c7d-b141-2caba2bf67fd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/accounts/:accountId/blinc-beneficiaries?ccy=ISO 4217 format",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "accounts",
+                            ":accountId",
+                            "blinc-beneficiaries"
+                          ],
+                          "query": [
+                            {
+                              "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).",
+                              "key": "ccy",
+                              "value": "ISO 4217 format"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "0b52cead-151f-42c8-9468-c99afe019701",
+                              "key": "accountId",
+                              "value": "",
+                              "description": "(Required) The account id"
+                            }
+                          ]
+                        },
+                        "description": "Returns an array of BLINC accounts of all BLINC members to which you are currently connected to"
+                      },
+                      "response": [
+                        {
+                          "id": "84de15eb-80e3-4d1c-908b-d8df9f309bd0",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/:accountId/blinc-beneficiaries?ccy=ISO 4217 format",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                ":accountId",
+                                "blinc-beneficiaries"
+                              ],
+                              "query": [
+                                {
+                                  "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).",
+                                  "key": "ccy",
+                                  "value": "ISO 4217 format"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"9996\",\n    \"name\": \"BLINC Memeber\",\n    \"ccy\": \"GBP\",\n    \"blinc_id\": \"800999999999\"\n  },\n  {\n    \"id\": \"9996\",\n    \"name\": \"BLINC Memeber\",\n    \"ccy\": \"GBP\",\n    \"blinc_id\": \"800999999999\"\n  }\n]",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-84de15eb-80e3-4d1c-908b-d8df9f309bd0"
+                        },
+                        {
+                          "id": "c52c5d84-54df-4433-bfc6-d46e5225bc43",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/:accountId/blinc-beneficiaries?ccy=ISO 4217 format",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                ":accountId",
+                                "blinc-beneficiaries"
+                              ],
+                              "query": [
+                                {
+                                  "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).",
+                                  "key": "ccy",
+                                  "value": "ISO 4217 format"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-c52c5d84-54df-4433-bfc6-d46e5225bc43"
+                        },
+                        {
+                          "id": "f942a034-4140-4fd2-b80b-c27351b0b4dc",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/:accountId/blinc-beneficiaries?ccy=ISO 4217 format",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                ":accountId",
+                                "blinc-beneficiaries"
+                              ],
+                              "query": [
+                                {
+                                  "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).",
+                                  "key": "ccy",
+                                  "value": "ISO 4217 format"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-f942a034-4140-4fd2-b80b-c27351b0b4dc"
+                        },
+                        {
+                          "id": "aee6327c-fe87-48c8-9a18-762872300f32",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/:accountId/blinc-beneficiaries?ccy=ISO 4217 format",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                ":accountId",
+                                "blinc-beneficiaries"
+                              ],
+                              "query": [
+                                {
+                                  "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).",
+                                  "key": "ccy",
+                                  "value": "ISO 4217 format"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-aee6327c-fe87-48c8-9a18-762872300f32"
+                        },
+                        {
+                          "id": "a5d045d2-6a72-4510-bb72-e6d639f7061a",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/:accountId/blinc-beneficiaries?ccy=ISO 4217 format",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                ":accountId",
+                                "blinc-beneficiaries"
+                              ],
+                              "query": [
+                                {
+                                  "description": "List only those BLINC accounts with a matching currency (like: EUR, GBP, CHF).",
+                                  "key": "ccy",
+                                  "value": "ISO 4217 format"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-a5d045d2-6a72-4510-bb72-e6d639f7061a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:15:05.000Z",
+                      "updatedAt": "2026-10-22T02:15:05.000Z",
+                      "uid": "35240-24d7d530-50d8-4c7d-b141-2caba2bf67fd"
+                    }
+                  ],
+                  "id": "445f61e9-8011-4ed9-8325-0dcd6d2fcd4e",
+                  "createdAt": "2026-10-22T02:15:05.000Z",
+                  "updatedAt": "2026-10-22T02:15:05.000Z",
+                  "uid": "35240-445f61e9-8011-4ed9-8325-0dcd6d2fcd4e"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 9996,\n    \"blinc_id\": \"800999999999\",\n    \"ccy\": \"GBP\",\n    \"name\": \"BLINC Member\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b468c57c-c692-46c8-adcc-5631e1fa2ae5",
+              "createdAt": "2026-10-22T02:15:05.000Z",
+              "updatedAt": "2026-10-22T02:15:05.000Z",
+              "uid": "35240-b468c57c-c692-46c8-adcc-5631e1fa2ae5"
             },
             {
-              "id": "4d13ae2c-0cab-485f-80b4-7f20b70adde8",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    ":accountId",
-                    "blinc-beneficiaries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ccy",
-                      "value": "ISO 4217 format"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "",
-                      "key": "accountId",
-                      "description": "(Required) The account id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "blinc-accounts",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/html"
+                  "name": "{blincId}",
+                  "item": [
+                    {
+                      "name": "BLINC Detail",
+                      "id": "41841b7b-52d2-4015-8de8-7458184374f1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/accounts/blinc-accounts/:blincId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "accounts",
+                            "blinc-accounts",
+                            ":blincId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8967876f-46d2-48ff-9513-8107195d50c0",
+                              "key": "blincId",
+                              "value": "800999999999",
+                              "description": "(Required) \nBLINC ID of another BLINC member"
+                            }
+                          ]
+                        },
+                        "description": "Returns a single BLINC account based on the BLINC member BLINC id"
+                      },
+                      "response": [
+                        {
+                          "id": "5ea6ae6e-f4de-43d6-a9f2-b929e7d98270",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/blinc-accounts/:blincId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                "blinc-accounts",
+                                ":blincId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blincId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"9996\",\n    \"name\": \"BLINC Memeber\",\n    \"ccy\": \"GBP\",\n    \"blinc_id\": \"800999999999\"\n  },\n  {\n    \"id\": \"9996\",\n    \"name\": \"BLINC Memeber\",\n    \"ccy\": \"GBP\",\n    \"blinc_id\": \"800999999999\"\n  }\n]",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-5ea6ae6e-f4de-43d6-a9f2-b929e7d98270"
+                        },
+                        {
+                          "id": "b95727ae-85b6-4f58-b03d-c70f144214e3",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/blinc-accounts/:blincId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                "blinc-accounts",
+                                ":blincId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blincId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-b95727ae-85b6-4f58-b03d-c70f144214e3"
+                        },
+                        {
+                          "id": "d545740f-90c9-4ab1-aaae-7536bd4dc9fa",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/blinc-accounts/:blincId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                "blinc-accounts",
+                                ":blincId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blincId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-d545740f-90c9-4ab1-aaae-7536bd4dc9fa"
+                        },
+                        {
+                          "id": "41e557ac-9945-47a7-9201-79a07dab8993",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/blinc-accounts/:blincId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                "blinc-accounts",
+                                ":blincId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blincId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-41e557ac-9945-47a7-9201-79a07dab8993"
+                        },
+                        {
+                          "id": "41d68722-4d16-497d-ba6d-422f2306a838",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/html"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/accounts/blinc-accounts/:blincId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "accounts",
+                                "blinc-accounts",
+                                ":blincId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "blincId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/html"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-10-22T02:15:05.000Z",
+                          "updatedAt": "2026-10-22T02:15:05.000Z",
+                          "uid": "35240-41d68722-4d16-497d-ba6d-422f2306a838"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:15:05.000Z",
+                      "updatedAt": "2026-10-22T02:15:05.000Z",
+                      "uid": "35240-41841b7b-52d2-4015-8de8-7458184374f1"
+                    }
+                  ],
+                  "id": "a06eb196-acd1-4802-9873-416818f13042",
+                  "createdAt": "2026-10-22T02:15:05.000Z",
+                  "updatedAt": "2026-10-22T02:15:05.000Z",
+                  "uid": "35240-a06eb196-acd1-4802-9873-416818f13042"
                 }
               ],
-              "body": "Invalid token",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "27d4b293-be6e-455c-8939-eeccb0968ca3",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    ":accountId",
-                    "blinc-beneficiaries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ccy",
-                      "value": "ISO 4217 format"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "",
-                      "key": "accountId",
-                      "description": "(Required) The account id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Forbidden",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "0b559cb7-d7af-47fa-a610-2db397445c5d",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    ":accountId",
-                    "blinc-beneficiaries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ccy",
-                      "value": "ISO 4217 format"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "",
-                      "key": "accountId",
-                      "description": "(Required) The account id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Not Found",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "dee68770-05b3-432a-854d-f27a0164063c",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    ":accountId",
-                    "blinc-beneficiaries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ccy",
-                      "value": "ISO 4217 format"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "",
-                      "key": "accountId",
-                      "description": "(Required) The account id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Internal Server Error",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "5cbafa91-b58a-4775-abfa-a169dc211380",
+              "createdAt": "2026-10-22T02:15:05.000Z",
+              "updatedAt": "2026-10-22T02:15:05.000Z",
+              "uid": "35240-5cbafa91-b58a-4775-abfa-a169dc211380"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ae3fc70c-8620-49f1-a695-3bc27d901cf9",
-          "name": "BLINC Detail",
-          "request": {
-            "name": "BLINC Detail",
-            "description": {
-              "content": "Returns a single BLINC account based on the BLINC member BLINC id",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "accounts",
-                "blinc-accounts",
-                ":blincId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "800999999999",
-                  "key": "blincId",
-                  "description": "(Required) \nBLINC ID of another BLINC member"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
-            {
-              "id": "16a9b8d8-3e11-453c-b59b-5d370ec94b3b",
-              "name": "Success",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    "blinc-accounts",
-                    ":blincId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "800999999999",
-                      "key": "blincId",
-                      "description": "(Required) \nBLINC ID of another BLINC member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"id\": 9996,\n    \"blinc_id\": \"800999999999\",\n    \"ccy\": \"GBP\",\n    \"name\": \"BLINC Member\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "507c61e1-6612-4de1-8e40-e6edc3b466e5",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    "blinc-accounts",
-                    ":blincId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "800999999999",
-                      "key": "blincId",
-                      "description": "(Required) \nBLINC ID of another BLINC member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Invalid token",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "40d79ab8-90f2-4e02-b502-76e70fdce709",
-              "name": "Forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    "blinc-accounts",
-                    ":blincId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "800999999999",
-                      "key": "blincId",
-                      "description": "(Required) \nBLINC ID of another BLINC member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Forbidden",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "3b821564-7946-4622-beee-f277316fac12",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    "blinc-accounts",
-                    ":blincId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "800999999999",
-                      "key": "blincId",
-                      "description": "(Required) \nBLINC ID of another BLINC member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Not Found",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "d1a40a08-4b75-4e66-a529-a7b41e3d6641",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "accounts",
-                    "blinc-accounts",
-                    ":blincId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "800999999999",
-                      "key": "blincId",
-                      "description": "(Required) \nBLINC ID of another BLINC member"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Internal Server Error",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "3b80857c-cd8b-43e7-9359-2989f70d7410",
+          "createdAt": "2026-10-22T02:15:05.000Z",
+          "updatedAt": "2026-10-22T02:15:05.000Z",
+          "uid": "35240-3b80857c-cd8b-43e7-9359-2989f70d7410"
         }
       ],
-      "event": []
+      "id": "5fbe8c81-96aa-4e80-9e49-a776e1ba5150",
+      "createdAt": "2026-10-22T02:15:05.000Z",
+      "updatedAt": "2026-10-22T02:15:05.000Z",
+      "uid": "35240-5fbe8c81-96aa-4e80-9e49-a776e1ba5150"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.bcb.group",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.bcb.group"
     }
-  ],
-  "info": {
-    "_postman_id": "d1f9bca2-a2be-45f5-a193-7f18e94ff8ac",
-    "name": "BCB Group Payments Accounts BLINC API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "This is the api documentation for the BCB Group Payments API",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

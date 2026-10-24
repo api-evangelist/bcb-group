@@ -1,197 +1,212 @@
 {
+  "info": {
+    "_postman_id": "2a2ef151-6f5f-479d-8e24-c3f2a9986b07",
+    "name": "BCB Group Payments Tools API",
+    "description": "This is the api documentation for the BCB Group Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:15:20.000Z",
+    "updatedAt": "2026-10-22T02:15:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a2ef151-6f5f-479d-8e24-c3f2a9986b07"
+  },
   "item": [
     {
-      "id": "bde69b4d-92cb-48f8-bf71-a266ad7d007a",
-      "name": "Tools",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "4d787d1b-aa61-4880-ab39-662d28cbc04b",
-          "name": "Bank Lookup",
-          "request": {
-            "name": "Bank Lookup",
-            "description": {
-              "content": "Retrieve the bank code (BIC) of the bank holding an account from its IBAN",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "bank-lookup"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "iban",
-                  "value": "<string>",
-                  "description": "(Required) The IBAN used to identify the associated bank code."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
+          "name": "bank-lookup",
+          "item": [
             {
-              "id": "fdebd1c6-7066-4c80-ad2e-768cac78ab69",
-              "name": "The BIC was resolved successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "bank-lookup"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "iban",
-                      "value": "DE89370400440532013000"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Bank Lookup",
+              "id": "1630506f-b13e-459e-995b-d5b7c1e30837",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"bic\": \"COBADEFF\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8422ce45-9e0d-4abe-9575-5c5d29e20e2d",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v1/bank-lookup?iban=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "bank-lookup"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) The IBAN used to identify the associated bank code.",
                       "key": "iban",
-                      "value": "DE89370400440532013000"
+                      "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Retrieve the bank code (BIC) of the bank holding an account from its IBAN"
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 3424\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4ba70f26-f0f7-461b-8229-b792f73e7922",
-              "name": "No BIC could be found for the given IBAN",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "bank-lookup"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "e6914df3-bbfc-47e7-94ab-e1b34ec7a6c5",
+                  "name": "The BIC was resolved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/bank-lookup?iban=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "bank-lookup"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The IBAN used to identify the associated bank code.",
+                          "key": "iban",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "iban",
-                      "value": "DE89370400440532013000"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"bic\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:15:20.000Z",
+                  "updatedAt": "2026-10-22T02:15:20.000Z",
+                  "uid": "35240-e6914df3-bbfc-47e7-94ab-e1b34ec7a6c5"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "931aa12c-b843-450e-82f1-cc05d9c80c36",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/bank-lookup?iban=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "bank-lookup"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The IBAN used to identify the associated bank code.",
+                          "key": "iban",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:15:20.000Z",
+                  "updatedAt": "2026-10-22T02:15:20.000Z",
+                  "uid": "35240-931aa12c-b843-450e-82f1-cc05d9c80c36"
+                },
+                {
+                  "id": "e15fa0d4-c475-42a0-8371-0e0390b1d22a",
+                  "name": "No BIC could be found for the given IBAN",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/bank-lookup?iban=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "bank-lookup"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The IBAN used to identify the associated bank code.",
+                          "key": "iban",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-22T02:15:20.000Z",
+                  "updatedAt": "2026-10-22T02:15:20.000Z",
+                  "uid": "35240-e15fa0d4-c475-42a0-8371-0e0390b1d22a"
                 }
               ],
-              "body": "{\n  \"message\": \"string\",\n  \"statusCode\": 3424\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:15:20.000Z",
+              "updatedAt": "2026-10-22T02:15:20.000Z",
+              "uid": "35240-1630506f-b13e-459e-995b-d5b7c1e30837"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "436ffe60-fb26-428d-81bc-c93d39480747",
+          "createdAt": "2026-10-22T02:15:20.000Z",
+          "updatedAt": "2026-10-22T02:15:20.000Z",
+          "uid": "35240-436ffe60-fb26-428d-81bc-c93d39480747"
         }
       ],
-      "event": []
+      "id": "f8061401-015b-44c9-99b0-9498004031f7",
+      "createdAt": "2026-10-22T02:15:20.000Z",
+      "updatedAt": "2026-10-22T02:15:20.000Z",
+      "uid": "35240-f8061401-015b-44c9-99b0-9498004031f7"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.bcb.group",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.bcb.group"
     }
-  ],
-  "info": {
-    "_postman_id": "02b55e27-dccd-455c-9deb-3484755af68b",
-    "name": "BCB Group Payments Accounts Tools API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "This is the api documentation for the BCB Group Payments API",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

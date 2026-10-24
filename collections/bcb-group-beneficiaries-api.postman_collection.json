@@ -1,343 +1,395 @@
 {
+  "info": {
+    "_postman_id": "102fac43-2f74-42b6-9a92-a87b316ca41c",
+    "name": "BCB Group Payments Beneficiaries API",
+    "description": "This is the api documentation for the BCB Group Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:14:59.000Z",
+    "updatedAt": "2026-10-22T02:14:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-102fac43-2f74-42b6-9a92-a87b316ca41c"
+  },
   "item": [
     {
-      "id": "7008d404-fada-4614-8622-67689688c2dc",
-      "name": "Beneficiaries",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "v4",
       "item": [
         {
-          "id": "771d499f-d7d5-4968-bbec-96d9a7988650",
-          "name": "Create Beneficiary",
-          "request": {
-            "name": "Create Beneficiary",
-            "description": {
-              "content": "Create a new beneficiary",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v4",
-                "accounts"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "text/html"
-              }
-            ],
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"is_beneficiary\": \"1\",\n  \"bcb_controlled\": \"1\",\n  \"node_type\": \"<string>\",\n  \"host_country\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"cid\": \"<string>\",\n  \"counterparty_id\": \"<integer>\",\n  \"ccy\": \"<string>\",\n  \"host_name\": \"<string>\",\n  \"host_hub\": \"<string>\",\n  \"host_location\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"node_address\": \"<string>\",\n  \"node_location_line_1\": \"<string>\",\n  \"node_location_line_2\": \"<string>\",\n  \"node_location_line_3\": \"<string>\",\n  \"node_location_city\": \"<string>\",\n  \"node_location_region\": \"<string>\",\n  \"node_location_postcode\": \"<string>\",\n  \"node_country\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"account_label\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"settlement_reference\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "accounts",
+          "item": [
             {
-              "id": "65a27364-c2f8-456f-aaf3-ebde82073b2b",
-              "name": "Success",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v4",
-                    "accounts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Create Beneficiary",
+              "id": "494c1fee-8b1a-492f-a511-ba011026c6e0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
                 "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "Account Type: Wallet\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Wallet' (MANDATORY),\n    ccy: 'BTC' (MANDATORY),\n    host_name: 'NULL' (DO NOT FILL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'NULL' (DO NOT FILL),\n    host_country: 'NULL' (DO NOT FILL),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'WALLET ADDRESS' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL' (DO NOT FILL),\n    bic: 'NULL' (DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'NULL' (DO NOT FILL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "baae45dd-39a5-45b1-b236-fb6774453cb8",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v4",
-                    "accounts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "text/html"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "Account Type: Wallet\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Wallet' (MANDATORY),\n    ccy: 'BTC' (MANDATORY),\n    host_name: 'NULL' (DO NOT FILL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'NULL' (DO NOT FILL),\n    host_country: 'NULL' (DO NOT FILL),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'WALLET ADDRESS' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL' (DO NOT FILL),\n    bic: 'NULL' (DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'NULL' (DO NOT FILL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}",
+                  "raw": "{\n  \"is_beneficiary\": \"1\",\n  \"bcb_controlled\": \"1\",\n  \"node_type\": \"individual\",\n  \"host_country\": \"<string>\",\n  \"account_type\": \"Bank\",\n  \"name\": \"<string>\",\n  \"cid\": \"<string>\",\n  \"counterparty_id\": \"<integer>\",\n  \"ccy\": \"<string>\",\n  \"host_name\": \"<string>\",\n  \"host_hub\": \"<string>\",\n  \"host_location\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"node_address\": \"<string>\",\n  \"node_location_line_1\": \"<string>\",\n  \"node_location_line_2\": \"<string>\",\n  \"node_location_line_3\": \"<string>\",\n  \"node_location_city\": \"<string>\",\n  \"node_location_region\": \"<string>\",\n  \"node_location_postcode\": \"<string>\",\n  \"node_country\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"account_label\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"settlement_reference\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Invalid token",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "6c2ef2a6-fc89-4e90-9c2d-24fde5799a87",
-              "name": "Forbidden",
-              "originalRequest": {
+                },
                 "url": {
-                  "path": [
-                    "v4",
-                    "accounts"
-                  ],
+                  "raw": "{{baseUrl}}/v4/accounts",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "Account Type: Wallet\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Wallet' (MANDATORY),\n    ccy: 'BTC' (MANDATORY),\n    host_name: 'NULL' (DO NOT FILL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'NULL' (DO NOT FILL),\n    host_country: 'NULL' (DO NOT FILL),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'WALLET ADDRESS' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL' (DO NOT FILL),\n    bic: 'NULL' (DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'NULL' (DO NOT FILL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/html"
-                }
-              ],
-              "body": "Forbidden",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "ada20752-b1b4-4303-8423-d38040680a5f",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "v4",
                     "accounts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "text/html"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "Account Type: Wallet\n{ \n    counterparty_id: 'YOUR_COUNTERPARTY_ID' (NOT CID) (MANDATORY), \n    cid: 'YOUR CID' (MANDATORY),\n    name: 'NAME' (MANDATORY),\n    account_type: 'Wallet' (MANDATORY),\n    ccy: 'BTC' (MANDATORY),\n    host_name: 'NULL' (DO NOT FILL),\n    host_hub: 'NULL' (DO NOT FILL),\n    host_location: 'NULL' (DO NOT FILL),\n    host_country: 'NULL' (DO NOT FILL),\n    node_name: 'ACCOUNT NAME' (MANDATORY),\n    node_address: 'WALLET ADDRESS' (MANDATORY),\n    node_location_line_1: 'Beneficiary Address Line 1' (MANDATORY),\n    node_location_line_2: 'Beneficiary Address Line 2' (OPTIONAL),\n    node_location_line_3: 'Beneficiary Address Line 3' (OPTIONAL),\n    node_location_city: 'Beneficiary Address City' (MANDATORY),\n    node_location_region: 'Beneficiary Address Region' (OPTIONAL),\n    node_location_postcode: 'Beneficiary Address Postcode' (OPTIONAL),\n    node_country: 'CC' (MANDATORY - COUNTRY ISO CODE - 2 letters),\n    node_type: 'individual' (MANDATORY - individual or corporate),\n    iban: 'NULL' (DO NOT FILL),\n    bic: 'NULL' (DO NOT FILL),\n    account_label: 'NAME - CCY' (OPTIONAL),\n    payment_type: 'NULL' (DO NOT FILL),\n    email: 'BENEFICIARY EMAIL' (OPTIONAL),\n    bcb_controlled: 1 (MANDATORY - ALWAYS 1),\n    settlement_reference: ''(OPTIONAL),\n    is_beneficiary: 1 (MANDATORY - ALWAYS 1)\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "description": "Create a new beneficiary"
               },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/html"
+                  "id": "0708b732-9e98-43df-a917-810272aa9309",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"is_beneficiary\": \"1\",\n  \"bcb_controlled\": \"1\",\n  \"node_type\": \"individual\",\n  \"host_country\": \"<string>\",\n  \"account_type\": \"Bank\",\n  \"name\": \"<string>\",\n  \"cid\": \"<string>\",\n  \"counterparty_id\": \"<integer>\",\n  \"ccy\": \"<string>\",\n  \"host_name\": \"<string>\",\n  \"host_hub\": \"<string>\",\n  \"host_location\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"node_address\": \"<string>\",\n  \"node_location_line_1\": \"<string>\",\n  \"node_location_line_2\": \"<string>\",\n  \"node_location_line_3\": \"<string>\",\n  \"node_location_city\": \"<string>\",\n  \"node_location_region\": \"<string>\",\n  \"node_location_postcode\": \"<string>\",\n  \"node_country\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"account_label\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"settlement_reference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v4/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v4",
+                        "accounts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:14:59.000Z",
+                  "updatedAt": "2026-10-22T02:14:59.000Z",
+                  "uid": "35240-0708b732-9e98-43df-a917-810272aa9309"
+                },
+                {
+                  "id": "b130fa2e-4fa0-4cb6-b188-71d7ed32aaef",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/html"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"is_beneficiary\": \"1\",\n  \"bcb_controlled\": \"1\",\n  \"node_type\": \"individual\",\n  \"host_country\": \"<string>\",\n  \"account_type\": \"Bank\",\n  \"name\": \"<string>\",\n  \"cid\": \"<string>\",\n  \"counterparty_id\": \"<integer>\",\n  \"ccy\": \"<string>\",\n  \"host_name\": \"<string>\",\n  \"host_hub\": \"<string>\",\n  \"host_location\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"node_address\": \"<string>\",\n  \"node_location_line_1\": \"<string>\",\n  \"node_location_line_2\": \"<string>\",\n  \"node_location_line_3\": \"<string>\",\n  \"node_location_city\": \"<string>\",\n  \"node_location_region\": \"<string>\",\n  \"node_location_postcode\": \"<string>\",\n  \"node_country\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"account_label\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"settlement_reference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v4/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v4",
+                        "accounts"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/html"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-10-22T02:14:59.000Z",
+                  "updatedAt": "2026-10-22T02:14:59.000Z",
+                  "uid": "35240-b130fa2e-4fa0-4cb6-b188-71d7ed32aaef"
+                },
+                {
+                  "id": "e036371b-821f-43d7-96d4-9b4af1bfe1b4",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/html"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"is_beneficiary\": \"1\",\n  \"bcb_controlled\": \"1\",\n  \"node_type\": \"individual\",\n  \"host_country\": \"<string>\",\n  \"account_type\": \"Bank\",\n  \"name\": \"<string>\",\n  \"cid\": \"<string>\",\n  \"counterparty_id\": \"<integer>\",\n  \"ccy\": \"<string>\",\n  \"host_name\": \"<string>\",\n  \"host_hub\": \"<string>\",\n  \"host_location\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"node_address\": \"<string>\",\n  \"node_location_line_1\": \"<string>\",\n  \"node_location_line_2\": \"<string>\",\n  \"node_location_line_3\": \"<string>\",\n  \"node_location_city\": \"<string>\",\n  \"node_location_region\": \"<string>\",\n  \"node_location_postcode\": \"<string>\",\n  \"node_country\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"account_label\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"settlement_reference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v4/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v4",
+                        "accounts"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/html"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-10-22T02:14:59.000Z",
+                  "updatedAt": "2026-10-22T02:14:59.000Z",
+                  "uid": "35240-e036371b-821f-43d7-96d4-9b4af1bfe1b4"
+                },
+                {
+                  "id": "3d599435-9ee3-4561-b7eb-1ad01fd35618",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/html"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"is_beneficiary\": \"1\",\n  \"bcb_controlled\": \"1\",\n  \"node_type\": \"individual\",\n  \"host_country\": \"<string>\",\n  \"account_type\": \"Bank\",\n  \"name\": \"<string>\",\n  \"cid\": \"<string>\",\n  \"counterparty_id\": \"<integer>\",\n  \"ccy\": \"<string>\",\n  \"host_name\": \"<string>\",\n  \"host_hub\": \"<string>\",\n  \"host_location\": \"<string>\",\n  \"node_name\": \"<string>\",\n  \"node_address\": \"<string>\",\n  \"node_location_line_1\": \"<string>\",\n  \"node_location_line_2\": \"<string>\",\n  \"node_location_line_3\": \"<string>\",\n  \"node_location_city\": \"<string>\",\n  \"node_location_region\": \"<string>\",\n  \"node_location_postcode\": \"<string>\",\n  \"node_country\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"account_label\": \"<string>\",\n  \"payment_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"settlement_reference\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v4/accounts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v4",
+                        "accounts"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/html"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<string>",
+                  "createdAt": "2026-10-22T02:14:59.000Z",
+                  "updatedAt": "2026-10-22T02:14:59.000Z",
+                  "uid": "35240-3d599435-9ee3-4561-b7eb-1ad01fd35618"
                 }
               ],
-              "body": "Internal Server Error",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T02:14:59.000Z",
+              "updatedAt": "2026-10-22T02:14:59.000Z",
+              "uid": "35240-494c1fee-8b1a-492f-a511-ba011026c6e0"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
+          "id": "1283d1bd-e9d2-4a23-b312-52caeccb8609",
+          "createdAt": "2026-10-22T02:14:59.000Z",
+          "updatedAt": "2026-10-22T02:14:59.000Z",
+          "uid": "35240-1283d1bd-e9d2-4a23-b312-52caeccb8609"
+        }
+      ],
+      "id": "248eb633-5ddd-41f2-aa16-5e86868cda97",
+      "createdAt": "2026-10-22T02:14:59.000Z",
+      "updatedAt": "2026-10-22T02:14:59.000Z",
+      "uid": "35240-248eb633-5ddd-41f2-aa16-5e86868cda97"
+    },
+    {
+      "name": "v3",
+      "item": [
         {
-          "id": "71dfea56-4e46-407a-bc70-d38919bc8a0c",
-          "name": "List Beneficiaries",
-          "request": {
-            "name": "List Beneficiaries",
-            "description": {
-              "content": "List all beneficiary bank accounts, custody accounts and wallet accounts.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "beneficiaries"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<number>",
-                  "description": "Limit result set for server-side paging"
-                },
-                {
-                  "disabled": false,
-                  "key": "pageToken",
-                  "value": "<number>",
-                  "description": "Offset result set when paging"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
+          "name": "beneficiaries",
+          "item": [
             {
-              "id": "3b006866-5cbe-4277-bfa5-98ddc2bf17cf",
-              "name": "Success",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "beneficiaries"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "<number>"
-                    },
-                    {
-                      "key": "pageToken",
-                      "value": "<number>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "List Beneficiaries",
+              "id": "38548d43-6a66-463a-9e06-4eacfaf58179",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/v3/beneficiaries?limit=<number>&pageToken=<number>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "beneficiaries"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit result set for server-side paging",
+                      "key": "limit",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Offset result set when paging",
+                      "key": "pageToken",
+                      "value": "<number>"
+                    }
+                  ]
+                },
+                "description": "List all beneficiary bank accounts, custody accounts and wallet accounts."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "a59519ec-b1d6-4190-bc98-9ee175369471",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/beneficiaries?limit=<number>&pageToken=<number>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "beneficiaries"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit result set for server-side paging",
+                          "key": "limit",
+                          "value": "<number>"
+                        },
+                        {
+                          "description": "Offset result set when paging",
+                          "key": "pageToken",
+                          "value": "<number>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": 0,\n    \"counterparty_id\": 0,\n    \"aid\": \"<string>\",\n    \"cid\": \"<string>\",\n    \"account_type\": \"<string>\",\n    \"ccy\": \"<string>\",\n    \"host_name\": \"<string>\",\n    \"host_hub\": \"<string>\",\n    \"host_location\": \"<string>\",\n    \"node_name\": \"<string>\",\n    \"node_address\": \"<string>\",\n    \"node_location\": \"<string>\",\n    \"node_country\": \"<string>\",\n    \"node_subaddress\": \"<string>\",\n    \"iban\": \"<string>\",\n    \"account_label\": \"<string>\",\n    \"description\": \"<string>\",\n    \"settlement_reference\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"partner_id\": 0,\n    \"email\": \"<string>\",\n    \"pid\": \"<string>\",\n    \"partner_name\": \"<string>\"\n  },\n  {\n    \"id\": 0,\n    \"counterparty_id\": 0,\n    \"aid\": \"<string>\",\n    \"cid\": \"<string>\",\n    \"account_type\": \"<string>\",\n    \"ccy\": \"<string>\",\n    \"host_name\": \"<string>\",\n    \"host_hub\": \"<string>\",\n    \"host_location\": \"<string>\",\n    \"node_name\": \"<string>\",\n    \"node_address\": \"<string>\",\n    \"node_location\": \"<string>\",\n    \"node_country\": \"<string>\",\n    \"node_subaddress\": \"<string>\",\n    \"iban\": \"<string>\",\n    \"account_label\": \"<string>\",\n    \"description\": \"<string>\",\n    \"settlement_reference\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"partner_id\": 0,\n    \"email\": \"<string>\",\n    \"pid\": \"<string>\",\n    \"partner_name\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-10-22T02:14:59.000Z",
+                  "updatedAt": "2026-10-22T02:14:59.000Z",
+                  "uid": "35240-a59519ec-b1d6-4190-bc98-9ee175369471"
                 }
               ],
-              "body": "[\n  {\n    \"id\": 378,\n    \"counterparty_id\": 483,\n    \"aid\": \"A01-CX00000101\",\n    \"cid\": \"CX00000101\",\n    \"account_type\": \"Wallet\",\n    \"ccy\": \"BTC\",\n    \"host_name\": \"BCB Group\",\n    \"host_hub\": \"\",\n    \"host_location\": \"\",\n    \"node_name\": \"BCB Payments Ltd\",\n    \"node_address\": \"3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo\",\n    \"node_location\": \"\",\n    \"node_country\": \"\",\n    \"node_subaddress\": \"\",\n    \"iban\": \"\",\n    \"account_label\": \"LNS 5 BTC hszo\",\n    \"description\": \"BCB Payments Ltd, 3LxDswEWKC3mJewRYs44xr3qNBqXMwhszo, BTC\",\n    \"settlement_reference\": \"\",\n    \"created_at\": \"2018-12-28T14:42:44.000Z\",\n    \"updated_at\": \"2019-01-24T21:26:27.000Z\",\n    \"partner_id\": 4,\n    \"email\": \"otc@bcbgroup.io\",\n    \"pid\": \"P01061701\",\n    \"partner_name\": \"BCB Direct\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:14:59.000Z",
+              "updatedAt": "2026-10-22T02:14:59.000Z",
+              "uid": "35240-38548d43-6a66-463a-9e06-4eacfaf58179"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9bd275e3-409c-41ab-a389-0761299f2ab3",
+          "createdAt": "2026-10-22T02:14:59.000Z",
+          "updatedAt": "2026-10-22T02:14:59.000Z",
+          "uid": "35240-9bd275e3-409c-41ab-a389-0761299f2ab3"
         }
       ],
-      "event": []
+      "id": "37a6868b-9558-4c9f-9f12-9836af1e25af",
+      "createdAt": "2026-10-22T02:14:59.000Z",
+      "updatedAt": "2026-10-22T02:14:59.000Z",
+      "uid": "35240-37a6868b-9558-4c9f-9f12-9836af1e25af"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.bcb.group",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.bcb.group"
     }
-  ],
-  "info": {
-    "_postman_id": "2e9c9bfd-b67f-4289-b663-6c9c04f3962a",
-    "name": "BCB Group Payments Accounts Beneficiaries API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "This is the api documentation for the BCB Group Payments API",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
