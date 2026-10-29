@@ -64,6 +64,141 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-BCB Group is a company surfaced as a portfolio company of pantera-capital and added to the API Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the enrichment pipeline.
+BCB Group is a regulated, multi-jurisdictional payments infrastructure provider connecting traditional finance with digital assets for financial institutions across global fiat and crypto markets. Its products include multi-currency payment accounts, virtual IBANs, crypto and e-money accounts, trading, stablecoin earn, and the BLINC instant, fee-free 24/7 settlement network linking 100+ ecosystem members. BCB serves 250+ clients (including Bitstamp, Circle, Ripple, Fireblocks and Copper) and exposes a Bearer-token Payments API (OAuth 2.0 client credentials) covering accounts, balances, transactions, beneficiaries, payments, virtual accounts and webhooks. Surfaced as a portfolio company of Pantera Capital and enriched from its public developer documentation.
 
-Backed by: pantera-capital — https://bcbgroup.io/
+**Areas:** Company · Cryptocurrency · Payments · Banking · Digital Assets · Stablecoins · Financial Services · Fintech
+
+## BCB Group on APIs.io
+
+Everything profiled for BCB Group is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bcb-group/](https://apis.io/providers/bcb-group/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [BCB Group Accounts API](https://apis.io/apis/bcb-group/bcb-group-accounts-api/) — The Accounts API from BCB Group — 4 operation(s) for accounts.
+- [BCB Group Authentication API](https://apis.io/apis/bcb-group/bcb-group-authentication-api/) — The Authentication API from BCB Group — 1 operation(s) for authentication.
+- [BCB Group Beneficiaries API](https://apis.io/apis/bcb-group/bcb-group-beneficiaries-api/) — The Beneficiaries API from BCB Group — 2 operation(s) for beneficiaries.
+- [BCB Group BLINC API](https://apis.io/apis/bcb-group/bcb-group-blinc-api/) — The BLINC API from BCB Group — 2 operation(s) for blinc.
+- [BCB Group Notifications API](https://apis.io/apis/bcb-group/bcb-group-notifications-api/) — The Notifications API from BCB Group — 1 operation(s) for notifications.
+- [BCB Group Payments API](https://apis.io/apis/bcb-group/bcb-group-payments-api/) — The Payments API from BCB Group — 7 operation(s) for payments.
+- [BCB Group Tools API](https://apis.io/apis/bcb-group/bcb-group-tools-api/) — The Tools API from BCB Group — 1 operation(s) for tools.
+- [BCB Group Virtual Accounts API](https://apis.io/apis/bcb-group/bcb-group-virtual-accounts-api/) — The Virtual Accounts API from BCB Group — 6 operation(s) for virtual accounts.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Bcb Group Webhooks](https://apis.io/asyncapis/bcb-group/bcb-group-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [bcb-group](https://apis.io/servers/bcb-group/bcb-group/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Bcb Group Agentic Access](https://apis.io/agentic-access/bcb-group/bcb-group-agentic-access/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [BCB Group Payments Accounts API](https://apis.io/collections/bcb-group/open-bcb-group-accounts-api/)
+- [BCB Group Payments Accounts Authentication API](https://apis.io/collections/bcb-group/open-bcb-group-authentication-api/)
+- [BCB Group Payments Accounts Beneficiaries API](https://apis.io/collections/bcb-group/open-bcb-group-beneficiaries-api/)
+- [BCB Group Payments Accounts BLINC API](https://apis.io/collections/bcb-group/open-bcb-group-blinc-api/)
+- [BCB Group Payments Accounts Notifications API](https://apis.io/collections/bcb-group/open-bcb-group-notifications-api/)
+- [BCB Group Accounts Payments API](https://apis.io/collections/bcb-group/open-bcb-group-payments-api/)
+- [BCB Group Payments Accounts Tools API](https://apis.io/collections/bcb-group/open-bcb-group-tools-api/)
+- [BCB Group Payments Accounts Virtual Accounts API](https://apis.io/collections/bcb-group/open-bcb-group-virtual-accounts-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Bcb Group Payments Overlay](https://apis.io/overlays/bcb-group/bcb-group-payments-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bcb Group Authentication](https://apis.io/security/bcb-group/bcb-group-authentication/)
+- [Bcb Group Domain Security](https://apis.io/security/bcb-group/bcb-group-domain-security/)
+- [Bcb Group Vulnerability Disclosure](https://apis.io/security/bcb-group/bcb-group-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://bcbgroup.io/)
+- [Documentation](https://docs.bcb.group/docs)
+- [Getting started](https://docs.bcb.group/docs/introduction)
+- [API reference](https://docs.bcb.group/reference)
+- [Support](https://www.bcbgroup.com/contact-us/)
+- [Changelog](https://docs.bcb.group/docs/changle-log)
+- [Blog](https://www.bcbgroup.com/insights/)
+- [Security](https://bcbgroup.io/.well-known/security.txt)
+- [Compliance](https://www.bcbgroup.com/about/our-licences-and-regulations/)
+- [Terms of service](https://www.bcbgroup.com/terms-of-use/)
+- [Privacy policy](https://www.bcbgroup.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 41.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 54.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 35.5 |
+
+**Agent readiness 39.9** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 28.3** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bcb-group/](https://apis.io/providers/bcb-group/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BCB Group: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bcb-group/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
